@@ -104,11 +104,17 @@ GEM
     execjs (2.8.1)
     ffi (1.15.5)
 <<<<<<< HEAD
+<<<<<<< HEAD
     geocoder (1.8.2)
 =======
     font-awesome-rails (4.7.0.8)
       railties (>= 3.2, < 8.0)
 >>>>>>> 4e98c4486f6faa50f79bd7313e21371b90786f3a
+=======
+    geocoder (1.8.2)
+    font-awesome-rails (4.7.0.8)
+      railties (>= 3.2, < 8.0)
+>>>>>>> e3e137cd8e427ac1df34b8a29513f8d195173a3a
     globalid (1.1.0)
       activesupport (>= 5.0)
     i18n (1.14.1)
@@ -258,10 +264,15 @@ DEPENDENCIES
   debug
   devise
 <<<<<<< HEAD
+<<<<<<< HEAD
   geocoder
 =======
   font-awesome-rails
 >>>>>>> 4e98c4486f6faa50f79bd7313e21371b90786f3a
+=======
+  geocoder
+  font-awesome-rails
+>>>>>>> e3e137cd8e427ac1df34b8a29513f8d195173a3a
   importmap-rails
   pg (~> 1.1)
   puma (~> 5.0)
