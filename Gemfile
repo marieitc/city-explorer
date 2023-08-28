@@ -43,6 +43,8 @@ gem "bootsnap", require: false
 gem "sassc-rails"
 
 gem "bootstrap", "~> 5.2"
+# gem "font-awesome-sass", "~> 6.1"
+gem "font-awesome-rails"
 gem "simple_form"
 gem "devise"
 gem "geocoder"
