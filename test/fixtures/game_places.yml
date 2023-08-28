@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  found: false
+  place: one
+  game: one
+
+two:
+  found: false
+  place: two
+  game: two
