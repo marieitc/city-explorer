@@ -1,1 +1,18 @@
+<div data-controller="new" class="mt-5">
+  <%# <div class="" data-new-target="choice">
+    <p data-action="click->new#createGame">Create a game</p>
+    <p data-action="click->new#joinGame">Join a game</p>
+  </div> %>
+  <div data-new-target="create">
+    <div class="container px-5">
+      <%= simple_form_for @game do |f| %>
+        <%= f.input :location, input_html: { data: { new_target: 'location' } } %>
+        <p data-action="click->new#locate">my position</p>
 
+        <%= f.input :radius %>
+        <%= f.input :places_number %>
+        <%= f.submit %>
+      <% end %>
+    </div>
+  </div>
+</div>
