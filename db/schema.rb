@@ -24,6 +24,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_28_124232) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+
+  create_table "places", force: :cascade do |t|
+    t.string "name"
+    t.float "latitude"
+    t.float "longtitude"
+    t.integer "points"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
