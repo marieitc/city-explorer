@@ -1,9 +1,9 @@
 <div data-controller="new" class="mt-5">
-  <%# <div class="" data-new-target="choice">
+  <div class="" data-new-target="choice">
     <p data-action="click->new#createGame">Create a game</p>
     <p data-action="click->new#joinGame">Join a game</p>
-  </div> %>
-  <div data-new-target="create">
+  </div>
+  <div class='d-none' data-new-target="create">
     <div class="container px-5">
       <%= simple_form_for @game do |f| %>
         <%= f.input :location, input_html: { data: { new_target: 'location' } } %>
@@ -14,5 +14,10 @@
         <%= f.submit %>
       <% end %>
     </div>
+    <p data-action="click->new#return">Return</p>
+  </div>
+  <div class='d-none' data-new-target="join">
+
+    <p data-action="click->new#return">Return</p>
   </div>
 </div>

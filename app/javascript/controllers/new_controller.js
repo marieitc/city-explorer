@@ -7,8 +7,20 @@ export default class extends Controller {
   }
 
   createGame() {
-    this.joinTarget.classList.add('d-none')
+    this.choiceTarget.classList.add('d-none')
     this.createTarget.classList.remove('d-none')
+  }
+
+  joinGame() {
+    this.choiceTarget.classList.add('d-none')
+    this.joinTarget.classList.remove('d-none')
+  }
+
+  return() {
+    this.choiceTarget.classLiszt.remove('d-none')
+    this.createTarget.classList.add('d-none')
+    this.joinTarget.classList.add('d-none')
+
   }
 
   locate(evt) {
