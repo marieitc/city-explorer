@@ -2,3 +2,5 @@
 
 require_relative "../config/application"
 require "importmap/commands"
+
+pin "@popperjs/core", to: "https://unpkg.com/@popperjs/core@2.11.2/dist/esm/index.js"
