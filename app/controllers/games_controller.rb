@@ -15,6 +15,14 @@ class GamesController < ApplicationController
 
   def show
     # @game = Game.find(params[:id])
+    @places = Place.sample(4)
+
+    @markers = @places.geocoded.map do |place|
+      {
+        lat: place.latitude,
+        lng: place.longtitude
+      }
+    end
   end
 
   # def start
