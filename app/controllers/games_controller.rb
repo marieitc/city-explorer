@@ -5,6 +5,7 @@ class GamesController < ApplicationController
 
   def create
     @game = Game.new(params_game)
+    raise
 
     if @game.save
       redirect_to game_lobby_path(@game)

@@ -25,6 +25,7 @@ export default class extends Controller {
 
   locate(evt) {
     navigator.geolocation.getCurrentPosition((data) => {
+      
       // call reverse geocoding from mapbox
     })
   }
