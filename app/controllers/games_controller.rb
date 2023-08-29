@@ -6,13 +6,12 @@ class GamesController < ApplicationController
   def create
     @game = Game.new(params_game)
 
-    if @game.save
-      redirect_to game_lobby_path(@game)
-    end
+    redirect_to game_lobby_path(@game) if @game.save
   end
 
   def show
     @game = Game.find(params[:id])
+    @participations = @game.participations
 
     @markers = @game.places.geocoded.map do |place|
       {
@@ -20,6 +19,13 @@ class GamesController < ApplicationController
         lng: place.longitude
       }
     end
+
+    # @user_position = @participations.geocoded.map do |participation|
+    #   {
+    #     lat: participation[:latitude],
+    #     lng: particpation[:longitude]
+    #   }
+    # end
   end
 
   # def start
