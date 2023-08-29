@@ -17,8 +17,13 @@ class Game < ApplicationRecord
     places.each do |place|
       GamePlace.create!(game: self, place: place)
     end
+  end
 
-  # before_commit :generate_token
+  before_commit :generate_token
+
+  def generate_token
+    self.token = 'lalala'
+
   end
 
   # def generate_token
