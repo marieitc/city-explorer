@@ -4,10 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :participations
-  has_many :games
+  has_many :participations, dependent: :destroy
+  has_many :games, dependent: :destroy
 
-  validates :nickname, presence: true, uniqueness: true
+  # validates :nickname, presence: true, uniqueness: true
   validates :password, length: { in: 6..20 }
   validates :email, presence: true
 end
