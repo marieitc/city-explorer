@@ -259,7 +259,6 @@ DEPENDENCIES
   debug
   devise
   dotenv-rails
-  font-awesome-rails
   geocoder
   importmap-rails
   pg (~> 1.1)
