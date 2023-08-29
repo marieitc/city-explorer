@@ -34,7 +34,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_29_131542) do
     t.datetime "updated_at", null: false
     t.boolean "status", default: true, null: false
     t.string "pin"
-    t.string "longitude"
+    t.float "longitude"
     t.index ["user_id"], name: "index_games_on_user_id"
   end
 
@@ -56,7 +56,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_29_131542) do
     t.datetime "updated_at", null: false
     t.string "address"
     t.string "url_image"
-    t.string "longitude"
+    t.float "longitude"
   end
 
   create_table "users", force: :cascade do |t|

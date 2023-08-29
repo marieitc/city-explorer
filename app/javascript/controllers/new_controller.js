@@ -1,8 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-
-
+  static values = { key: String }
   static targets = ['latitude', 'longitude','choice', 'join', 'create', 'location']
 
   connect() {
@@ -31,11 +30,10 @@ export default class extends Controller {
   }
 
   async success(pos) {
-    const key = "pk.eyJ1IjoiYjNuajRtMW4iLCJhIjoiY2xsdjFmNTR1MTl0bDNnbnp0bmhnZnI1MyJ9.9iSc8pLvzVSXmoE0Wy7TKg"
     const crd = pos.coords;
     this.latitudeTarget.value = crd.latitude
     this.longitudeTarget.value = crd.longitude
-    const address = `https://api.mapbox.com/geocoding/v5/mapbox.places/${crd.longitude},${crd.latitude}.json?access_token=${key}`
+    const address = `https://api.mapbox.com/geocoding/v5/mapbox.places/${crd.longitude},${crd.latitude}.json?access_token=${this.keyValue}`
 
     const response = await fetch(address);
     const data = await response.json();

@@ -1,4 +1,4 @@
-<div data-controller="new" class="mt-5">
+<div data-controller="new" data-new-key-value="<%= ENV['MAPBOX_API_KEY'] %>" class="mt-5">
   <div class="" data-new-target="choice">
     <p data-action="click->new#createGame">Create a game</p>
     <p data-action="click->new#joinGame">Join a game</p>
@@ -6,13 +6,13 @@
   <div class='d-none' data-new-target="create">
     <div class="container px-5">
       <%= simple_form_for @game do |f| %>
-        <%= f.input :location, input_html: { data: { new_target: 'location' } } %>
+        <%= f.input :location, label: 'Address', input_html: { data: { new_target: 'location' } } %>
         <p data-action="click->new#locate">my position</p>
         <%= f.hidden_field :latitude, data: { new_target: "latitude" }, class: 'latInput' %>
         <%= f.hidden_field :longitude, data: { new_target: "longitude"}, class: 'lngInput'  %>
 
-        <%= f.input :radius, hint: 'in KM' %>
-        <%= f.input :places_number %>
+        <%= f.input :radius, hint: '(km)' %>
+        <%= f.input :places_number, label: 'Number of places you want to visit' %>
         <%= f.submit %>
       <% end %>
     </div>
@@ -20,8 +20,8 @@
   </div>
   <div class='d-none' data-new-target="join">
     <%= simple_form_for :join, url: join_path, method: :get do |f| %>
-      <%= f.input :token %>
-      <%= f.submit %>
+      <%= f.input :pin %>
+      <%= f.submit 'Join the game' %>
     <% end %>
     <p data-action="click->new#return">Return</p>
   </div>

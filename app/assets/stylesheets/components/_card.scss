@@ -1,3 +1,153 @@
 .profile-card {
-  
+  height: auto;
+  width: 90%;
+  background-color: $white;
+  border-radius: 15px;
+  border: 1px solid #ffff;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  padding: 20px;
+
+    .profile-card-text {
+      display: flex;
+      flex-direction: column;
+      font-size: 24px;
+      margin-left: 20px;
+      #ranking {
+        font-family: 'Big Shoulders Text', cursive;
+        font-weight: 400;
+        font-size: 22px ;
+      }
+    }
+
+    .profile-card-top {
+      display: flex;
+      font-family: 'Baloo 2', cursive;
+      font-weight: 800;
+      margin-bottom: 15px;
+
+    }
+
+    .profile-card-bottom {
+      font-family: 'Big Shoulders Text', cursive;
+      font-weight: 400;
+      display: flex;
+      justify-content: space-around;
+      font-size: 20px;
+
+      .pink-text {
+        color: $pink;
+        font-weight: 800;
+      }
+
+      #left-metric {
+        width: 50%;
+        text-align: center;
+        border-right: 1px solid white;
+        display: grid;
+      }
+
+      #right-metric {
+        width: 50%;
+        text-align: center;
+        border-left: 1px solid white;
+        display: grid;
+      }
+
+    }
+}
+
+.main-card {
+  width: 90%;
+  height: auto;
+  background-color: $white;
+  border-radius: 15px;
+  border: 1px solid #ffff;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  padding: 20px;
+  display: grid;
+  text-align: center;
+
+  .white-input {
+    background-color: white;
+    color: $blue;
+    border-radius: 20px;
+    padding: 15px;
+  }
+
+  .parameters-text {
+    font-family: 'Big Shoulders Text', cursive;
+    color: $pink;
+    font-weight: 400;
+    font-size: 24px ;
+  }
+
+
+}
+
+.pink-text {
+  font-family: 'Big Shoulders Text', cursive;
+  color: $pink;
+  font-weight: 400;
+  font-size: 20px ;
+}
+
+#lobby-card {
+    width: 90%;
+    height: auto;
+    background-color: $white;
+    border-radius: 15px;
+    border: 1px solid #ffff;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    padding: 20px;
+    font-family: 'Big Shoulders Text', cursive;
+    font-size: 24px;
+    font-weight: 400;
+    display: grid;
+
+    #players {
+      text-align: center;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  #token {
+    background-color: white;
+    color: $blue;
+    border-radius: 20px;
+    padding: 15px;
+    margin: 10px auto;
+    font-size: 20px;
+  }
+
+
+.title {
+  font-family: 'Baloo 2', cursive;
+  font-weight: 800;
+  text-align: center;
+  font-size: 24px;
+}
+
+
+
+
+.top-menu {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 20px 0 20px;
+  // padding: 20px;
+}
+
+
+.content-card {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.main-container {
+  background-size: contain;
+  height: 100vh;
 }
