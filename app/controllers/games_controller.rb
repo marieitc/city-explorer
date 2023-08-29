@@ -14,13 +14,12 @@ class GamesController < ApplicationController
   end
 
   def show
-    # @game = Game.find(params[:id])
-    @places = Place.sample(4)
+    @game = Game.find(params[:id])
 
-    @markers = @places.geocoded.map do |place|
+    @markers = @game.places.geocoded.map do |place|
       {
         lat: place.latitude,
-        lng: place.longtitude
+        lng: place.longitude
       }
     end
   end
