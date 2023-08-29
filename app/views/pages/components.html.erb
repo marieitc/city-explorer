@@ -1,20 +1,103 @@
 components
 
-<div class="container ">
+<div class="container bg-image"
+  style="background-image: url(<%= image_path 'gradient-ce.png' %>);">
 <img src="https://sm.ign.com/ign_fr/cover/a/avatar-gen/avatar-generations_bssq.jpg" alt="" class="avatar">
 
 <br>
 <br>
 <p class="home-btn">Create account</p>
-
-<br>
 <br>
 
-<p class="mini-btn"><i class="fa-solid fa-gear" style="color: #ffffff;"></i></p>
-
+<p class="mini-btn"><i class="fa-solid fa-gear"></i></p>
 <br>
+<p class="mini-btn"><i class="fa-solid fa-user"></i></p>
+
 <br>
 <img src="assets/logo.png" alt="" class="logo">
 <br>
 <br>
+
+<div class="profile-card">
+
+  <div class="profile-card-top">
+    <img src="https://sm.ign.com/ign_fr/cover/a/avatar-gen/avatar-generations_bssq.jpg" alt="" class="avatar-profile">
+    <div class="profile-card-text">
+      <span>Indiana Jones</span>
+      <span id="ranking">Explorer</span>
+    </div>
+  </div>
+
+  <div class="profile-card-bottom">
+    <div id="left-metric">
+      <span class="pink-text">50</span>
+      <span>Places</span>
+    </div>
+    <div id="right-metric">
+      <span class="pink-text">98 kms</span>
+      <span>Distance</span>
+    </div>
+  </div>
+</div>
+
+<br>
+
+<div class="main-card">
+  <span class="title">Join a game</span>
+  <br>
+  <span class="white-input title">Enter pin</span>
+  <br>
+  <span class="main-btn title">Validate</span>
+</div>
+
+<br>
+
+<div class="main-card">
+  <span class="title">Create a game</span>
+  <br>
+  <span class="white-input title">Number of places</span>
+  <br>
+  <span class="white-input title">Location</span>
+  <br>
+  <span class="white-input title">Radius</span>
+  <br>
+  <span class="main-btn title">Validate</span>
+</div>
+<br>
+
+<div id="lobby-card">
+  <span class="title">Lobby</span>
+  <div id="players">
+  <span>Player 1</span>
+  <span>Player 2</span>
+  <span>Player 3</span>
+  <span>Player 4</span>
+  <span>Player 5</span>
+  <span>Player 6</span>
+  <span>Player 7</span>
+  <span>Player 8</span>
+  </div>
+  <br>
+  <span class="main-btn title">Game parameters</span>
+  <br>
+  <span class="pink-btn title">Play</span>
+</div>
+<br>
+
+<div class="main-card">
+  <br>
+  <span class="title">Number of places</span>
+  <span class="parameters-text">10</span>
+  <br>
+  <span class="title">Location</span>
+  <span class="parameters-text">75011</span>
+  <br>
+  <span class="title">Radius</span>
+  <span class="parameters-text">1 km</span>
+  <br>
+  <span class="main-btn title">Back</span>
+</div>
+
+<br>
+
 </div>
