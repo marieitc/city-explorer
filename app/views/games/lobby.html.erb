@@ -1,5 +1,3 @@
-
-
 <div class="main-container bg-image", style="background-image: url(<%= image_path 'gradient-ce.png' %>);">
 
   <div class="top-menu">
@@ -33,7 +31,7 @@
     <br>
     <div id="lobby-card">
       <span class="title">Lobby</span>
-      <span class="title" id="token">PIN #9376</span>
+      <span class="title" id="token">PIN: <%= @game.pin %></span>
       <div id="players">
       <span>Player 1</span>
       <span>Player 2</span>
@@ -49,9 +47,7 @@
     <span class="main-btn title">Game parameters</span>
     <br>
     <span class="pink-btn title">Play</span>
-
   </div>
-
 </div>
 
 
