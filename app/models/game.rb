@@ -18,10 +18,10 @@ class Game < ApplicationRecord
       GamePlace.create!(game: self, place: place)
     end
 
-  before_commit :generate_token
-
-  def generate_token
-    self.token = 'lalala'
-
+  # before_commit :generate_token
   end
+
+  # def generate_token
+  #   self.token = 'lalala'
+  # end
 end
