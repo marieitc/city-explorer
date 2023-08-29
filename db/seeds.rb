@@ -8,7 +8,6 @@
 
 require 'open-uri'
 puts 'Clearing seed'
-User.destroy_all
 Place.destroy_all
 puts 'Seed cleared'
 # Places
@@ -19,7 +18,7 @@ puts 'Creating Places'
 Place.create(address: '16 Rue du Repos, 75020 Paris', name: 'Père Lachaise', url_image: 'https://upload.wikimedia.org/wikipedia/commons/b/b0/Main_gate_of_the_P%C3%A8re-Lachaise_Cemetery%2C_Paris_13_June_2014.jpg')
 Place.create(address: 'Place de la République, 75010, Paris', name: 'Statue de la République', url_image: 'https://paris1900.lartnouveau.com/paris10/place_de_la_republique/statues/1stat_rep01.jpg')
 Place.create(address: '16 villa Gaudelet', name: 'Le Wagon', url_image: 'https://studysmarter-mediafiles.s3.amazonaws.com/media/uploads/froala_editor/images/fa7583826ca3-Paris_Campus_3__3_.png')
-Place.create(address: 'Place Georges Pombidou, 75004 Paris', name: 'Centre Pompidou', url_image: 'https://uploads.lebonbon.fr/source/2017/paris/site/ines/centre-pompidou-.jpg')
+Place.create(address: 'Place Georges Pombidou, 75004, Paris', name: 'Centre Pompidou', url_image: 'https://uploads.lebonbon.fr/source/2017/paris/site/ines/centre-pompidou-.jpg')
 Place.create(address: '47 Rue des Couronnes, 75020 Paris', name: 'Parc de Belleville', url_image: 'https://i.pinimg.com/originals/52/40/db/5240dbfbaf8efe30a46df6b2c60250df.jpg')
 Place.create(address: 'Square Saint-Ambroise, 75011 Paris', name: 'Eglise Saint-Ambroise', url_image: 'https://files.structurae.net/files/photos/64/paris_11eme_arrondissement/p1170024.jpg')
 Place.create(address: '50 Boulevard Voltaire, 75011 Paris', name: 'Bataclan', url_image: 'https://cdn.sortiraparis.com/images/80/1665/182946-le-bataclan-de-paris-devrait-rouvrir-fin-2016.jpg')
