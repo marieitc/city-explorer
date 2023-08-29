@@ -1,6 +1,58 @@
-<%= "Pin of the game": @game.token %>
 
-<div>
-  <h3>Participants</h3>
-  
+
+<div class="main-container bg-image", style="background-image: url(<%= image_path 'gradient-ce.png' %>);">
+
+  <div class="top-menu">
+    <p class="mini-btn"><i class="fa-solid fa-gear"></i></p>
+    <p class="mini-btn"><i class="fa-solid fa-user"></i></p>
+  </div>
+
+  <div class="content-card">
+
+    <div class="profile-card">
+
+      <div class="profile-card-top">
+        <img src="https://sm.ign.com/ign_fr/cover/a/avatar-gen/avatar-generations_bssq.jpg" alt="" class="avatar-profile">
+        <div class="profile-card-text">
+          <span>Indiana Jones</span>
+          <span id="ranking">Explorer</span>
+        </div>
+      </div>
+
+      <div class="profile-card-bottom">
+        <div id="left-metric">
+          <span class="pink-text">50</span>
+          <span>Places</span>
+        </div>
+        <div id="right-metric">
+          <span class="pink-text">98 kms</span>
+          <span>Distance</span>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div id="lobby-card">
+      <span class="title">Lobby</span>
+      <span class="title" id="token">PIN #9376</span>
+      <div id="players">
+      <span>Player 1</span>
+      <span>Player 2</span>
+      <span>Player 3</span>
+      <span>Player 4</span>
+      <span>Player 5</span>
+      <span>Player 6</span>
+      <span>Player 7</span>
+      <span>Player 8</span>
+      </div>
+    </div>
+    <br>
+    <span class="main-btn title">Game parameters</span>
+    <br>
+    <span class="pink-btn title">Play</span>
+
+  </div>
+
 </div>
+
+
+<%#= "Pin of the game": @game.token %>
