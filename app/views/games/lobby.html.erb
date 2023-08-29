@@ -29,26 +29,40 @@
       </div>
     </div>
     <br>
-    <div id="lobby-card">
-      <span class="title">Lobby</span>
-      <span class="title" id="token">PIN: <%= @game.pin %></span>
-      <div id="players">
-      <span>Player 1</span>
-      <span>Player 2</span>
-      <span>Player 3</span>
-      <span>Player 4</span>
-      <span>Player 5</span>
-      <span>Player 6</span>
-      <span>Player 7</span>
-      <span>Player 8</span>
+    <div data-controller="lobby" >
+      <div class="" data-lobby-target="content" >
+        <div id="lobby-card">
+          <span class="title">Lobby</span>
+          <span class="title" id="token">PIN: <%= @game.pin %></span>
+          <div id="players">
+          <span>Player 1</span>
+          <span>Player 2</span>
+          <span>Player 3</span>
+          <span>Player 4</span>
+          <span>Player 5</span>
+          <span>Player 6</span>
+          <span>Player 7</span>
+          <span>Player 8</span>
+          </div>
+        </div>
+
+        <div class="d-flex flex-column align-items-center justify-content-center">
+          <span data-action="click->lobby#parameters" class="main-btn title">Game parameters</span>
+          <span class="pink-btn title">Play</span>
+        </div>
+      </div>
+
+      <div data-lobby-target="parameters" class="d-none">
+        <p>Parameters: </p>
+        <%= @game.radius %>
+        <p data-action="click->lobby#content" >Lobby</p>
       </div>
     </div>
-    <br>
-    <span class="main-btn title">Game parameters</span>
-    <br>
-    <span class="pink-btn title">Play</span>
   </div>
 </div>
+
+
+
 
 
 <%#= "Pin of the game": @game.token %>
