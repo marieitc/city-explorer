@@ -1,0 +1,23 @@
+body {
+  height: 100vh;
+  position: relative;
+}
+
+.night-bg {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+#params-buttons {
+  display: flex;
+  justify-content: space-between;
+  position:fixed;
+  bottom:20px;
+  right:20px;
+}
+
+#gear-btn, #user-btn {
+  display:inline-block;
+}
