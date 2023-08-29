@@ -4,12 +4,15 @@ class Game < ApplicationRecord
   has_many :game_places, dependent: :destroy
   has_many :places, through: :game_places
 
-  after_create :set_places
-  # before_commit :generate_token
+  geocoded_by :location
 
-  # def generate_token
-  #   # self.token =
-  # end
+  before_save :generate_pin
+  after_create :set_places
+  before_commit :geocode, if: :will_save_change_to_location?
+
+  def generate_pin
+    self.pin = SecureRandom.hex
+  end
 
   def set_places
     places = Place.all.sample(places_number)
@@ -18,15 +21,4 @@ class Game < ApplicationRecord
       GamePlace.create!(game: self, place: place)
     end
   end
-
-  before_commit :generate_token
-
-  def generate_token
-    self.token = 'lalala'
-
-  end
-
-  # def generate_token
-  #   self.token = 'lalala'
-  # end
 end
