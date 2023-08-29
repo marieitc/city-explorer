@@ -8,22 +8,33 @@ class GamesController < ApplicationController
 
     if @game.save
       redirect_to game_lobby_path(@game)
-    else
-      redirect_to new_game_path
     end
   end
 
   def show
     # @game = Game.find(params[:id])
+    @places = Place.sample(4)
+
+    @markers = @places.geocoded.map do |place|
+      {
+        lat: place.latitude,
+        lng: place.longtitude
+      }
+    end
   end
 
   # def start
   #   broadcast game show url
   # end
 
-  # def lobby
-    # @game = Game.find_by(token: params[:token])
-  # end
+  def lobby
+    @game = Game.find_by(token: params[:id])
+  end
+
+  def join
+    @game = Game.find_by(token: params[:token])
+    redirect_to game_lobby_path(@game)
+  end
 
   private
 
