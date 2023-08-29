@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   get '/components', to: 'pages#components'
+  get '/join', to: 'games#join'
 end
 
 # new -> create -> show (lobby) -> show (game started)

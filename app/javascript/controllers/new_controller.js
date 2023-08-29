@@ -17,7 +17,7 @@ export default class extends Controller {
   }
 
   return() {
-    this.choiceTarget.classLiszt.remove('d-none')
+    this.choiceTarget.classList.remove('d-none')
     this.createTarget.classList.add('d-none')
     this.joinTarget.classList.add('d-none')
 
