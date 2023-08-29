@@ -103,9 +103,9 @@ GEM
     erubi (1.12.0)
     execjs (2.8.1)
     ffi (1.15.5)
+    font-awesome-sass (6.4.2)
+      sassc (~> 2.0)
     geocoder (1.8.2)
-    font-awesome-rails (4.7.0.8)
-      railties (>= 3.2, < 8.0)
     globalid (1.1.0)
       activesupport (>= 5.0)
     i18n (1.14.1)
@@ -141,6 +141,8 @@ GEM
       net-protocol
     nio4r (2.5.9)
     nokogiri (1.15.4-arm64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.15.4-x86_64-darwin)
       racc (~> 1.4)
     nokogiri (1.15.4-x86_64-linux)
       racc (~> 1.4)
@@ -254,8 +256,8 @@ DEPENDENCIES
   capybara
   debug
   devise
+  font-awesome-sass (~> 6.1)
   geocoder
-  font-awesome-rails
   importmap-rails
   pg (~> 1.1)
   puma (~> 5.0)
