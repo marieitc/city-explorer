@@ -1,28 +1,64 @@
-<div data-controller="new" data-new-key-value="<%= ENV['MAPBOX_API_KEY'] %>" class="mt-5">
-  <div class="" data-new-target="choice">
-    <p data-action="click->new#createGame">Create a game</p>
-    <p data-action="click->new#joinGame">Join a game</p>
-  </div>
-  <div class='d-none' data-new-target="create">
-    <div class="container px-5">
-      <%= simple_form_for @game do |f| %>
-        <%= f.input :location, label: 'Address', input_html: { data: { new_target: 'location' } } %>
-        <p data-action="click->new#locate">my position</p>
-        <%= f.hidden_field :latitude, data: { new_target: "latitude" }, class: 'latInput' %>
-        <%= f.hidden_field :longitude, data: { new_target: "longitude"}, class: 'lngInput'  %>
+<div class="main-container bg-image", style="background-image: url(<%= image_path 'gradient-ce.png' %>);">
 
-        <%= f.input :radius, hint: '(km)' %>
-        <%= f.input :places_number, label: 'Number of places you want to visit' %>
-        <%= f.submit %>
-      <% end %>
+    <div class="top-menu">
+      <p class="mini-btn"><i class="fa-solid fa-gear"></i></p>
+      <p class="mini-btn"><i class="fa-solid fa-user"></i></p>
     </div>
-    <p data-action="click->new#return">Return</p>
+
+  <div class="content-card">
+
+    <div class="profile-card">
+
+        <div class="profile-card-top">
+          <img src="https://sm.ign.com/ign_fr/cover/a/avatar-gen/avatar-generations_bssq.jpg" alt="" class="avatar-profile">
+          <div class="profile-card-text">
+            <span><%= current_user.nickname %></span>
+            <span id="ranking">Explorer</span>
+          </div>
+        </div>
+
+        <div class="profile-card-bottom">
+          <div id="left-metric">
+            <span class="pink-text"><%= current_user.places %></span>
+            <span>Places</span>
+          </div>
+          <div id="right-metric">
+            <span class="pink-text"><%= current_user.distance %> kms</span>
+            <span>Distance</span>
+          </div>
+        </div>
+      </div>
+
+    <div data-controller="new" data-new-key-value="<%= ENV['MAPBOX_API_KEY'] %>" class="mt-5">
+      <div class="main-card" data-new-target="choice">
+        <span class="main-btn title" data-action="click->new#createGame">Create a game</span>
+        <br>
+        <span class="main-btn title" data-action="click->new#joinGame">Join a game</span>
+      </div>
+      <div class='d-none' data-new-target="create">
+        <div class="container px-5">
+          <%= simple_form_for @game do |f| %>
+            <%= f.input :location, label: 'Address', input_html: { data: { new_target: 'location' } } %>
+            <p data-action="click->new#locate">my position</p>
+            <%= f.hidden_field :latitude, data: { new_target: "latitude" }, class: 'latInput' %>
+            <%= f.hidden_field :longitude, data: { new_target: "longitude"}, class: 'lngInput'  %>
+
+            <%= f.input :radius, hint: '(km)' %>
+            <%= f.input :places_number, label: 'Number of places you want to visit' %>
+            <%= f.submit %>
+          <% end %>
+        </div>
+        <p data-action="click->new#return">Return</p>
+      </div>
+      <div class='d-none' data-new-target="join">
+        <%= simple_form_for :join, url: join_path, method: :get do |f| %>
+          <%= f.input :pin %>
+          <%= f.submit 'Join the game' %>
+        <% end %>
+        <p data-action="click->new#return">Return</p>
+      </div>
+    </div>
+
   </div>
-  <div class='d-none' data-new-target="join">
-    <%= simple_form_for :join, url: join_path, method: :get do |f| %>
-      <%= f.input :pin %>
-      <%= f.submit 'Join the game' %>
-    <% end %>
-    <p data-action="click->new#return">Return</p>
-  </div>
+
 </div>
