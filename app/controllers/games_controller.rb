@@ -1,11 +1,13 @@
 class GamesController < ApplicationController
+  before_action :authenticate_user!
+
   def new
     @game = Game.new
   end
 
   def create
     @game = Game.new(params_game)
-    raise
+    @game.user = current_user
 
     if @game.save
       redirect_to game_lobby_path(@game)
@@ -29,11 +31,11 @@ class GamesController < ApplicationController
   # end
 
   def lobby
-    @game = Game.find_by(token: params[:id])
+    @game = Game.find(params[:game_id])
   end
 
   def join
-    @game = Game.find_by(token: params[:token])
+    @game = Game.find_by(pin: params[:pin])
     redirect_to game_lobby_path(@game)
   end
 

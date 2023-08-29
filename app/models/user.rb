@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :participations
   has_many :games
 
-  validates :nickname, presence: true, uniqueness: true
+  # validates :nickname, presence: true, uniqueness: true
   validates :password, length: { in: 6..20 }
   validates :email, presence: true
 end

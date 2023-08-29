@@ -8,8 +8,10 @@
       <%= simple_form_for @game do |f| %>
         <%= f.input :location, input_html: { data: { new_target: 'location' } } %>
         <p data-action="click->new#locate">my position</p>
+        <%= f.hidden_field :latitude, data: { new_target: "latitude" }, class: 'latInput' %>
+        <%= f.hidden_field :longitude, data: { new_target: "longitude"}, class: 'lngInput'  %>
 
-        <%= f.input :radius %>
+        <%= f.input :radius, hint: 'in KM' %>
         <%= f.input :places_number %>
         <%= f.submit %>
       <% end %>
