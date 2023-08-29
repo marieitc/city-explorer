@@ -27,7 +27,7 @@ class GamesController < ApplicationController
   # end
 
   def lobby
-    @game = Game.find_by(token: params[:id])
+    # @game = Game.find_by(token: params[:id])
   end
 
   def join

@@ -23,5 +23,10 @@ class Game < ApplicationRecord
 
   def generate_token
     self.token = 'lalala'
+
   end
+
+  # def generate_token
+  #   self.token = 'lalala'
+  # end
 end
