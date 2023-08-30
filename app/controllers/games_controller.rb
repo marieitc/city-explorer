@@ -29,7 +29,6 @@ class GamesController < ApplicationController
       }
     end
 
-
     @areas = @game.game_places.map do |gp|
       {
         lat: gp.latitude,
@@ -38,9 +37,8 @@ class GamesController < ApplicationController
       }
     end
 
-    @photos = @game.places do |place|
-      place
-    end
+    @photos = @game.places
+
 
     # @user_position = @participations.geocoded.map do |participation|
     #   {
