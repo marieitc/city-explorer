@@ -11,7 +11,7 @@ class Game < ApplicationRecord
   before_commit :geocode, if: :will_save_change_to_location?
 
   def generate_pin
-    self.pin = SecureRandom.hex
+    self.pin = SecureRandom.hex.first(7)
   end
 
   def set_places

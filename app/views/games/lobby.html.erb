@@ -12,43 +12,65 @@
       <div class="profile-card-top">
         <img src="https://sm.ign.com/ign_fr/cover/a/avatar-gen/avatar-generations_bssq.jpg" alt="" class="avatar-profile">
         <div class="profile-card-text">
-          <span>Indiana Jones</span>
+          <span><%= current_user.nickname %></span>
           <span id="ranking">Explorer</span>
         </div>
       </div>
 
       <div class="profile-card-bottom">
         <div id="left-metric">
-          <span class="pink-text">50</span>
+          <span class="pink-text"><%= current_user.places %></span>
           <span>Places</span>
         </div>
         <div id="right-metric">
-          <span class="pink-text">98 kms</span>
+          <span class="pink-text"><%= current_user.distance %> kms</span>
           <span>Distance</span>
         </div>
       </div>
     </div>
     <br>
-    <div id="lobby-card">
-      <span class="title">Lobby</span>
-      <span class="title" id="token">PIN: <%= @game.pin %></span>
-      <div id="players">
-      <span>Player 1</span>
-      <span>Player 2</span>
-      <span>Player 3</span>
-      <span>Player 4</span>
-      <span>Player 5</span>
-      <span>Player 6</span>
-      <span>Player 7</span>
-      <span>Player 8</span>
+    <div data-controller="lobby" >
+      <div class="" data-lobby-target="content" >
+        <div id="lobby-card">
+          <span class="title">Lobby</span>
+          <span class="title" id="token">PIN: <%= @game.pin %></span>
+          <div id="players">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          </div>
+        </div>
+
+        <div class="d-flex flex-column align-items-center justify-content-center">
+          <span data-action="click->lobby#parameters" class="main-btn title m-3">Game parameters</span>
+          <span class="pink-btn title m-2 ">Play</span>
+        </div>
+      </div>
+
+      <div data-lobby-target="parameters" class="main-card d-none">
+        <br>
+        <span class="title">Number of places</span>
+        <span class="parameters-text"><%= @game.places_number %></span>
+        <br>
+        <span class="title">Location</span>
+        <span class="parameters-text"><%= @game.location %></span>
+        <br>
+        <span class="title">Radius</span>
+        <span class="parameters-text"><%= @game.radius%></span>
+        <br>
+        <span data-action="click->lobby#content" class="main-btn title">Lobby</span>
       </div>
     </div>
-    <br>
-    <span class="main-btn title">Game parameters</span>
-    <br>
-    <span class="pink-btn title">Play</span>
   </div>
 </div>
+
+
+
 
 
 <%#= "Pin of the game": @game.token %>
