@@ -58,6 +58,7 @@
   background-color: $white;
   border-radius: 15px;
   border: 1px solid #ffff;
+  font-family: 'Big Shoulders Text', cursive;
   box-shadow: 0 1px 2px rgba(0,0,0,0.2);
   padding: 20px;
   display: flex;
@@ -79,6 +80,12 @@
     font-weight: 400;
     font-size: 24px ;
     text-align: center;
+  }
+
+  #position {
+    color: $pink;
+    font-weight: 400;
+    font-size: 16px ;
   }
 
 
@@ -143,6 +150,7 @@
 }
 
 
+
 .main-container {
   background-size: contain;
   height: 100vh;
@@ -155,3 +163,10 @@
   font-size: 35px;
   text-shadow: rgb(0, 183, 255) 1px 0 10px;
 }
+
+.home-card {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
