@@ -1,0 +1,24 @@
+.hidden-pictures {
+  z-index: 999;
+  top: 100%;
+  transition: .5s
+}
+
+.display-pictures {
+  z-index: 999;
+  top: 0%;
+  transition: .5s
+}
+
+.map_size {
+  width: 100%;
+  height: 100%
+}
+
+.forefront {
+  position: relative;
+}
+
+.background {
+  position: absolute;
+}

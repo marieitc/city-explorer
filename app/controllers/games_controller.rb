@@ -18,13 +18,18 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
-    @participations = @game.participations
+    # @participations = @game.participations
+
 
     @markers = @game.places.geocoded.map do |place|
       {
         lat: place.latitude,
         lng: place.longitude
       }
+    end
+
+    @photos = @game.places do |place|
+      place
     end
 
     # @user_position = @participations.geocoded.map do |participation|
