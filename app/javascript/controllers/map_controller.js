@@ -6,7 +6,8 @@ export default class extends Controller {
   static targets = ["pictures"]
   static values = {
     apiKey: String,
-    markers: Array
+    targets: Array,
+    areas: Array
   }
 
   connect() {
@@ -17,23 +18,79 @@ export default class extends Controller {
       style: "mapbox://styles/mapbox/streets-v10"
     })
 
-    this.#addMarkersToMap()
-    this.#fitMapToMarkers()
+    // this.#addTargetsToMap();
+    this.#fitMapToTargets();
+
+    this.map.on('load', () => {
+      this.#addAreasToMap();
+    })
   }
 
-  #addMarkersToMap() {
-    this.markersValue.forEach((marker) => {
+  // TARGETS
+
+  #addTargetsToMap() {
+    this.targetsValue.forEach((target) => {
+      // const customMarker = document.createElement("div")
+      // customMarker.innerHTML = marker.marker_html
+
+
       new mapboxgl.Marker()
-        .setLngLat([ marker.lng, marker.lat ])
+        .setLngLat([ target.lng, target.lat ])
         .addTo(this.map)
     })
   }
 
-  #fitMapToMarkers() {
+  #fitMapToTargets() {
     const bounds = new mapboxgl.LngLatBounds()
-    this.markersValue.forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
-    this.map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 })
+    this.targetsValue.forEach(target => bounds.extend([ target.lng, target.lat ]))
+    this.map.fitBounds(bounds, { padding: 80, maxZoom: 15, duration: 0 })
   }
+
+  // AREAS
+
+  #addAreasToMap() {
+    this.areasValue.forEach((area, index) => {
+      // Create layer
+      this.map.addLayer({
+        "id": `area-${index}`,
+        "type": "circle",
+        "source": {
+          "type": "geojson",
+          "data": {
+            "type": "FeatureCollection",
+            "features": [{
+              "type": "Feature",
+              "geometry": {
+                "type": "Point",
+                "coordinates": [area.lng, area.lat]
+              }
+            }]
+          }
+        },
+        "paint": {
+          // Set an initial circle-radius, we'll override it later
+          "circle-radius": this.#calculatePixelRadius(this.map.getZoom()),
+          "circle-color": "#68A8F8",
+          "circle-opacity": 0.5
+        }
+      });
+
+      // Update circle radius whenever the zoom level changes
+      this.map.on('zoomend', () => {
+        const zoom = this.map.getZoom();
+        this.map.setPaintProperty(`area-${index}`, 'circle-radius', this.#calculatePixelRadius(zoom));
+      });
+    })
+  }
+
+  // Helper function to convert a radius in kilometers to pixels at a given zoom level.
+  #calculatePixelRadius(zoom) {
+    const metersPerPx = 156543.03392 * Math.cos((this.map.getCenter().lat * Math.PI) / 180) / Math.pow(2, zoom);
+    const radiusInKm = 1; // Change this to the desired radius in kilometers
+    const radiusInM = radiusInKm * 1000; // Convert km to meters
+    return radiusInM / metersPerPx; // Return radius in pixels
+  }
+
 
   // PICTURES ACTION
 

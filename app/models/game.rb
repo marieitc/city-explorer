@@ -18,7 +18,8 @@ class Game < ApplicationRecord
     places = Place.all.sample(places_number)
 
     places.each do |place|
-      GamePlace.create!(game: self, place: place)
+      gp = GamePlace.create!(game: self, place: place)
+      gp.generate_area_center
     end
   end
 end
