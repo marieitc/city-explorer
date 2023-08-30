@@ -1,0 +1,10 @@
+<div>
+  <div>
+    <p data-action="click->map#hide" class="picture-btn"><i class="fa-solid fa-image"></i></p>
+  </div>
+  <div>
+    <% @photos.each do |photo|%>
+    <img src=<%= photo.url_image %>>
+    <% end %>
+  </div>
+</div>
