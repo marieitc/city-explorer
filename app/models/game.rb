@@ -6,20 +6,24 @@ class Game < ApplicationRecord
 
   geocoded_by :location
 
+  before_commit :geocode, if: :will_save_change_to_location?
   before_save :generate_pin
   after_create :set_places
-  before_commit :geocode, if: :will_save_change_to_location?
 
   def generate_pin
     self.pin = SecureRandom.hex.first(7)
   end
 
   def set_places
+    # puts "\n\n\n\nJe teste.....\n\n\n"
+    sleep 2
+    geocode
+    # set_places unless latitude.present? && longitude.present?
     places_near = Place.near([latitude, longitude], radius)
     game_places = places_near.sample(places_number)
-    
+
     game_places.each do |place|
-      gp = GamePlace.create(game: self, place: place, found: false)
+      gp = GamePlace.create(game: self, place:, found: false)
       gp.generate_area_center
     end
   end
