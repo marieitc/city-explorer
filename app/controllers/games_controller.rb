@@ -8,6 +8,7 @@ class GamesController < ApplicationController
   def create
     @game = Game.new(params_game)
     @game.user = current_user
+    Participation.create(user: current_user, game: @game)
 
     if @game.save
       redirect_to game_lobby_path(@game)
@@ -45,6 +46,9 @@ class GamesController < ApplicationController
 
   def join
     @game = Game.find_by(pin: params[:join][:pin])
+    @participation = Participation.create(user: current_user, game: @game)
+    LobbyChannel.broadcast_to("lobby-#{@game.id}", "<span>#{current_user.nickname}</span>")
+
     redirect_to game_lobby_path(@game)
   end
 
