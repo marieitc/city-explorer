@@ -1,8 +1,6 @@
-<%# <p data-action="click->map#hide" class="picture-btn"><i class="fa-solid fa-image"></i></p>
-<div class="carousel">
-  <%# <% @places.each do |place|%>
-    <%# <div class="picture-card">
-      <%# <img src=<%= place.url_image %>
-    <%# </div>
+<p data-action="click->map#hide" class="picture-btn"><i class="fa-solid fa-image"></i></p>
+<% @places.each do |place|%>
+  <div class="picture-card">
+    <img src=<%= place.url_image %>>
   <% end %>
-<%# </div> %>
+</div>
