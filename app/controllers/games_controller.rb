@@ -28,7 +28,7 @@ class GamesController < ApplicationController
       }
     end
 
-    @photos = @game.places do |place|
+    @places = @game.places do |place|
       place
     end
 
