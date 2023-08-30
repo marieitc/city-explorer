@@ -1,7 +1,8 @@
 <div class="forefront map_size">
   <div class="map_size"
     data-controller="map"
-    data-map-markers-value="<%= @markers.to_json %>"
+    data-map-targets-value="<%= @targets.to_json %>"
+    data-map-areas-value="<%= @areas.to_json %>"
     data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
     <div>
       <p class="mini-btn-parameter-map"><i class="fa-solid fa-gear"></i></p>

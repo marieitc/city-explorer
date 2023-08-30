@@ -1,16 +1,23 @@
 import { Controller } from "@hotwired/stimulus"
+import { createConsumer } from "@rails/actioncable"
 
 // Connects to data-controller="lobby"
 export default class extends Controller {
-  static targets = ["parameters", "content"]
+  static targets = ["parameters", "content", "players"]
+  static values = { id: Number }
+
   connect() {
-    console.log("Bonjour")
+    this.channel = createConsumer().subscriptions.create(
+      { channel: "LobbyChannel", id: this.idValue },
+      { received: data => this.playersTarget.insertAdjacentHTML("beforeend", data) }
+    )
+
+    console.log(`connected to channel ${this.idValue}`)
   }
 
   parameters() {
     this.parametersTarget.classList.remove("d-none");
     this.contentTarget.classList.add("d-none");
-
   }
 
   content() {
