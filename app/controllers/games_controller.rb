@@ -37,7 +37,7 @@ class GamesController < ApplicationController
       }
     end
 
-    @photos = @game.places
+    @places = @game.places
 
 
     # @user_position = @participations.geocoded.map do |participation|
