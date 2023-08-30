@@ -1,15 +1,17 @@
 <div class="night-bg py-5 d-flex flex-column align-items-center" style="background-image: url(<%= image_path 'night_city.png' %>); height: 100%;">
   <img src="assets/logo.png" alt="" class="logo mb-5 mt-auto rounded-5">
-  <div class="container mt-auto">
-    <%= link_to 'Create account', '#', class: 'btn home-btn mb-4 w-100' %>
-    <%= link_to 'Play', '#', class: 'btn home-btn mb-4 w-100' %>
+
+  <div class="home-card">
+    <%= link_to 'Create account', '#', class: 'home-btn title' %>
+    <br>
+    <%= link_to 'Play', 'games/new', class: 'home-btn title' %>
   </div>
 
   <div class="container d-flex justify-content-between mt-auto">
-    <%= link_to '#', class: 'btn btn-primary d-block fs-1 px-3 rounded-4 text-white' do %>
+    <%= link_to '', class: 'mini-btn' do %>
       <i class="fa-solid fa-gear"></i>
     <% end %>
-    <%= link_to '#', class: 'btn btn-primary d-block fs-1 px-3 rounded-4 text-white' do %>
+    <%= link_to '#', class: 'mini-btn' do %>
       <i class="fa-solid fa-user"></i>
     <% end %>
   </div>

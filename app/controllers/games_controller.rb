@@ -8,6 +8,7 @@ class GamesController < ApplicationController
   def create
     @game = Game.new(params_game)
     @game.user = current_user
+    Participation.create(user: current_user, game: @game)
 
     if @game.save
       redirect_to game_lobby_path(@game)
@@ -21,16 +22,23 @@ class GamesController < ApplicationController
     # @participations = @game.participations
 
 
-    @markers = @game.places.geocoded.map do |place|
+    @targets = @game.places.geocoded.map do |place|
       {
         lat: place.latitude,
         lng: place.longitude
       }
     end
 
-    @places = @game.places do |place|
-      place
+    @areas = @game.game_places.map do |gp|
+      {
+        lat: gp.latitude,
+        lng: gp.longitude,
+        marker_html: render_to_string(partial: 'marker')
+      }
     end
+
+    @photos = @game.places
+
 
     # @user_position = @participations.geocoded.map do |participation|
     #   {
@@ -41,6 +49,8 @@ class GamesController < ApplicationController
   end
 
   # def start
+  # checker les lieux dans les seeds qui sont à l'intérieur du périmètre crée par les paramètres du jeu, sample un certain nombre d'endroits dans places
+
   #   broadcast game show url
   # end
 
@@ -50,6 +60,9 @@ class GamesController < ApplicationController
 
   def join
     @game = Game.find_by(pin: params[:join][:pin])
+    @participation = Participation.create(user: current_user, game: @game)
+    LobbyChannel.broadcast_to("lobby-#{@game.id}", "<span>#{current_user.nickname}</span>")
+
     redirect_to game_lobby_path(@game)
   end
 

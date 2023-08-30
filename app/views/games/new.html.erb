@@ -29,34 +29,45 @@
         </div>
       </div>
 
-    <div data-controller="new" data-new-key-value="<%= ENV['MAPBOX_API_KEY'] %>" class="mt-5">
+    <div data-controller="new" data-new-key-value="<%= ENV['MAPBOX_API_KEY'] %>" class="mt-3">
       <div class="main-card" data-new-target="choice">
         <span class="main-btn title" data-action="click->new#createGame">Create a game</span>
         <br>
         <span class="main-btn title" data-action="click->new#joinGame">Join a game</span>
       </div>
       <div class='d-none' data-new-target="create">
-        <div class="container px-5">
+        <div class="container px-5 main-card ", style="text-align: center;" >
+          <span class="title text-dark">Create a game</span>
+          <br>
           <%= simple_form_for @game do |f| %>
             <%= f.input :location, label: 'Address', input_html: { data: { new_target: 'location' } } %>
-            <p data-action="click->new#locate">my position</p>
-            <%= f.hidden_field :latitude, data: { new_target: "latitude" }, class: 'latInput' %>
+            <p data-action="click->new#locate" id="position"><i class="fa-solid fa-location-crosshairs"></i> Use my location</p>
+            <%= f.hidden_field :latitude, data: { new_target: "latitude" }, class: 'latInput'%>
             <%= f.hidden_field :longitude, data: { new_target: "longitude"}, class: 'lngInput'  %>
+            <%= f.input :radius, collection: [0.5,1,2,3,4,5] %>
+            <%= f.input :places_number, label: 'Number of places you want to find', collection: (1..15) %>
 
-            <%= f.input :radius, hint: '(km)' %>
-            <%= f.input :places_number, label: 'Number of places you want to visit' %>
-            <%= f.submit %>
+           <div class="d-flex mt-5 justify-content-between">
+              <p data-action="click->new#return" class="mini-btn"><i class="fa-solid fa-arrow-left"></i></p>
+              <%= button_tag( :class => "mini-btn") do %>
+              <i class="fa-solid fa-check"></i>
+              <% end %>
+           </div>
           <% end %>
         </div>
-        <p data-action="click->new#return">Return</p>
       </div>
-      <div class='d-none' data-new-target="join">
+      <div class='d-none main-card' data-new-target="join" style="text-align: center;">
+      <span class="title text-dark">Join a game</span>
+          <br>
         <%= simple_form_for :join, url: join_path, method: :get do |f| %>
-          <%= f.input :pin %>
-          <%= f.submit 'Join the game' %>
+        <%= f.input :pin, label:'Enter Pin' %>
+        <div class="d-flex mt-5 justify-content-between">
+            <p data-action="click->new#return" class="mini-btn"><i class="fa-solid fa-arrow-left"></i></p>
+            <%= button_tag( :class => "mini-btn") do %>
+            <i class="fa-solid fa-check"></i>
+            <% end %>
+          </div>
         <% end %>
-        <p data-action="click->new#return">Return</p>
-      </div>
     </div>
 
   </div>
