@@ -29,6 +29,7 @@ class GamesController < ApplicationController
       }
     end
 
+
     @photos = @game.places do |place|
       place
     end
@@ -42,6 +43,8 @@ class GamesController < ApplicationController
   end
 
   # def start
+  # checker les lieux dans les seeds qui sont à l'intérieur du périmètre crée par les paramètres du jeu, sample un certain nombre d'endroits dans places
+
   #   broadcast game show url
   # end
 

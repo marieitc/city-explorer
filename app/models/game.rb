@@ -15,10 +15,10 @@ class Game < ApplicationRecord
   end
 
   def set_places
-    places = Place.all.sample(places_number)
-
-    places.each do |place|
-      GamePlace.create!(game: self, place: place)
+    places_near = Place.near([latitude, longitude], radius)
+    game_places = places_near.sample(places_number)
+    game_places.each do |place|
+      GamePlace.create!(game: self, place: place, found: false)
     end
   end
 end
