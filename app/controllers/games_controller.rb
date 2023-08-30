@@ -22,13 +22,21 @@ class GamesController < ApplicationController
     # @participations = @game.participations
 
 
-    @markers = @game.places.geocoded.map do |place|
+    @targets = @game.places.geocoded.map do |place|
       {
         lat: place.latitude,
         lng: place.longitude
       }
     end
 
+
+    @areas = @game.game_places.map do |gp|
+      {
+        lat: gp.latitude,
+        lng: gp.longitude,
+        marker_html: render_to_string(partial: 'marker')
+      }
+    end
 
     @photos = @game.places do |place|
       place

@@ -17,8 +17,10 @@ class Game < ApplicationRecord
   def set_places
     places_near = Place.near([latitude, longitude], radius)
     game_places = places_near.sample(places_number)
+    
     game_places.each do |place|
-      GamePlace.create!(game: self, place: place, found: false)
+      gp = GamePlace.create(game: self, place: place, found: false)
+      gp.generate_area_center
     end
   end
 end
