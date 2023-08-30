@@ -6,8 +6,15 @@ class User < ApplicationRecord
 
   has_many :participations, dependent: :destroy
   has_many :games, dependent: :destroy
+  has_one_attached :photo
 
   validates :nickname, presence: true, uniqueness: true
   validates :password, length: { in: 6..20 }
   validates :email, presence: true
+
+  private
+
+  def user_params
+    params.require(:user).permit(:photo)
+  end
 end
