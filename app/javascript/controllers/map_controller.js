@@ -8,7 +8,13 @@ export default class extends Controller {
     apiKey: String,
     targets: Array,
     areas: Array,
-    players: Array
+    players: Array,
+    currentParticipationId: Number
+  }
+
+  initialize() {
+    // subscribe to channel
+    // => received: => retrouver le bon marler dans this.playerMarkers et faire setLngLat dessus
   }
 
   connect() {
@@ -26,6 +32,8 @@ export default class extends Controller {
     this.map.on('load', () => {
       this.#addAreasToMap();
     })
+
+    // faire le watchPosition() => au success il envoie la participationId, lat, long
   }
 
   // TARGETS
@@ -98,16 +106,24 @@ export default class extends Controller {
   //Players
 
   #addPlayersToMap() {
+    this.#currentPosition();
+    this.playerMarkers = new Array;
     this.playersValue.forEach((player) => {
       // const customMarker = document.createElement("div")
       // customMarker.innerHTML = marker.marker_html
 
 
-      new mapboxgl.Marker()
-        .setLngLat([ player.lng, player.lat ])
-        .addTo(this.map)
+      this.playerMarkers.push(
+        {
+          id: player.participation_id,
+          marker: new mapboxgl.Marker()
+            .setLngLat([ player.lng, player.lat ])
+            .addTo(this.map)
+        }
+      )
     })
   }
+
 
   // PICTURES ACTION
 
