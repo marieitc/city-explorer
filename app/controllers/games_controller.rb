@@ -53,7 +53,7 @@ class GamesController < ApplicationController
     participation.save
     participation.longitude = params[:longitude]
     participation.latitude = params[:latitude]
-    
+
     LobbyChannel.broadcast_to("lobby-#{@game.id}", { participation_id: participation.id, action: 'ready' })
   end
 
