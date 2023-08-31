@@ -21,7 +21,7 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
 
     @participations = @game.participations
-
+    @current_participation = @participations.find_by(user: current_user)
 
 
     @targets = @game.places.geocoded.map do |place|
@@ -42,6 +42,7 @@ class GamesController < ApplicationController
     @places = @game.places
     @players = @participations.map do |participation|
       {
+        participation_id: participation.id,
         lat: participation.latitude,
         lng: participation.longitude
       }
