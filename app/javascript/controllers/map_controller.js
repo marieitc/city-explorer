@@ -7,7 +7,8 @@ export default class extends Controller {
   static values = {
     apiKey: String,
     targets: Array,
-    areas: Array
+    areas: Array,
+    players: Array
   }
 
   connect() {
@@ -20,6 +21,7 @@ export default class extends Controller {
 
     // this.#addTargetsToMap();
     this.#fitMapToTargets();
+    this.#addPlayersToMap();
 
     this.map.on('load', () => {
       this.#addAreasToMap();
@@ -93,6 +95,19 @@ export default class extends Controller {
     return radiusInM / metersPerPx; // Return radius in pixels
   }
 
+  //Players
+
+  #addPlayersToMap() {
+    this.playersValue.forEach((player) => {
+      // const customMarker = document.createElement("div")
+      // customMarker.innerHTML = marker.marker_html
+
+
+      new mapboxgl.Marker()
+        .setLngLat([ player.lng, player.lat ])
+        .addTo(this.map)
+    })
+  }
 
   // PICTURES ACTION
 
