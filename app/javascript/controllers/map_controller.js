@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
+import { createConsumer } from "@rails/actioncable"
 import mapboxgl from 'mapbox-gl'
 
 // Connects to data-controller="map"
@@ -9,12 +10,15 @@ export default class extends Controller {
     targets: Array,
     areas: Array,
     players: Array,
-    currentParticipationId: Number
+    currentParticipationId: Number,
+    gameId: Number
   }
 
   initialize() {
-    // subscribe to channel
-    // => received: => retrouver le bon marler dans this.playerMarkers et faire setLngLat dessus
+    this.channel = createConsumer().subscriptions.create(
+      { channel: "GameChannel", id: this.gameIdValue },
+      { received: data => console.log(data) }
+    )
   }
 
   connect() {
@@ -34,6 +38,14 @@ export default class extends Controller {
     })
 
     // faire le watchPosition() => au success il envoie la participationId, lat, long
+    // navigator.geolocation.watchPosition(() => {
+    // console.log(this.channel)
+    // console.log(this.channel.send({ hello: 'hello' }))
+    // })
+  }
+
+  test(evt) {
+    this.channel.send({ hello: 'hello' })
   }
 
   // TARGETS
@@ -106,12 +118,10 @@ export default class extends Controller {
   //Players
 
   #addPlayersToMap() {
-    this.#currentPosition();
     this.playerMarkers = new Array;
     this.playersValue.forEach((player) => {
       // const customMarker = document.createElement("div")
       // customMarker.innerHTML = marker.marker_html
-
 
       this.playerMarkers.push(
         {
