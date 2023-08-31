@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   root to: "pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   resources :games, only: %i[new create show] do
+    member do
+      post :ready
+    end
     get '/lobby', to: 'games#lobby'
     get '/start', to: 'games#start'
   end
