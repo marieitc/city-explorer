@@ -1,12 +1,13 @@
-<p data-action="click->map#hide" class="picture-btn"><i class="fa-solid fa-image"></i></p>
+<div class="main-container bg-image", style="background-image: url(<%= image_path 'gradient-ce.png' %>);">
+  <p data-action="click->map#hide" class="picture-btn"><i class="fa-regular fa-map" style="color: #fffff;"></i></p>
 
-<body>
-  <div class="swiper mySwiper">
-    <div class="swiper-wrapper">
-      <% @places.each do |place|%>
-      <div class="swiper-slide picture-slidder" style=><img src=<%= place.url_image %>></div>
-      <% end %>
+    <div data-controller="swiper" class="swiper mySwiper">
+
+      <div data-swiper-target="card" class="swiper-wrapper">
+        <% @places.each do |place|%>
+        <div class="swiper-slide"><img src=<%= place.url_image %>></div>
+        <% end %>
+        </div>
       </div>
     </div>
-  </div>
-</body>
+</div>
