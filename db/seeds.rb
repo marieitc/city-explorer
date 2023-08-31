@@ -26,6 +26,9 @@ Place.create(address: '4 rue Eugène Spuller, 75003 Paris', name: 'Le Carreau du
 Place.create(address: '60 rue Réaumur, 75003 Paris', name: 'Musée des Arts et métiers', url_image: 'https://tzmedia.b-cdn.net/media/images/fr/place/420/42d4850cf4d261562535a764b1c3ba93.jpg?1587732836')
 Place.create(address: 'Pl. des Vosges, 75004 Paris', name: 'Place des Vosges', url_image: 'https://cdn.paris.fr/eqpts-prod/2022/05/10/3bcff3c9f1d28c919e4599b949a1eca8.jpg')
 Place.create(address: 'Pl. de la Bastille, 75012 Paris, France', name: 'Opéra Bastille', url_image: 'https://upload.wikimedia.org/wikipedia/commons/5/58/Op%C3%A9ra_Bastille.jpg')
+Place.create(address: 'Pl. de la Nation, 75011 Paris, France', name: 'Place de la Nation', url_image: 'https://cdn.sortiraparis.com/images/80/87425/472415-la-nouvelle-place-de-la-nation.jpg')
+Place.create(address: '1 Rue des Fossés Saint-Bernard, 75005 Paris', name: 'Institut du monde arabe', url_image: 'https://www.sogirlyblog.com/wp-content/uploads/2019/01/parvis-Institut-monde-arabe-Paris-septembre-2017_0_729_486.jpg')
+
 
 User.create(nickname: 'Clara', email: 'clara.lol@gmail.com', password: 'azerty', places: 0, distance: 0)
 User.create(nickname: 'Marie', email: 'marie.lol@gmail.com', password: 'azerty', places: 0, distance: 0)
