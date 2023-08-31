@@ -3,10 +3,13 @@ import { createConsumer } from "@rails/actioncable"
 
 // Connects to data-controller="lobby"
 export default class extends Controller {
-  static targets = ["parameters", "content", "players"]
-  static values = { id: Number }
+  static targets = ["parameters", "content", "players", "participation"]
+  static values = { id: Number, userId: Number }
 
   connect() {
+    this.token = document.querySelector("meta[name='csrf-token']").content
+    console.log(this.token)
+
     this.channel = createConsumer().subscriptions.create(
       { channel: "LobbyChannel", id: this.idValue },
       { received: data => this.#handleData(data) }
@@ -33,6 +36,12 @@ export default class extends Controller {
       return;
     }
 
+    if (data.action === 'ready') {
+      // this.participationTargets.find(t => t.id == data.participation_id).classList.add('ready')
+      this.element.querySelector(`#participation_${data.participation_id}`).classList.add('ready')
+      return;
+    }
+
     if (data.action === 'join') {
       this.playersTarget.insertAdjacentHTML('beforeend', data.html);
       return;
@@ -44,5 +53,26 @@ export default class extends Controller {
     evt.stopPropagation();
 
     await fetch(evt.target.href)
+  }
+
+  async ready(evt) {
+    evt.preventDefault();
+    evt.stopPropagation();
+
+    navigator.geolocation.getCurrentPosition(async (coordinates) => {
+      const latitude = coordinates.coords.latitude
+      const longitude = coordinates.coords.longitude
+
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-TOKEN': this.token
+        },
+        body: JSON.stringify({ user_id: this.userIdValue, latitude: latitude, longitude: longitude })
+      }
+
+      await fetch(evt.target.href, options)
+    })
   }
 }

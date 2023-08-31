@@ -109,6 +109,10 @@
     font-weight: 400;
     display: grid;
 
+    .ready {
+      color: $aquamarine;
+    }
+
     #players {
       text-align: center;
       display: grid;
@@ -133,7 +137,6 @@
     font-size: 20px;
   }
 
-
 .title {
   font-family: 'Baloo 2', cursive;
   font-weight: 800;
@@ -141,16 +144,12 @@
   font-size: 24px;
 }
 
-
-
-
 .top-menu {
   display: flex;
   justify-content: space-between;
   padding: 20px 20px 0 20px;
   // padding: 20px;
 }
-
 
 .content-card {
   padding: 20px;

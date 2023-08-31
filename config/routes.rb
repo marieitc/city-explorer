@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     member do
       post :ready
     end
+
     get '/lobby', to: 'games#lobby'
     get '/start', to: 'games#start'
   end

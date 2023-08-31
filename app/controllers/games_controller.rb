@@ -53,7 +53,9 @@ class GamesController < ApplicationController
     participation = @game.participations.find_by(user: current_user)
     participation.located = true
     participation.save
-
+    participation.longitude = params[:longitude]
+    participation.latitude = params[:latitude]
+    
     LobbyChannel.broadcast_to("lobby-#{@game.id}", { participation_id: participation.id, action: 'ready' })
   end
 
