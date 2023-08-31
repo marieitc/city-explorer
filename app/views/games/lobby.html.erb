@@ -29,7 +29,7 @@
       </div>
     </div>
     <br>
-    <div data-controller="lobby" data-lobby-id-value="<%= @game.id %>">
+    <div data-controller="lobby" data-lobby-id-value="<%= @game.id %>" data-lobby-user-id-value="<%= current_user.id %>">
       <div class="" data-lobby-target="content" >
         <div id="lobby-card">
           <span class="title">Lobby</span>
@@ -37,16 +37,16 @@
           <div data-lobby-target="players" id="players">
             <%# already existing %>
             <% @game.participations.each do |participation| %>
-              <span><%= participation.user.nickname %></span>
+              <span data-lobby-target="participation" id="<%= dom_id(participation) %>" class="<%= 'ready' if participation.located? %>"><%= participation.user.nickname %></span>
             <% end %>
           </div>
         </div>
 
         <div class="btn-container">
           <span data-action="click->lobby#parameters" class="main-btn title m-3">Game parameters</span>
-          <span data-action="click->#" class="green-btn title m-3">I'm ready!</span>
+          <%= link_to "Ready", ready_game_path(@game), class: "green-btn title m-3", data: { action: 'click->lobby#ready' } %>
           <% if current_user == @game.user  %>
-            <%= link_to "Play", game_start_path(@game), class: "pink-btn title m-2 text-decoration-none", data: { action: 'click->lobby#start' } %>
+           <%= link_to "Play", game_start_path(@game), class: "pink-btn title m-2", data: { action: 'click->lobby#start' } %>
           <% end %>
         </div>
       </div>
@@ -67,5 +67,3 @@
     </div>
   </div>
 </div>
-
-<%= console %>
