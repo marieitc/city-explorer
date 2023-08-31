@@ -19,7 +19,9 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
-    # @participations = @game.participations
+
+    @participations = @game.participations
+
 
 
     @targets = @game.places.geocoded.map do |place|
@@ -38,21 +40,22 @@ class GamesController < ApplicationController
     end
 
     @places = @game.places
-    # @user_position = @participations.geocoded.map do |participation|
-    #   {
-    #     lat: participation[:latitude],
-    #     lng: particpation[:longitude]
-    #   }
-    # end
+    @players = @participations.map do |participation|
+      {
+        lat: participation.latitude,
+        lng: participation.longitude
+      }
+    end
   end
 
   def ready
     @game = Game.find(params[:id])
     participation = @game.participations.find_by(user: current_user)
     participation.located = true
-    participation.save
     participation.longitude = params[:longitude]
     participation.latitude = params[:latitude]
+    participation.save
+
 
     LobbyChannel.broadcast_to("lobby-#{@game.id}", { participation_id: participation.id, action: 'ready' })
   end
