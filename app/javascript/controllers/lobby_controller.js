@@ -9,7 +9,7 @@ export default class extends Controller {
   connect() {
     this.channel = createConsumer().subscriptions.create(
       { channel: "LobbyChannel", id: this.idValue },
-      { received: data => this.playersTarget.insertAdjacentHTML("beforeend", data) }
+      { received: data => this.#handleData(data) }
     )
 
     console.log(`connected to channel ${this.idValue}`)
@@ -23,5 +23,26 @@ export default class extends Controller {
   content() {
     this.parametersTarget.classList.add("d-none");
     this.contentTarget.classList.remove("d-none");
+  }
+
+  #handleData(data) {
+    if (data.action === 'start') {
+      // TODO countdown
+
+      window.location.href = data.url;
+      return;
+    }
+
+    if (data.action === 'join') {
+      this.playersTarget.insertAdjacentHTML('beforeend', data.html);
+      return;
+    }
+  }
+
+  async start(evt) {
+    evt.preventDefault();
+    evt.stopPropagation();
+
+    await fetch(evt.target.href)
   }
 }

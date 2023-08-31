@@ -63,8 +63,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_30_131538) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "status", default: true, null: false
-    t.float "longitude"
     t.string "pin"
+    t.float "longitude"
     t.index ["user_id"], name: "index_games_on_user_id"
   end
 
