@@ -35,6 +35,22 @@
   border: none;
 }
 
+.green-btn {
+  background-color: $aquamarine;
+  color: white;
+  border-radius: 20px;
+  padding: 15px;
+  width: 80%;
+  border: none;
+}
+
+.pink-btn {
+  background-color: $pink;
+  color: white;
+  border-radius: 20px;
+  padding: 15px;
+}
+
 .home-btn {
   background-color: $blue;
   color: white;
@@ -45,14 +61,6 @@
   text-align: center;
   width: 80%;
   height: auto;
-}
-
-
-.pink-btn {
-  background-color: $pink;
-  color: white;
-  border-radius: 20px;
-  padding: 15px;
 }
 
 
@@ -130,4 +138,3 @@
   top: 2%;
   right: 5%;
 }
-
