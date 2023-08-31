@@ -38,8 +38,6 @@ class GamesController < ApplicationController
     end
 
     @places = @game.places
-
-
     # @user_position = @participations.geocoded.map do |participation|
     #   {
     #     lat: participation[:latitude],
@@ -69,10 +67,11 @@ class GamesController < ApplicationController
 
   def join
     @game = Game.find_by(pin: params[:join][:pin])
-    @participation = Participation.create(user: current_user, game: @game)
-    LobbyChannel.broadcast_to("lobby-#{@game.id}", { html: "<span>#{current_user.nickname}</span>", action: 'join' })
-
-    redirect_to game_lobby_path(@game)
+    if @game.present?
+      @participation = Participation.create(user: current_user, game: @game)
+      LobbyChannel.broadcast_to("lobby-#{@game.id}", "<span>#{current_user.nickname}</span>")
+      redirect_to game_lobby_path(@game)
+    end
   end
 
   private

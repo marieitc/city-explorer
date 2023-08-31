@@ -60,8 +60,9 @@
       <span class="title text-dark">Join a game</span>
           <br>
         <%= simple_form_for :join, url: join_path, method: :get do |f| %>
-        <%= f.input :pin, label:'Enter Pin' %>
-        <div class="d-flex mt-5 justify-content-between">
+          <%= f.input :pin, label:'Enter Pin' %>
+
+          <div class="d-flex mt-5 justify-content-between">
             <p data-action="click->new#return" class="mini-btn"><i class="fa-solid fa-arrow-left"></i></p>
             <%= button_tag( :class => "mini-btn") do %>
             <i class="fa-solid fa-check"></i>
