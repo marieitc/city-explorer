@@ -29,7 +29,6 @@ export default class extends Controller {
   }
 
   #handleData(data) {
-    
 
     if (data.action === 'start') {
       // TODO countdown
