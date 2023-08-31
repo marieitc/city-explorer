@@ -44,7 +44,7 @@
 
         <div class="d-flex flex-column align-items-center justify-content-center">
           <span data-action="click->lobby#parameters" class="main-btn title m-3">Game parameters</span>
-          <%= link_to "Play", game_path(@game), class: "pink-btn title m-2 text-decoration-none"%>
+          <%= link_to "Play", game_start_path(@game), class: "pink-btn title m-2 text-decoration-none", data: { action: 'click->lobby#start' } %>
         </div>
       </div>
 
@@ -64,3 +64,5 @@
     </div>
   </div>
 </div>
+
+<%= console %>

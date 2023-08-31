@@ -48,11 +48,13 @@ class GamesController < ApplicationController
     # end
   end
 
-  # def start
-  # checker les lieux dans les seeds qui sont à l'intérieur du périmètre crée par les paramètres du jeu, sample un certain nombre d'endroits dans places
-
-  #   broadcast game show url
-  # end
+  def start
+    @game = Game.find(params[:game_id])
+    # @game.started!
+    LobbyChannel.broadcast_to("lobby-#{@game.id}", { url: game_path(@game), action: 'start' })
+    # debugger
+    # broadcast game show url
+  end
 
   def lobby
     @game = Game.find(params[:game_id])
@@ -61,7 +63,7 @@ class GamesController < ApplicationController
   def join
     @game = Game.find_by(pin: params[:join][:pin])
     @participation = Participation.create(user: current_user, game: @game)
-    LobbyChannel.broadcast_to("lobby-#{@game.id}", "<span>#{current_user.nickname}</span>")
+    LobbyChannel.broadcast_to("lobby-#{@game.id}", { html: "<span>#{current_user.nickname}</span>", action: 'join' })
 
     redirect_to game_lobby_path(@game)
   end
