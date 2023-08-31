@@ -1,6 +1,6 @@
 <div class="night-bg py-5 d-flex flex-column align-items-center" style="background-image: url(<%= image_path 'night_city.png' %>); height: 100%;">
   <img src="https://sm.ign.com/ign_fr/cover/a/avatar-gen/avatar-generations_bssq.jpg" alt="" class="avatar-devise mb-3 mt-auto rounded-5">
-  <p class="nickname text-center">Indiana Jones</p>
+    <p class="nickname text-center"><%#= current_user.nickname %></p>
     <div class="container mt-auto mb-5">
 
       <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
