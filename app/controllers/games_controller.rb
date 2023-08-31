@@ -48,6 +48,13 @@ class GamesController < ApplicationController
     # end
   end
 
+  # def ready
+  #   @game = Game.find(params[:game_id])
+
+
+  #   LobbyChannel.broadcast_to("lobby-#{@game.id}", { player_id: current_user.id, action: 'ready' })
+  # end
+
   def start
     @game = Game.find(params[:game_id])
     # @game.started!
