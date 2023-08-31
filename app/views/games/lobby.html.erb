@@ -45,7 +45,9 @@
         <div class="btn-container">
           <span data-action="click->lobby#parameters" class="main-btn title m-3">Game parameters</span>
           <%= link_to "Ready", ready_game_path(@game), class: "green-btn title m-3", data: { action: 'click->lobby#ready' } %>
-          <%= link_to "Play", game_start_path(@game), class: "pink-btn title m-2", data: { action: 'click->lobby#start' } %>
+          <% if current_user == @game.user  %>
+           <%= link_to "Play", game_start_path(@game), class: "pink-btn title m-2", data: { action: 'click->lobby#start' } %>
+          <% end %>
         </div>
       </div>
 

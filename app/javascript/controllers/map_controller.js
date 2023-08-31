@@ -41,6 +41,8 @@ export default class extends Controller {
   }
 
   #fitMapToTargets() {
+    if (this.targetsValue.length == 0) return;
+
     const bounds = new mapboxgl.LngLatBounds()
     this.targetsValue.forEach(target => bounds.extend([ target.lng, target.lat ]))
     this.map.fitBounds(bounds, { padding: 80, maxZoom: 15, duration: 0 })

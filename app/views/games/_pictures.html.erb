@@ -1,6 +1,12 @@
 <p data-action="click->map#hide" class="picture-btn"><i class="fa-solid fa-image"></i></p>
-<% @places.each do |place|%>
-  <div class="picture-card">
-    <img src=<%= place.url_image %>>
-  <% end %>
-</div>
+
+<body>
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <% @places.each do |place|%>
+      <div class="swiper-slide picture-slidder" style=><img src=<%= place.url_image %>></div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</body>
