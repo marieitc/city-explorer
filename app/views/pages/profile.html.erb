@@ -12,7 +12,7 @@
   <div class="content-card">
     <div class="profile-card">
       <div class="profile-card-top">
-        <img src="https://sm.ign.com/ign_fr/cover/a/avatar-gen/avatar-generations_bssq.jpg" alt="" class="avatar-profile">
+        <%= cl_image_tag current_user.photo.key, alt: "", class: "avatar-profile" %>
         <div class="profile-card-text">
           <span><%= current_user.nickname %></span>
           <span id="ranking">Explorer</span>
