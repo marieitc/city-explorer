@@ -3,7 +3,7 @@ import { createConsumer } from "@rails/actioncable"
 
 // Connects to data-controller="lobby"
 export default class extends Controller {
-  static targets = ["parameters", "content", "players", "participation"]
+  static targets = ["parameters", "content", "players", "participation", "loader"]
   static values = { id: Number, userId: Number }
 
   connect() {
@@ -57,6 +57,7 @@ export default class extends Controller {
   }
 
   async ready(evt) {
+    this.loaderTarget.classList.remove("d-none")
     evt.preventDefault();
     evt.stopPropagation();
 
@@ -74,6 +75,7 @@ export default class extends Controller {
       }
 
       await fetch(evt.target.href, options)
+      this.loaderTarget.classList.add("d-none")
     })
   }
 }
