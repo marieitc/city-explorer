@@ -49,7 +49,10 @@
 
         <div class="btn-container">
           <span data-action="click->lobby#parameters" class="main-btn title m-3">Game parameters</span>
-          <%= link_to "Ready", ready_game_path(@game), class: "green-btn title m-3", data: { action: 'click->lobby#ready' } %>
+          <div class="d-flex justify-content-evenly">
+            <%= link_to "Ready", ready_game_path(@game), class: "green-btn title m-3", data: { action: 'click->lobby#ready' } %>
+            <p class="loader_vert d-none" data-lobby-target="loader"></p>
+          </div>
           <% if current_user == @game.user  %>
            <%= link_to "Play", game_start_path(@game), class: "pink-btn title m-2", data: { action: 'click->lobby#start' } %>
           <% end %>
