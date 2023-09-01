@@ -29,7 +29,6 @@ Place.create(address: 'Pl. de la Bastille, 75012 Paris, France', name: 'Opéra B
 Place.create(address: 'Pl. de la Nation, 75011 Paris, France', name: 'Place de la Nation', url_image: 'https://cdn.sortiraparis.com/images/80/87425/472415-la-nouvelle-place-de-la-nation.jpg')
 Place.create(address: '1 Rue des Fossés Saint-Bernard, 75005 Paris', name: 'Institut du monde arabe', url_image: 'https://www.sogirlyblog.com/wp-content/uploads/2019/01/parvis-Institut-monde-arabe-Paris-septembre-2017_0_729_486.jpg')
 
-
 User.create(nickname: 'Clara', email: 'clara.lol@gmail.com', password: 'azerty', places: 0, distance: 0)
 User.create(nickname: 'Marie', email: 'marie.lol@gmail.com', password: 'azerty', places: 0, distance: 0)
 User.create(nickname: 'Benjamin', email: 'benjamin.lol@gmail.com', password: 'azerty', places: 0, distance: 0)

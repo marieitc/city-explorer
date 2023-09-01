@@ -2,6 +2,8 @@ class GamePlace < ApplicationRecord
   belongs_to :place
   belongs_to :game
 
+  acts_as_favoritable
+
   def generate_area_center
     coords = random_point(0.2)
     self.longitude = coords[:longitude]

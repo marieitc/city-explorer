@@ -5,8 +5,9 @@
 
       <div data-swiper-target="card" class="swiper-wrapper">
         <% @places.each do |place|%>
-        <div class="swiper-slide"><img src=<%= place.url_image %>></div>
+        <div class="swiper-slide"><img src=<%= place.url_image %> data-action="click->swiper#select"></div>
         <% end %>
+        <div class="swiper-slide opacity-0"></div>
         </div>
       </div>
     </div>
