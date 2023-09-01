@@ -37,7 +37,7 @@
           <div data-lobby-target="players" id="players">
             <%# already existing %>
             <% @game.participations.each do |participation| %>
-              <span data-lobby-target="participation" id="<%= dom_id(participation) %>" class="<%= 'ready' if participation.located? %>"><%= participation.user.nickname %></span>
+              <%= render "participation", participation: participation %>
             <% end %>
           </div>
         </div>
