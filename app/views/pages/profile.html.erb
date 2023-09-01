@@ -1,0 +1,46 @@
+<div class="main-container bg-image", style="background-image: url(<%= image_path 'gradient-ce.png' %>);">
+
+  <div class="top-menu">
+    <%= link_to :back do %>
+    <p class="mini-btn"><i class="fa-solid fa-arrow-left"></i></p>
+    <% end %>
+    <%= link_to new_game_path do %>
+    <p class="mini-btn"><i class="fa-solid fa-gamepad" style="color: #ffffff;"></i></p>
+    <% end %>
+  </div>
+
+  <div class="content-card">
+    <div class="profile-card">
+      <div class="profile-card-top">
+        <img src="https://sm.ign.com/ign_fr/cover/a/avatar-gen/avatar-generations_bssq.jpg" alt="" class="avatar-profile">
+        <div class="profile-card-text">
+          <span><%= current_user.nickname %></span>
+          <span id="ranking">Explorer</span>
+        </div>
+      </div>
+
+      <div class="profile-card-bottom">
+        <div id="left-metric">
+          <span class="pink-text"><%= current_user.places %></span>
+          <span>Places</span>
+        </div>
+        <div id="right-metric">
+          <span class="pink-text"><%= current_user.distance %> kms</span>
+          <span>Distance</span>
+        </div>
+      </div>
+    </div>
+    <div class="main-card mt-3">
+      <span class="title text-dark">My past games</span>
+      <br>
+      <span class="h4">Number of games played</span>
+      <span class="pink-text h5">50</span>
+      <br>
+      <span class="h4">Number of games won</span>
+      <span class="pink-text h5">35</span>
+      <br>
+      <span class="h4">Current ranking</span>
+      <span class="pink-text h5">Explorer</span>
+    </div>
+    <%= link_to "Logout", destroy_user_session_path, class: "btn logout-pink-btn title w-100 mt-5", data: {turbo_method: :delete } %>
+</div>

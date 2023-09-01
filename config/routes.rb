@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   # root "articles#index"
   get '/components', to: 'pages#components'
   get '/join', to: 'games#join'
+  get 'profile/:id', to: 'pages#profile', as: 'profile'
 end
 
 # new -> create -> show (lobby) -> show (game started)
