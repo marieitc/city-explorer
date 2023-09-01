@@ -1,8 +1,12 @@
 <div class="main-container bg-image", style="background-image: url(<%= image_path 'gradient-ce.png' %>);">
 
   <div class="top-menu">
-    <p class="mini-btn"><i class="fa-solid fa-gear"></i></p>
-    <p class="mini-btn"><i class="fa-solid fa-user"></i></p>
+    <%= link_to new_game_path do %>
+      <p class="mini-btn"><i class="fa-solid fa-arrow-left"></i></p>
+    <% end %>
+    <%= link_to profile_path(current_user), class: 'mini-btn' do %>
+      <i class="fa-solid fa-user"></i>
+    <% end %>
   </div>
 
   <div class="content-card">
