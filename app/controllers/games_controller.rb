@@ -76,7 +76,9 @@ class GamesController < ApplicationController
     @game = Game.find_by(pin: params[:join][:pin])
     if @game.present?
       @participation = Participation.create(user: current_user, game: @game)
-      LobbyChannel.broadcast_to("lobby-#{@game.id}", "<span>#{current_user.nickname}</span>")
+      html = render_to_string(partial: 'participation', locals: { participation: @participation })
+
+      LobbyChannel.broadcast_to("lobby-#{@game.id}", { html: html, action: 'join' })
       redirect_to game_lobby_path(@game)
     end
   end
