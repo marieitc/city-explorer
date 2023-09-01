@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :games, dependent: :destroy
   has_one_attached :photo
 
+  acts_as_favoritor
+
   validates :nickname, presence: true, uniqueness: true
   validates :password, length: { in: 6..20 }
   validates :email, presence: true

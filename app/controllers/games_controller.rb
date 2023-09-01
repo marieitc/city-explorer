@@ -81,6 +81,10 @@ class GamesController < ApplicationController
     end
   end
 
+  def to_favorite
+    current_user.favorite(game_place)
+  end
+
   private
 
   def params_game

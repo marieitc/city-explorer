@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/jonhue/acts_as_favoritor.git
+  revision: 07a9e5c804e76044f521d06934e5a0e4e89347b7
+  specs:
+    acts_as_favoritor (6.0.0)
+      activerecord (>= 5.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -276,6 +283,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  acts_as_favoritor!
   bootsnap
   bootstrap (~> 5.2)
   capybara
