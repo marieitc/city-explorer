@@ -14,14 +14,9 @@ export default class extends Controller {
     gameId: Number
   }
 
-  initialize() {
-    this.channel = createConsumer().subscriptions.create(
-      { channel: "GameChannel", id: this.gameIdValue },
-      { received: data => console.log(data) }
-    )
-  }
-
   connect() {
+    this.connectGameChannel();
+
     mapboxgl.accessToken = this.apiKeyValue
 
     this.map = new mapboxgl.Map({
@@ -38,14 +33,24 @@ export default class extends Controller {
     })
 
     // faire le watchPosition() => au success il envoie la participationId, lat, long
-    // navigator.geolocation.watchPosition(() => {
-    // console.log(this.channel)
-    // console.log(this.channel.send({ hello: 'hello' }))
-    // })
+    navigator.geolocation.watchPosition((coordinates) => {
+      this.channel.send({
+        participation_id: this.currentParticipationIdValue,
+        latitude: coordinates.coords.latitude,
+        longitude: coordinates.coords.longitude,
+        game_id: this.gameIdValue
+      })
+    })
   }
 
-  test(evt) {
-    this.channel.send({ hello: 'hello' })
+  connectGameChannel() {
+    this.channel = createConsumer().subscriptions.create(
+      { channel: "GameChannel", id: this.gameIdValue },
+      { received: data => console.log(data) }
+    )
+
+    console.log('Game channel connected')
+    console.log(this.channel)
   }
 
   // TARGETS
