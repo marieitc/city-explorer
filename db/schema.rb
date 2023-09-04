@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_01_105236) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_04_132058) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -60,6 +60,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_01_105236) do
     t.index ["scope"], name: "index_favorites_on_scope"
   end
 
+  create_table "findings", force: :cascade do |t|
+    t.bigint "participation_id", null: false
+    t.bigint "game_place_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_place_id"], name: "index_findings_on_game_place_id"
+    t.index ["participation_id"], name: "index_findings_on_participation_id"
+  end
+
   create_table "game_places", force: :cascade do |t|
     t.bigint "place_id", null: false
     t.bigint "game_id", null: false
@@ -87,7 +96,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_01_105236) do
   end
 
   create_table "participations", force: :cascade do |t|
-    t.integer "score"
     t.bigint "user_id", null: false
     t.bigint "game_id", null: false
     t.datetime "created_at", null: false
@@ -95,6 +103,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_01_105236) do
     t.float "latitude"
     t.float "longitude"
     t.boolean "located", default: false
+    t.integer "score", default: 0, null: false
     t.index ["game_id"], name: "index_participations_on_game_id"
     t.index ["user_id"], name: "index_participations_on_user_id"
   end
@@ -102,12 +111,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_01_105236) do
   create_table "places", force: :cascade do |t|
     t.string "name"
     t.float "latitude"
-    t.integer "points"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "address"
     t.string "url_image"
     t.float "longitude"
+    t.integer "points", default: 5
   end
 
   create_table "users", force: :cascade do |t|
@@ -127,6 +136,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_01_105236) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "findings", "game_places"
+  add_foreign_key "findings", "participations"
   add_foreign_key "game_places", "games"
   add_foreign_key "game_places", "places"
   add_foreign_key "games", "users"

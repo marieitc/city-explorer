@@ -14,6 +14,10 @@ class Game < ApplicationRecord
     self.pin = SecureRandom.hex.first(7)
   end
 
+  def find_game_place(place)
+    game_places.find_by(place: place)
+  end
+
   def set_places
     # puts "\n\n\n\nJe teste.....\n\n\n"
     sleep 2
