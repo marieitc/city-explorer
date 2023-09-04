@@ -1,5 +1,11 @@
-<div class="night-bg py-5 bg-img" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= image_path 'background1.jpg' %>); height: 100%;">
-  <%= image_tag 'logo.png', class: 'avatar-devise mb-3 mt-auto rounded-5' %>
+<div class="night-bg py-5 bg-img" style="background-image: url(<%= image_path 'finalbg.jpg' %>); height: 100%;">
+  <br>
+  <div class="main-title-card">
+    <br>
+    <h1 id="main-title">CITY EXPLORER</h1>
+    <h3 id="subtitle"><em>Your local urban adventure !</em></h3>
+  </div>
+  <br>
   <%# <img src="https://sm.ign.com/ign_fr/cover/a/avatar-gen/avatar-generations_bssq.jpg" alt="" class="avatar-devise mb-3 mt-auto rounded-5"> %>
     <p class="nickname text-center"><%#= current_user.nickname %></p>
     <div class="container mt-auto mb-5">
@@ -20,6 +26,7 @@
       <%= f.button :submit, "Login", class: "simple-form-btn w-100 p-2 rounded-5" %>
     </div>
       <% end %>
+
 
       <%= render "devise/shared/links" %>
     </div>

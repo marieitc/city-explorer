@@ -26,8 +26,9 @@
   border: none;
 }
 
+
 .main-btn {
-  background-color: $blue;
+  background-color: $darkgrey;
   color: white;
   border-radius: 20px;
   padding: 15px;
@@ -93,7 +94,7 @@
   height: 40%;
   width: 80%;
   padding: 15px;
-  background-color: $blue;
+  background-color: $lightblue;
   color: white;
   border-radius: 20px;
   text-align: center;
@@ -107,7 +108,7 @@
 .devise-btn {
   width: 80%;
   padding: 15px;
-  background-color: $blue;
+  background-color: $lightblue;
   color: white;
   border-radius: 20px;
   text-align: center;
@@ -180,7 +181,7 @@
 }
 
 .logout-pink-btn {
-  background-color: $pink;
+  background-color: $darkgrey;
   color: white;
   border-radius: 20px;
   padding: 15px;
