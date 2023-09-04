@@ -102,7 +102,7 @@ export default class extends Controller {
         "paint": {
           // Set an initial circle-radius, we'll override it later
           "circle-radius": this.#calculatePixelRadius(this.map.getZoom()),
-          "circle-color": "#68A8F8",
+          "circle-color": "#5cbfcc",
           "circle-opacity": 0.5
         }
       });

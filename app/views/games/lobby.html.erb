@@ -1,4 +1,4 @@
-<div class="main-container bg-image", style="background-image: url(<%= image_path 'gradient-ce.png' %>);">
+<div class="main-container bg-image", style="background-image: url(<%= image_path 'gradient-2.png' %>);">
 
   <div class="top-menu">
     <%= link_to new_game_path do %>
@@ -48,13 +48,13 @@
         </div>
 
         <div class="btn-container">
-          <span data-action="click->lobby#parameters" class="main-btn title m-3">Game parameters</span>
+          <span data-action="click->lobby#parameters" class="blue-btn title m-3">Game parameters</span>
           <div class="d-flex justify-content-evenly">
-            <%= link_to "Ready", ready_game_path(@game), class: "green-btn title m-3", data: { action: 'click->lobby#ready' } %>
+            <%= link_to "Ready", ready_game_path(@game), class: "blue-btn title m-3", data: { action: 'click->lobby#ready' } %>
             <p class="loader_vert d-none" data-lobby-target="loader"></p>
           </div>
           <% if current_user == @game.user  %>
-           <%= link_to "Play", game_start_path(@game), class: "pink-btn title m-2", data: { action: 'click->lobby#start' } %>
+           <%= link_to "Play", game_start_path(@game), class: "main-btn title m-2", data: { action: 'click->lobby#start' } %>
           <% end %>
         </div>
       </div>
