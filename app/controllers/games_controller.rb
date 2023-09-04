@@ -35,7 +35,6 @@ class GamesController < ApplicationController
       {
         lat: gp.latitude,
         lng: gp.longitude,
-        marker_html: render_to_string(partial: 'marker')
       }
     end
 
@@ -44,7 +43,8 @@ class GamesController < ApplicationController
       {
         participation_id: participation.id,
         lat: participation.latitude,
-        lng: participation.longitude
+        lng: participation.longitude,
+        marker_html: render_to_string(partial: 'player', locals: { participation: participation })
       }
     end
   end

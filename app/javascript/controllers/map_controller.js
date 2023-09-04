@@ -125,22 +125,40 @@ export default class extends Controller {
 
   //Players
 
+  // #addPlayersToMap() {
+  //   this.playerMarkers = new Array;
+  //   this.playersValue.forEach((player) => {
+  //     const customMarker = document.createElement("div")
+  //     customMarker.innerHTML = player.marker_html
+
+  //     this.playerMarkers.push(
+  //       {
+  //         id: player.participation_id,
+  //         marker: new mapboxgl.Marker(customMarker)
+  //           .setLngLat([ player.lng, player.lat ])
+  //           .addTo(this.map)
+  //       }
+  //     )
+  //   })
+  // }
+
   #addPlayersToMap() {
     this.playerMarkers = new Array;
     this.playersValue.forEach((player) => {
-      // const customMarker = document.createElement("div")
-      // customMarker.innerHTML = marker.marker_html
+      const customMarker = document.createElement("div")
+      customMarker.innerHTML = player.marker_html
 
-      this.playerMarkers.push(
-        {
+      const marker = new mapboxgl.Marker(customMarker)
+        .setLngLat([ player.lng, player.lat ])
+        .addTo(this.map);
+
+      this.playerMarkers.push({
           id: player.participation_id,
-          marker: new mapboxgl.Marker()
-            .setLngLat([ player.lng, player.lat ])
-            .addTo(this.map)
-        }
-      )
+          marker: marker
+        });
     })
   }
+
 
   #fitMapToPlayers() {
     if (this.playersValue.length == 0) return;
