@@ -17,7 +17,7 @@ export default class extends Controller {
   initialize() {
     this.channel = createConsumer().subscriptions.create(
       { channel: "GameChannel", id: this.gameIdValue },
-      { received: data => console.log(data) }
+      { received: data => this.#handleData(data) }
     )
   }
 
@@ -30,22 +30,30 @@ export default class extends Controller {
     })
 
     // this.#addTargetsToMap();
-    this.#fitMapToTargets();
+    // this.#fitMapToTargets();
     this.#addPlayersToMap();
+    this.#fitMapToPlayers();
 
     this.map.on('load', () => {
       this.#addAreasToMap();
     })
 
     // faire le watchPosition() => au success il envoie la participationId, lat, long
-    // navigator.geolocation.watchPosition(() => {
-    // console.log(this.channel)
-    // console.log(this.channel.send({ hello: 'hello' }))
-    // })
+    navigator.geolocation.watchPosition((coordinates) => {
+      this.channel.send({
+        participation_id: this.currentParticipationIdValue,
+        longitude: coordinates.coords.longitude,
+        latitude: coordinates.coords.latitude,
+      })
+    })
   }
 
-  test(evt) {
-    this.channel.send({ hello: 'hello' })
+  #handleData(data) {
+    if (data.action === 'update_participation') {
+      this.playerMarkers
+          .find(item => item.id == data.participation_id)
+          .marker.setLngLat([data.longitude, data.latitude])
+    }
   }
 
   // TARGETS
@@ -62,13 +70,13 @@ export default class extends Controller {
     })
   }
 
-  #fitMapToTargets() {
-    if (this.targetsValue.length == 0) return;
+  // #fitMapToTargets() {
+  //   if (this.targetsValue.length == 0) return;
 
-    const bounds = new mapboxgl.LngLatBounds()
-    this.targetsValue.forEach(target => bounds.extend([ target.lng, target.lat ]))
-    this.map.fitBounds(bounds, { padding: 80, maxZoom: 15, duration: 0 })
-  }
+  //   const bounds = new mapboxgl.LngLatBounds()
+  //   this.targetsValue.forEach(target => bounds.extend([ target.lng, target.lat ]))
+  //   this.map.fitBounds(bounds, { padding: 80, maxZoom: 15, duration: 0 })
+  // }
 
   // AREAS
 
@@ -94,7 +102,7 @@ export default class extends Controller {
         "paint": {
           // Set an initial circle-radius, we'll override it later
           "circle-radius": this.#calculatePixelRadius(this.map.getZoom()),
-          "circle-color": "#68A8F8",
+          "circle-color": "#5cbfcc",
           "circle-opacity": 0.5
         }
       });
@@ -117,21 +125,47 @@ export default class extends Controller {
 
   //Players
 
+  // #addPlayersToMap() {
+  //   this.playerMarkers = new Array;
+  //   this.playersValue.forEach((player) => {
+  //     const customMarker = document.createElement("div")
+  //     customMarker.innerHTML = player.marker_html
+
+  //     this.playerMarkers.push(
+  //       {
+  //         id: player.participation_id,
+  //         marker: new mapboxgl.Marker(customMarker)
+  //           .setLngLat([ player.lng, player.lat ])
+  //           .addTo(this.map)
+  //       }
+  //     )
+  //   })
+  // }
+
   #addPlayersToMap() {
     this.playerMarkers = new Array;
     this.playersValue.forEach((player) => {
-      // const customMarker = document.createElement("div")
-      // customMarker.innerHTML = marker.marker_html
+      const customMarker = document.createElement("div")
+      customMarker.innerHTML = player.marker_html
 
-      this.playerMarkers.push(
-        {
+      const marker = new mapboxgl.Marker(customMarker)
+        .setLngLat([ player.lng, player.lat ])
+        .addTo(this.map);
+
+      this.playerMarkers.push({
           id: player.participation_id,
-          marker: new mapboxgl.Marker()
-            .setLngLat([ player.lng, player.lat ])
-            .addTo(this.map)
-        }
-      )
+          marker: marker
+        });
     })
+  }
+
+
+  #fitMapToPlayers() {
+    if (this.playersValue.length == 0) return;
+
+    const bounds = new mapboxgl.LngLatBounds()
+    this.playersValue.forEach(player => bounds.extend([ player.lng, player.lat ]))
+    this.map.fitBounds(bounds, { padding: 80, maxZoom: 15, duration: 0 })
   }
 
 
