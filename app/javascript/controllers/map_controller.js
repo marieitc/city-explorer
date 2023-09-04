@@ -30,8 +30,9 @@ export default class extends Controller {
     })
 
     // this.#addTargetsToMap();
-    this.#fitMapToTargets();
+    // this.#fitMapToTargets();
     this.#addPlayersToMap();
+    this.#fitMapToPlayers();
 
     this.map.on('load', () => {
       this.#addAreasToMap();
@@ -62,13 +63,13 @@ export default class extends Controller {
     })
   }
 
-  #fitMapToTargets() {
-    if (this.targetsValue.length == 0) return;
+  // #fitMapToTargets() {
+  //   if (this.targetsValue.length == 0) return;
 
-    const bounds = new mapboxgl.LngLatBounds()
-    this.targetsValue.forEach(target => bounds.extend([ target.lng, target.lat ]))
-    this.map.fitBounds(bounds, { padding: 80, maxZoom: 15, duration: 0 })
-  }
+  //   const bounds = new mapboxgl.LngLatBounds()
+  //   this.targetsValue.forEach(target => bounds.extend([ target.lng, target.lat ]))
+  //   this.map.fitBounds(bounds, { padding: 80, maxZoom: 15, duration: 0 })
+  // }
 
   // AREAS
 
@@ -132,6 +133,14 @@ export default class extends Controller {
         }
       )
     })
+  }
+
+  #fitMapToPlayers() {
+    if (this.playersValue.length == 0) return;
+
+    const bounds = new mapboxgl.LngLatBounds()
+    this.playersValue.forEach(player => bounds.extend([ player.lng, player.lat ]))
+    this.map.fitBounds(bounds, { padding: 80, maxZoom: 15, duration: 0 })
   }
 
 
