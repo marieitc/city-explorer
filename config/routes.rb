@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
     get '/lobby', to: 'games#lobby'
     get '/start', to: 'games#start'
+    post '/validate', to: 'games#validate'
   end
   # Defines the root path route ("/")
   # root "articles#index"

@@ -1,3 +1,5 @@
+require "exifr/jpeg"
+
 class GamesController < ApplicationController
   before_action :authenticate_user!
 
@@ -85,6 +87,23 @@ class GamesController < ApplicationController
 
   def to_favorite
     current_user.favorite(game_place)
+  end
+
+  def validate
+    debugger
+    tempfile = params.require(:picture).dig(:photo)
+    picture_coords = EXIFR::JPEG.new(tempfile.tempfile).gps
+
+    game = Game.find(params[:game_id])
+    place = Place.find(params.require(:picture).dig(:place_id))
+    participation = game.participations.find_by(user: current_user)
+
+    places = Place.near([picture_coords.latitude, picture_coords.longitude], 0.2)
+    if places.include?(place)
+      participation.score += 1
+    else
+      flash[:alert] = "Keep looking"
+    end
   end
 
   private
