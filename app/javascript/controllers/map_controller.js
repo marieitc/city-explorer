@@ -1,10 +1,11 @@
 import { Controller } from "@hotwired/stimulus"
 import { createConsumer } from "@rails/actioncable"
+import Toastify from 'toastify-js'
 import mapboxgl from 'mapbox-gl'
 
 // Connects to data-controller="map"
 export default class extends Controller {
-  static targets = ["pictures"]
+  static targets = ["pictures","scores"]
   static values = {
     apiKey: String,
     targets: Array,
@@ -53,6 +54,13 @@ export default class extends Controller {
       this.playerMarkers
           .find(item => item.id == data.participation_id)
           .marker.setLngLat([data.longitude, data.latitude])
+    }
+
+    if (data.action === 'found') {
+      Toastify({
+        text: data.message,
+        duration: 3000
+      }).showToast();
     }
   }
 
@@ -179,5 +187,9 @@ export default class extends Controller {
   hide() {
     this.picturesTarget.classList.remove("display-pictures")
     this.picturesTarget.classList.add("hidden-pictures")
+  }
+
+  fire() {
+    this.scoresTarget.classList.toggle("d-none")
   }
 }
