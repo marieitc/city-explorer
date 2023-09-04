@@ -14,7 +14,7 @@
       <div data-swiper-target="card" class="swiper-wrapper">
         <% @places.each do |place|%>
           <div class="swiper-slide">
-            <img src="<%= place.url_image %>" data-action="click->swiper#select click->validate#select" data-validate-place-id-param="<%= place.id %>">
+            <img src=<%= place.url_image %> data-action="click->map#select" data-map-place-id-param="<%= place.id %>">
           </div>
         <% end %>
         <div class="swiper-slide opacity-0"></div>

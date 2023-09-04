@@ -81,23 +81,28 @@ export default class extends Controller {
   // AREAS
 
   #addAreasToMap() {
-    this.areasValue.forEach((area, index) => {
+    this.areas = new Array;
+
+    this.areasValue.forEach((area) => {
       // Create layer
-      this.map.addLayer({
-        "id": `area-${index}`,
-        "type": "circle",
-        "source": {
-          "type": "geojson",
-          "data": {
-            "type": "FeatureCollection",
-            "features": [{
-              "type": "Feature",
-              "geometry": {
-                "type": "Point",
-                "coordinates": [area.lng, area.lat]
+      this.areas.push(
+        {
+          place_id: area.place_id,
+          area: this.map.addLayer({
+            "id": `area-${area.place_id}`,
+            "type": "circle",
+            "source": {
+              "type": "geojson",
+              "data": {
+                "type": "FeatureCollection",
+                "features": [{
+                  "type": "Feature",
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [area.lng, area.lat]
+                  }
+                }]
               }
-            }]
-          }
         },
         "paint": {
           // Set an initial circle-radius, we'll override it later
@@ -105,7 +110,7 @@ export default class extends Controller {
           "circle-color": "#5cbfcc",
           "circle-opacity": 0.5
         }
-      });
+       });
 
       // Update circle radius whenever the zoom level changes
       this.map.on('zoomend', () => {
@@ -121,6 +126,16 @@ export default class extends Controller {
     const radiusInKm = 1; // Change this to the desired radius in kilometers
     const radiusInM = radiusInKm * 1000; // Convert km to meters
     return radiusInM / metersPerPx; // Return radius in pixels
+  }
+
+  select(evt) {
+    // this.areas.find(area => area.place_id == evt.params.placeId)
+    evt.currentTarget.classList.toggle("selected-img");
+    if (this.map.getPaintProperty(`area-${evt.params.placeId}`, "circle-color", "#68A8F8") === "#68A8F8") {
+      this.map.setPaintProperty(`area-${evt.params.placeId}`, "circle-color", "yellow");
+    } else if (this.map.getPaintProperty(`area-${evt.params.placeId}`, "circle-color", "yellow") === "yellow" ) {
+      this.map.setPaintProperty(`area-${evt.params.placeId}`, "circle-color", "#68A8F8");
+    }
   }
 
   //Players
