@@ -1,0 +1,59 @@
+<div class="main-container bg-image", style="background-image: url(<%= image_path 'gradient-2.png' %>);">
+
+  <div class="top-menu">
+    <%= link_to root_path do %>
+        <p class="mini-btn"><i class="fa-solid fa-house"></i></p>
+      <% end %>
+    <%= link_to profile_path(current_user), class: 'mini-btn' do %>
+      <i class="fa-solid fa-user"></i>
+    <% end %>
+  </div>
+
+  <div class="content-card">
+    <br>
+    <div data-controller="lobby" data-lobby-id-value="<%= @game.id %>" data-lobby-user-id-value="<%= current_user.id %>">
+      <div class="" data-lobby-target="content" >
+        <div id="summary-card">
+          <span class="title">Summary</span>
+          <div id="summary-titles">
+            <%# already existing %>
+            <span>Rank</span>
+            <span>Player</span>
+            <span>Places</span>
+            <span>Score</span>
+          </div>
+
+          <div data-lobby-target="players" class="sum-players", id="winner">
+            <p>#1</p>
+            <% @game.participations.each do |participation| %>
+              <%= render "participation", participation: participation %>
+            <% end %>
+            <p>3/4 </p>
+            <p>200</p>
+          </div>
+
+          <div class="sum-players">
+            <p>#2</p>
+            <p>Benjamin</p>
+            <p>2/4</p>
+            <p>150</p>
+          </div>
+
+          <div class="sum-players">
+            <p>#3</p>
+            <p>Clara</p>
+            <p>1/4</p>
+            <p>100</p>
+          </div>
+            <br>
+            <br>
+        </div>
+
+        <div class="btn-container">
+            <%= link_to "New game", new_game_path, class: "blue-btn title m-3" %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
