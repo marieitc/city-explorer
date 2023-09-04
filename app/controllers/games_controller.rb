@@ -106,7 +106,10 @@ class GamesController < ApplicationController
       participation.score += place.points
       Finding.create(participation: participation, game_place: game_place)
 
-      # GameChannel.broadcast_to
+      GameChannel.broadcast_to(
+        "game-#{game.id}",
+        { action: "found", message: "#{current_user.nickname} has found a place" }
+      )
       render json: { found: true }
     else
       render json: { found: false }
