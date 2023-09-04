@@ -90,7 +90,6 @@ class GamesController < ApplicationController
   end
 
   def validate
-    debugger
     tempfile = params.require(:picture).dig(:photo)
     picture_coords = EXIFR::JPEG.new(tempfile.tempfile).gps
 
@@ -99,10 +98,16 @@ class GamesController < ApplicationController
     participation = game.participations.find_by(user: current_user)
 
     places = Place.near([picture_coords.latitude, picture_coords.longitude], 0.2)
+    game_place = game.find_game_place(place)
+
     if places.include?(place)
-      participation.score += 1
+      participation.score += place.points
+      Finding.create(participation: participation, game_place: game_place)
+
+      # GameChannel.broadcast_to
+      render json: { found: true }
     else
-      flash[:alert] = "Keep looking"
+      render json: { found: false }
     end
   end
 

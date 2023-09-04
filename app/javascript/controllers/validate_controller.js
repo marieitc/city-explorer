@@ -26,11 +26,17 @@ export default class extends Controller {
       method: 'POST',
       headers: {
         'X-CSRF-TOKEN': this.token,
-        "Content-Type": "multipart/form-data"
       },
-      body: JSON.stringify(new FormData(this.formTarget))
+      body: new FormData(this.formTarget)
     }
 
     const response = await fetch(`/games/${this.gameIdValue}/validate`, options)
+    const data = await response.json();
+
+    if (data.found === true) {
+
+    } else {
+      
+    }
   }
 }
