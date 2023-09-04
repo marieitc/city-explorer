@@ -11,8 +11,4 @@ export default class extends Controller {
       grabCursor: true,
     });
   }
-
-  select(event) {
-    event.currentTarget.classList.toggle("selected-img")
-  }
 }

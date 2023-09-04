@@ -12,16 +12,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 18px;
   font-size: 22px;
   font-weight: bold;
   color: #fff;
   object-fit: cover;
   object-position: center;
   border: 10px solid transparent;
+  border-radius: 18px;
   }
   .selected-img {
-    border: 10px solid $aquamarine;
+    border: 10px solid yellow;
     border-radius: 18px;
   }
 }

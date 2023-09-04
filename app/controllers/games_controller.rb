@@ -35,7 +35,8 @@ class GamesController < ApplicationController
       {
         lat: gp.latitude,
         lng: gp.longitude,
-        marker_html: render_to_string(partial: 'marker')
+        marker_html: render_to_string(partial: 'marker'),
+        place_id: gp.place.id
       }
     end
 
