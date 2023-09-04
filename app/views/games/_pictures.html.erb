@@ -1,14 +1,24 @@
-<div class="main-container bg-image", style="background-image: url(<%= image_path 'gradient-2.png' %>);">
-  <p data-action="click->map#hide" class="map-btn"><i class="fa-regular fa-map" style="color: #fffff;"></i></p>
+<div data-controller="validate" data-validate-game-id-value="<%= game.id %>">
+  <div data-validate-target="images" class="main-container bg-image", style="background-image: url(<%= image_path 'gradient-ce.png' %>);">
+    <p data-action="click->map#hide" class="picture-btn-2"><i class="fa-regular fa-map" style="color: #fffff;"></i></p>
+
+    <%= simple_form_for :picture, method: :post, url: game_validate_path(game), html: { multipart: true, class: '', data: { action: 'submit->validate#validate', validate_target: "form" } } do |f| %>
+      <%= f.input :photo, as: :file, input_html: { data: { validate_target: 'photoInput' } } %>
+      <%= f.input :place_id, input_html: { data: { validate_target: 'placeInput' } } %>
+      <%= f.submit %>
+    <% end %>
+
+    <p data-action="click->validate#photo" class="btn pink-btn-2">Validate the place</p>
 
     <div data-controller="swiper" class="swiper mySwiper">
-
       <div data-swiper-target="card" class="swiper-wrapper">
         <% @places.each do |place|%>
-        <div class="swiper-slide"><img src=<%= place.url_image %> data-action="click->swiper#select"></div>
+          <div class="swiper-slide">
+            <img src="<%= place.url_image %>" data-action="click->swiper#select click->validate#select" data-validate-place-id-param="<%= place.id %>">
+          </div>
         <% end %>
         <div class="swiper-slide opacity-0"></div>
-        </div>
       </div>
     </div>
+  </div>
 </div>

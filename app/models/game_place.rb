@@ -2,6 +2,8 @@ class GamePlace < ApplicationRecord
   belongs_to :place
   belongs_to :game
 
+  reverse_geocoded_by :latitude, :longitude
+
   acts_as_favoritable
 
   def generate_area_center
