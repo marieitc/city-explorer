@@ -17,7 +17,7 @@ export default class extends Controller {
   initialize() {
     this.channel = createConsumer().subscriptions.create(
       { channel: "GameChannel", id: this.gameIdValue },
-      { received: data => console.log(data) }
+      { received: data => this.#handleData(data) }
     )
   }
 
@@ -39,14 +39,21 @@ export default class extends Controller {
     })
 
     // faire le watchPosition() => au success il envoie la participationId, lat, long
-    // navigator.geolocation.watchPosition(() => {
-    // console.log(this.channel)
-    // console.log(this.channel.send({ hello: 'hello' }))
-    // })
+    navigator.geolocation.watchPosition((coordinates) => {
+      this.channel.send({
+        participation_id: this.currentParticipationIdValue,
+        longitude: coordinates.coords.longitude,
+        latitude: coordinates.coords.latitude,
+      })
+    })
   }
 
-  test(evt) {
-    this.channel.send({ hello: 'hello' })
+  #handleData(data) {
+    if (data.action === 'update_participation') {
+      this.playerMarkers
+          .find(item => item.id == data.participation_id)
+          .marker.setLngLat([data.longitude, data.latitude])
+    }
   }
 
   // TARGETS
