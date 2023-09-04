@@ -103,20 +103,20 @@ export default class extends Controller {
                   }
                 }]
               }
+            },
+            "paint": {
+              // Set an initial circle-radius, we'll override it later
+              "circle-radius": this.#calculatePixelRadius(this.map.getZoom()),
+              "circle-color": "#5cbfcc",
+              "circle-opacity": 0.5
             }
         }),
-        "paint": {
-          // Set an initial circle-radius, we'll override it later
-          "circle-radius": this.#calculatePixelRadius(this.map.getZoom()),
-          "circle-color": "#5cbfcc",
-          "circle-opacity": 0.5
-        }
        });
 
       // Update circle radius whenever the zoom level changes
       this.map.on('zoomend', () => {
         const zoom = this.map.getZoom();
-        this.map.setPaintProperty(`area-${index}`, 'circle-radius', this.#calculatePixelRadius(zoom));
+        this.map.setPaintProperty(`area-${area.place_id}`, 'circle-radius', this.#calculatePixelRadius(zoom));
       });
     })
   }
