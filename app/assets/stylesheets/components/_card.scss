@@ -33,7 +33,7 @@
       font-size: 20px;
 
       .pink-text {
-        color: $pink;
+        color: $blue;
         font-weight: 800;
       }
 
@@ -83,14 +83,14 @@
   }
 
   #position {
-    color: $pink;
+    color: $blue;
     font-weight: 400;
     font-size: 16px ;
   }
 
   .loader {
     border: 3px solid #f3f3f3; /* Light grey */
-    border-top: 3px solid $pink; /* Blue */
+    border-top: 3px solid $blue; /* Blue */
     border-radius: 50%;
     width: 20px;
     height: 20px;
@@ -106,7 +106,7 @@
 
 .pink-text {
   font-family: 'Big Shoulders Text', cursive;
-  color: $pink;
+  color: $blue;
   font-weight: 400;
   font-size: 20px ;
 }
@@ -123,7 +123,7 @@
     display: grid;
 
     .ready {
-      color: $aquamarine;
+      color: $blue;
     }
 
     #players {
@@ -190,4 +190,26 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
+}
+
+.main-title-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  #main-title {
+    font-family: 'Open Sans', sans-serif;
+    color: white;
+    font-weight: 800;
+    font-size: 44px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);;
+  }
+
+  #subtitle {
+    font-family: 'Baloo 2', cursive;
+    color: white;
+    font-size: 24px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);;
+  }
 }
