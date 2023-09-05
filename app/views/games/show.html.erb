@@ -13,7 +13,7 @@
       <p class="mini-btn-parameter-map" data-action="click->map#test"><i class="fa-solid fa-gear"></i></p>
       <span data-action="click->map#fire" class="mini-btn-score-map">Scores</span>
       <div data-map-target="scores" id="score-card" class="d-none">
-        <%= render 'score_card' %>
+        <%= render 'score_card', game: @game %>
       </div>
       <p class="mini-btn-profile-map"><i class="fa-solid fa-user"></i></p>
     <div>

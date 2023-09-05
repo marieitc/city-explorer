@@ -5,7 +5,7 @@ import mapboxgl from 'mapbox-gl'
 
 // Connects to data-controller="map"
 export default class extends Controller {
-  static targets = ["pictures","scores", "validate"]
+  static targets = ["pictures","scores", "validate", "foundPlaces", "score", "ranking"]
   static values = {
     apiKey: String,
     targets: Array,
@@ -54,7 +54,7 @@ export default class extends Controller {
       this.playerMarkers
           .find(item => item.id == data.participation_id)
           .marker.setLngLat([data.longitude, data.latitude])
-          
+
       return;
     }
 
@@ -67,7 +67,16 @@ export default class extends Controller {
         text: data.message,
         duration: 3000
       }).showToast();
-
+      console.log(data.users_ranking)
+      this.scoreTarget.innerText = data.score;
+      this.foundPlacesTarget.innerText = data.found_places;
+      this.rankingTarget.innerText = data.users_ranking[0];
+      // [93, 92, 95]
+      data.users_raking.each_with_index 
+      // participation_id = 93 && index = 0
+      // j'itère avec index sur les users_rankings,
+      // pour chacun d'entre eux, je cherche le score qui a la même participation
+      // je lui affecte le ranking.innerText = à index + 1
       return;
     }
 
