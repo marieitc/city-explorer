@@ -126,11 +126,24 @@
       color: $blue;
     }
 
+    .players-name {
+      display: flex;
+      margin: 10px;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+
     #players {
       text-align: center;
       display: grid;
       grid-template-columns: 1fr 1fr;
     }
+  }
+
+  #token-card {
+    display: flex;
+    justify-content: center;
+    text-align: center;
   }
 
   #summary-card {
@@ -182,7 +195,7 @@
     border-radius: 20px;
     padding: 15px;
     margin: 10px auto;
-    font-size: 20px;
+    font-size: 25px;
   }
 
 .title {
