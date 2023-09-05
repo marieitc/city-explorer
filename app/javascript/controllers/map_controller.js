@@ -137,13 +137,15 @@ export default class extends Controller {
     return radiusInM / metersPerPx; // Return radius in pixels
   }
 
-  #select(evt) {
+  select(evt) {
     // this.areas.find(area => area.place_id == evt.params.placeId)
     evt.currentTarget.classList.toggle("selected-img");
-    if (this.map.getPaintProperty(`area-${evt.params.placeId}`, "circle-color", "#68A8F8") === "#68A8F8") {
+    console.log(evt.params.placeId);
+    console.log(this.map.getPaintProperty(`area-${evt.params.placeId}`, "circle-color", "#5cbfcc"));
+    if (this.map.getPaintProperty(`area-${evt.params.placeId}`, "circle-color", "#5cbfcc") === "#5cbfcc") {
       this.map.setPaintProperty(`area-${evt.params.placeId}`, "circle-color", "yellow");
     } else if (this.map.getPaintProperty(`area-${evt.params.placeId}`, "circle-color", "yellow") === "yellow" ) {
-      this.map.setPaintProperty(`area-${evt.params.placeId}`, "circle-color", "#68A8F8");
+      this.map.setPaintProperty(`area-${evt.params.placeId}`, "circle-color", "#5cbfcc");
     }
   }
 

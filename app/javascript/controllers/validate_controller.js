@@ -17,6 +17,10 @@ export default class extends Controller {
     this.placeInputTarget.value = evt.params.placeId;
   }
 
+  submit() {
+    this.formTarget.submit()
+  }
+
   async validate(evt) {
     console.log(this.formTarget)
     evt.preventDefault();
@@ -34,7 +38,7 @@ export default class extends Controller {
     const data = await response.json();
 
     if (data.found === true) {
-      
+
 
     } else {
 
