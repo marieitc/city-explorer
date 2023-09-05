@@ -148,7 +148,7 @@ export default class extends Controller {
       this.map.setPaintProperty(`area-${evt.params.placeId}`, "circle-color", "#5cbfcc");
     }
   }
-
+ 
   //Players
 
   // #addPlayersToMap() {
