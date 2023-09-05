@@ -35,8 +35,8 @@
           <%= link_to "#" do %>
             <p class="mini-btn", data-action="click->lobby#parameters"><i class="fa-solid fa-gear"></i></p>
           <% end %>
-          <%= link_to ready_game_path(@game) do %>
-            <p class="mini-btn", data-action="click->lobby#ready"><i class="fa-solid fa-location-dot"></i></p>
+          <%= link_to ready_game_path(@game), class:"mini-btn", data: { action: 'click->lobby#ready'} do %>
+            <p><i class="fa-solid fa-location-dot"></i></p>
           <% end %>
             <p class="loader_vert d-none" data-lobby-target="loader"></p>
           </div>
