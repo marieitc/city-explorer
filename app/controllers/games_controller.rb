@@ -41,7 +41,23 @@ class GamesController < ApplicationController
       }
     end
 
-    @places = @game.places
+    @places = @game.places.
+      select(
+        <<~SQL
+          places.*,
+          CASE WHEN findings.id IS NOT NULL THEN true ELSE false END AS found
+        SQL
+      ).
+      joins(
+        <<~SQL
+          LEFT OUTER JOIN findings
+          ON findings.game_place_id = game_places.id
+          AND participation_id = #{@current_participation.id}
+        SQL
+      )
+
+    # @places = @game.places
+
     @players = @participations.map do |participation|
       {
         participation_id: participation.id,
