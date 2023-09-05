@@ -105,8 +105,9 @@ class GamesController < ApplicationController
     if places.include?(place)
       participation.score += place.points
       Finding.create(participation: participation, game_place: game_place)
-      if Finding.where(participation: participation).count == game.places_number
-        GameChannel.broadcast_to("lobby-#{game.id}", { url: game_summary(game), action: 'validate' })
+
+      if participation.all_places_found?
+        GameChannel.broadcast_to("lobby-#{game.id}", { url: game_summary_path(game), action: 'endgame' })
       else
         GameChannel.broadcast_to(
           "game-#{game.id}",
