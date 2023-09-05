@@ -63,7 +63,10 @@ export default class extends Controller {
         this.map.setPaintProperty(`area-${data.place_id}`, 'circle-opacity', 0);
         const place_card = document.getElementById(`picture-${data.place_id}`)
         console.log(place_card)
+        place_card.dataset.found = "true"
+        place_card.classList.remove("selected-img")
         place_card.classList.add("found")
+        this.validateTarget.classList.add("d-none")
       }
 
       Toastify({
@@ -155,6 +158,8 @@ export default class extends Controller {
   }
 
   select(evt) {
+    if (evt.currentTarget.dataset.found == "true") { return }
+
     // this.areas.find(area => area.place_id == evt.params.placeId)
     this.validateTarget.classList.toggle("d-none")
     evt.currentTarget.classList.toggle("selected-img");
