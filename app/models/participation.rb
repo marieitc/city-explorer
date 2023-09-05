@@ -6,7 +6,7 @@ class Participation < ApplicationRecord
   def all_places_found?
     self.findings.count == game.places_number
   end
-  
+
   def found?(game_place)
     findings.find_by(game_place: game_place).present?
   end
