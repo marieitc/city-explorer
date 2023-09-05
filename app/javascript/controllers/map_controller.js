@@ -57,6 +57,10 @@ export default class extends Controller {
     }
 
     if (data.action === 'found') {
+      if (data.participation_id == this.currentParticipationIdValue ) {
+        this.map.setPaintProperty(`area-${data.place_id}`, 'circle-opacity', 0);
+      }
+
       Toastify({
         text: data.message,
         duration: 3000
@@ -116,7 +120,7 @@ export default class extends Controller {
               // Set an initial circle-radius, we'll override it later
               "circle-radius": this.#calculatePixelRadius(this.map.getZoom()),
               "circle-color": "#393939",
-              "circle-opacity": 0.4
+              "circle-opacity": area.found ? 0 : 0.4
             }
         }),
        });
@@ -140,8 +144,7 @@ export default class extends Controller {
   select(evt) {
     // this.areas.find(area => area.place_id == evt.params.placeId)
     evt.currentTarget.classList.toggle("selected-img");
-    console.log(evt.params.placeId);
-    console.log(this.map.getPaintProperty(`area-${evt.params.placeId}`, "circle-color", "#393939"));
+
     if (this.map.getPaintProperty(`area-${evt.params.placeId}`, "circle-color", "#393939") === "#393939") {
       this.map.setPaintProperty(`area-${evt.params.placeId}`, "circle-color", "#5cbfcc");
     } else if (this.map.getPaintProperty(`area-${evt.params.placeId}`, "circle-color", "#5cbfcc") === "#5cbfcc" ) {

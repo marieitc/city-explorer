@@ -109,7 +109,12 @@ class GamesController < ApplicationController
 
       GameChannel.broadcast_to(
         "game-#{game.id}",
-        { action: "found", message: "#{current_user.nickname} has found a place" }
+        {
+          action: "found",
+          message: "#{current_user.nickname} has found a place",
+          participation_id: participation.id,
+          place_id: place.id
+        }
       )
 
       render json: { found: true }
