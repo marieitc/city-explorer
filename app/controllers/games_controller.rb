@@ -95,7 +95,6 @@ class GamesController < ApplicationController
   def validate
     tempfile = params.require(:picture).dig(:photo)
     picture_coords = EXIFR::JPEG.new(tempfile.tempfile).gps
-    debugger
 
     game = Game.find(params[:game_id])
     place = Place.find(params.require(:picture).dig(:place_id))
