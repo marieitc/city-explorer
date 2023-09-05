@@ -1,3 +1,6 @@
-<span data-lobby-target="participation" id="<%= dom_id(participation) %>" class="<%= 'ready' if participation.located? %>">
-  <%= participation.user.nickname %>
-</span>
+<div class="players-name">
+  <span data-lobby-target="participation" id="<%= dom_id(participation) %>" class="<%= 'ready' if participation.located? %>">
+    <%= cl_image_tag participation.user.photo.key , height: 50, width: 50, alt: "Player Marker", class: "avatar-lobby" %>
+    <%= participation.user.nickname %>
+  </span>
+</div>

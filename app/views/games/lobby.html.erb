@@ -20,10 +20,7 @@
           <span class="title">Lobby</span>
             <div data-lobby-target="players" id="players">
               <% @game.participations.each do |participation| %>
-                <div class="players-name">
-                  <%= cl_image_tag participation.user.photo.key , height: 50, width: 50, alt: "Player Marker", class: "avatar-lobby" %>
                   <%= render "participation", participation: participation %>
-                </div>
               <% end %>
             </div>
           <br>
