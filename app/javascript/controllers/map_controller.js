@@ -54,13 +54,16 @@ export default class extends Controller {
       this.playerMarkers
           .find(item => item.id == data.participation_id)
           .marker.setLngLat([data.longitude, data.latitude])
-          
+
       return;
     }
 
     if (data.action === 'found') {
       if (data.participation_id == this.currentParticipationIdValue ) {
         this.map.setPaintProperty(`area-${data.place_id}`, 'circle-opacity', 0);
+        const place_card = document.getElementById(`picture-${data.place_id}`)
+        console.log(place_card)
+        place_card.classList.add("found")
       }
 
       Toastify({
