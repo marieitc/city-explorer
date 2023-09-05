@@ -8,7 +8,7 @@
       <%= f.submit %>
     <% end %>
 
-    <p data-action="click->validate#photo" class="btn pink-btn-2">Validate the place</p>
+    <p data-action="click->validate#photo" data-map-target="validate" class="d-none btn pink-btn-2">Validate the place</p>
 
     <div data-controller="swiper" class="swiper mySwiper">
       <div data-swiper-target="card" class="swiper-wrapper">
