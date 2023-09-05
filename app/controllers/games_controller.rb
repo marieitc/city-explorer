@@ -110,6 +110,7 @@ class GamesController < ApplicationController
         "game-#{game.id}",
         { action: "found", message: "#{current_user.nickname} has found a place" }
       )
+
       render json: { found: true }
     else
       render json: { found: false }
