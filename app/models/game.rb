@@ -18,6 +18,10 @@ class Game < ApplicationRecord
     game_places.find_by(place: place)
   end
 
+  def find_participation_for(user)
+    participations.find_by(user: user)
+  end
+
   def set_places
     # puts "\n\n\n\nJe teste.....\n\n\n"
     sleep 2

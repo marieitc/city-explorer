@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
+import Swal from 'sweetalert2';
 
 // Connects to data-controller="validae"
 export default class extends Controller {
@@ -15,10 +16,6 @@ export default class extends Controller {
 
   select(evt) {
     this.placeInputTarget.value = evt.params.placeId;
-  }
-
-  submit() {
-    this.formTarget.submit()
   }
 
   async validate(evt) {
@@ -38,10 +35,16 @@ export default class extends Controller {
     const data = await response.json();
 
     if (data.found === true) {
-
-
+      Toastify({
+        text: data.message,
+        duration: 3000
+      }).showToast();
     } else {
-
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Keep looking...',
+      })
     }
   }
 }

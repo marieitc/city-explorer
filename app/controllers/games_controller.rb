@@ -38,7 +38,8 @@ class GamesController < ApplicationController
         lat: gp.latitude,
         lng: gp.longitude,
         marker_html: render_to_string(partial: 'marker'),
-        place_id: gp.place.id
+        place_id: gp.place.id,
+        found: @game.find_participation_for(current_user).found?(gp)
       }
     end
 

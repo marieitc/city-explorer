@@ -124,8 +124,8 @@ export default class extends Controller {
             "paint": {
               // Set an initial circle-radius, we'll override it later
               "circle-radius": this.#calculatePixelRadius(this.map.getZoom()),
-              "circle-color": "#5cbfcc",
-              "circle-opacity": 0.5
+              "circle-color": "#393939",
+              "circle-opacity": 0.4
             }
         }),
        });
@@ -150,11 +150,11 @@ export default class extends Controller {
     // this.areas.find(area => area.place_id == evt.params.placeId)
     evt.currentTarget.classList.toggle("selected-img");
     console.log(evt.params.placeId);
-    console.log(this.map.getPaintProperty(`area-${evt.params.placeId}`, "circle-color", "#5cbfcc"));
-    if (this.map.getPaintProperty(`area-${evt.params.placeId}`, "circle-color", "#5cbfcc") === "#5cbfcc") {
-      this.map.setPaintProperty(`area-${evt.params.placeId}`, "circle-color", "yellow");
-    } else if (this.map.getPaintProperty(`area-${evt.params.placeId}`, "circle-color", "yellow") === "yellow" ) {
+    console.log(this.map.getPaintProperty(`area-${evt.params.placeId}`, "circle-color", "#393939"));
+    if (this.map.getPaintProperty(`area-${evt.params.placeId}`, "circle-color", "#393939") === "#393939") {
       this.map.setPaintProperty(`area-${evt.params.placeId}`, "circle-color", "#5cbfcc");
+    } else if (this.map.getPaintProperty(`area-${evt.params.placeId}`, "circle-color", "#5cbfcc") === "#5cbfcc" ) {
+      this.map.setPaintProperty(`area-${evt.params.placeId}`, "circle-color", "#393939");
     }
   }
 
