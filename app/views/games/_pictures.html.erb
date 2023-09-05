@@ -13,7 +13,7 @@
     <div data-controller="swiper" class="swiper mySwiper">
       <div data-swiper-target="card" class="swiper-wrapper">
         <% @places.each do |place|%>
-          <div class="swiper-slide">
+          <div class="swiper-slide" id="picture-<%= place.id %>">
             <img src=<%= place.url_image %> data-action="click->map#select click->validate#select" data-map-place-id-param="<%= place.id %>" data-validate-place-id-param="<%= place.id %>">
           </div>
         <% end %>

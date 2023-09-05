@@ -24,4 +24,9 @@
     border: 10px solid white;
     border-radius: 18px;
   }
+
+  .found {
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+  }
 }
