@@ -4,7 +4,7 @@
 
     <%= simple_form_for :picture, method: :post, url: game_validate_path(game), html: { multipart: true, class: 'd-none', data: { action: 'change->validate#validate', validate_target: "form" } } do |f| %>
       <%= f.input :photo, as: :file, input_html: { data: { validate_target: 'photoInput' } } %>
-      <%= f.input :place_id, as: :hidden, input_html: { data: { validate_target: 'placeInput' } } %>
+      <%= f.input :place_id, input_html: { data: { validate_target: 'placeInput' } } %>
       <%= f.submit %>
     <% end %>
 

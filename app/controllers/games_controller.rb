@@ -38,7 +38,8 @@ class GamesController < ApplicationController
         lat: gp.latitude,
         lng: gp.longitude,
         marker_html: render_to_string(partial: 'marker'),
-        place_id: gp.place.id
+        place_id: gp.place.id,
+        found: @game.find_participation_for(current_user).found?(gp)
       }
     end
 
@@ -94,6 +95,7 @@ class GamesController < ApplicationController
   def validate
     tempfile = params.require(:picture).dig(:photo)
     picture_coords = EXIFR::JPEG.new(tempfile.tempfile).gps
+    debugger
 
     game = Game.find(params[:game_id])
     place = Place.find(params.require(:picture).dig(:place_id))
