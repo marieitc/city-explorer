@@ -1,5 +1,3 @@
-require "exifr/jpeg"
-
 class GamesController < ApplicationController
   before_action :authenticate_user!
 
@@ -93,14 +91,14 @@ class GamesController < ApplicationController
   end
 
   def validate
-    tempfile = params.require(:picture).dig(:photo)
-    picture_coords = EXIFR::JPEG.new(tempfile.tempfile).gps
-
     game = Game.find(params[:game_id])
-    place = Place.find(params.require(:picture).dig(:place_id))
+    place = Place.find(params.dig(:picture, :place_id))
     participation = game.participations.find_by(user: current_user)
+    
+    latitude = params.dig(:picture, :latitude)
+    longitude = params.dig(:picture, :longitude)
 
-    places = Place.near([picture_coords.latitude, picture_coords.longitude], 0.2)
+    places = Place.near([latitude, longitude], 0.2)
     game_place = game.find_game_place(place)
 
     if places.include?(place)
@@ -120,7 +118,6 @@ class GamesController < ApplicationController
         )
         render json: { found: true }
       end
-
     else
       render json: { found: false }
     end
