@@ -5,7 +5,7 @@ import mapboxgl from 'mapbox-gl'
 
 // Connects to data-controller="map"
 export default class extends Controller {
-  static targets = ["pictures","scores"]
+  static targets = ["pictures","scores", "validate"]
   static values = {
     apiKey: String,
     targets: Array,
@@ -152,6 +152,7 @@ export default class extends Controller {
 
   select(evt) {
     // this.areas.find(area => area.place_id == evt.params.placeId)
+    this.validateTarget.classList.toggle("d-none")
     evt.currentTarget.classList.toggle("selected-img");
 
     if (this.map.getPaintProperty(`area-${evt.params.placeId}`, "circle-color", "#393939") === "#393939") {
