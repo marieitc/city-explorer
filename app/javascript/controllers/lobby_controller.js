@@ -57,6 +57,8 @@ export default class extends Controller {
   }
 
   async ready(evt) {
+    const readyUrl = evt.currentTarget.href
+
     this.loaderTarget.classList.remove("d-none")
     evt.preventDefault();
     evt.stopPropagation();
@@ -74,7 +76,7 @@ export default class extends Controller {
         body: JSON.stringify({ user_id: this.userIdValue, latitude: latitude, longitude: longitude })
       }
 
-      await fetch(evt.target.href, options)
+      await fetch(readyUrl, options)
       this.loaderTarget.classList.add("d-none")
     })
   }
