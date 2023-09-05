@@ -90,6 +90,7 @@ export default class extends Controller {
 
   #addAreasToMap() {
     this.areas = new Array;
+    console.log(this.areasValue)
 
     this.areasValue.forEach((area) => {
       // Create layer
