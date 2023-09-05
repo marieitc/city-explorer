@@ -1,7 +1,7 @@
 class GamePlace < ApplicationRecord
   belongs_to :place
   belongs_to :game
-  has_many :findings
+  has_many :findings, dependent: :destroy
 
   reverse_geocoded_by :latitude, :longitude
 
