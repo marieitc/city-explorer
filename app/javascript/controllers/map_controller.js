@@ -54,6 +54,8 @@ export default class extends Controller {
       this.playerMarkers
           .find(item => item.id == data.participation_id)
           .marker.setLngLat([data.longitude, data.latitude])
+          
+      return;
     }
 
     if (data.action === 'found') {
@@ -65,6 +67,13 @@ export default class extends Controller {
         text: data.message,
         duration: 3000
       }).showToast();
+
+      return;
+    }
+
+    if (data.action === 'endgame') {
+      window.location.href = data.url
+      return;
     }
   }
 
