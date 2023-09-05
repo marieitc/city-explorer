@@ -8,49 +8,36 @@
       <i class="fa-solid fa-user"></i>
     <% end %>
   </div>
+  <div id="token-card">
+    <span class="title" id="token">PIN: <%= @game.pin %></span>
+  </div>
 
   <div class="content-card">
-
-    <div class="profile-card">
-
-      <div class="profile-card-top">
-        <%= cl_image_tag current_user.photo.key, alt: "", class: "avatar-profile" %>
-        <div class="profile-card-text">
-          <span><%= current_user.nickname %></span>
-          <span id="ranking">Explorer</span>
-        </div>
-      </div>
-
-
-      <div class="profile-card-bottom">
-        <div id="left-metric">
-          <span class="pink-text"><%= current_user.places %></span>
-          <span>Places</span>
-        </div>
-        <div id="right-metric">
-          <span class="pink-text"><%= current_user.distance %> kms</span>
-          <span>Distance</span>
-        </div>
-      </div>
-    </div>
     <br>
     <div data-controller="lobby" data-lobby-id-value="<%= @game.id %>" data-lobby-user-id-value="<%= current_user.id %>">
       <div class="" data-lobby-target="content" >
         <div id="lobby-card">
           <span class="title">Lobby</span>
-          <span class="title" id="token">PIN: <%= @game.pin %></span>
-          <div data-lobby-target="players" id="players">
-            <%# already existing %>
-            <% @game.participations.each do |participation| %>
-              <%= render "participation", participation: participation %>
-            <% end %>
-          </div>
+            <div data-lobby-target="players" id="players">
+              <% @game.participations.each do |participation| %>
+                <div class="players-name">
+                  <%= cl_image_tag participation.user.photo.key , height: 50, width: 50, alt: "Player Marker", class: "avatar-lobby" %>
+                  <%= render "participation", participation: participation %>
+                </div>
+              <% end %>
+            </div>
+          <br>
+          <br>
         </div>
 
         <div class="btn-container">
-          <span data-action="click->lobby#parameters" class="blue-btn title m-3">Game parameters</span>
-          <div class="d-flex justify-content-evenly">
-            <%= link_to "Ready", ready_game_path(@game), class: "blue-btn title m-3", data: { action: 'click->lobby#ready' } %>
+          <div class="d-flex">
+          <%= link_to "#" do %>
+            <p class="mini-btn", data-action="click->lobby#parameters"><i class="fa-solid fa-gear"></i></p>
+          <% end %>
+          <%= link_to ready_game_path(@game) do %>
+            <p class="mini-btn", data-action="click->lobby#ready"><i class="fa-solid fa-location-dot"></i></p>
+          <% end %>
             <p class="loader_vert d-none" data-lobby-target="loader"></p>
           </div>
           <% if current_user == @game.user  %>
