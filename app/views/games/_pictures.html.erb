@@ -3,7 +3,7 @@
     <p data-action="click->map#hide" class="picture-btn-2"><i class="fa-regular fa-map" style="color: #fffff;"></i></p>
 
     <%= simple_form_for :picture, method: :post, url: game_validate_path(game), html: { multipart: true, class: 'd-none', data: { action: 'change->validate#validate', validate_target: "form" } } do |f| %>
-      <%= f.input :photo, as: :file, input_html: { data: { validate_target: 'photoInput' } } %>
+      <%= f.input :photo, as: :file, input_html: { data: { validate_target: 'photoInput' }, capture: true } %>
       <%= f.input :place_id, input_html: { data: { validate_target: 'placeInput' }, class: 'd-none' } %>
       <%= f.submit %>
     <% end %>
