@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
-import Swal from 'sweetalert2'
-import Toastify from 'toastify-js'
+import Swal from 'sweetalert2';
+import Toastify from 'toastify-js';
 
 // Connects to data-controller="validae"
 export default class extends Controller {

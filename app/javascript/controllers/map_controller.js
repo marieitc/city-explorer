@@ -54,13 +54,26 @@ export default class extends Controller {
       this.playerMarkers
           .find(item => item.id == data.participation_id)
           .marker.setLngLat([data.longitude, data.latitude])
+          
+      return;
     }
 
     if (data.action === 'found') {
+      if (data.participation_id == this.currentParticipationIdValue ) {
+        this.map.setPaintProperty(`area-${data.place_id}`, 'circle-opacity', 0);
+      }
+
       Toastify({
         text: data.message,
         duration: 3000
       }).showToast();
+
+      return;
+    }
+
+    if (data.action === 'endgame') {
+      window.location.href = data.url
+      return;
     }
   }
 
@@ -115,8 +128,8 @@ export default class extends Controller {
             "paint": {
               // Set an initial circle-radius, we'll override it later
               "circle-radius": this.#calculatePixelRadius(this.map.getZoom()),
-              "circle-color": "#5cbfcc",
-              "circle-opacity": 0.5
+              "circle-color": "#393939",
+              "circle-opacity": area.found ? 0 : 0.4
             }
         }),
        });
@@ -141,12 +154,11 @@ export default class extends Controller {
     // this.areas.find(area => area.place_id == evt.params.placeId)
     this.validateTarget.classList.toggle("d-none")
     evt.currentTarget.classList.toggle("selected-img");
-    console.log(evt.params.placeId);
-    console.log(this.map.getPaintProperty(`area-${evt.params.placeId}`, "circle-color", "#5cbfcc"));
-    if (this.map.getPaintProperty(`area-${evt.params.placeId}`, "circle-color", "#5cbfcc") === "#5cbfcc") {
-      this.map.setPaintProperty(`area-${evt.params.placeId}`, "circle-color", "yellow");
-    } else if (this.map.getPaintProperty(`area-${evt.params.placeId}`, "circle-color", "yellow") === "yellow" ) {
+
+    if (this.map.getPaintProperty(`area-${evt.params.placeId}`, "circle-color", "#393939") === "#393939") {
       this.map.setPaintProperty(`area-${evt.params.placeId}`, "circle-color", "#5cbfcc");
+    } else if (this.map.getPaintProperty(`area-${evt.params.placeId}`, "circle-color", "#5cbfcc") === "#5cbfcc" ) {
+      this.map.setPaintProperty(`area-${evt.params.placeId}`, "circle-color", "#393939");
     }
   }
 
