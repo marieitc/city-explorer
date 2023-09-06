@@ -116,8 +116,8 @@ class GamesController < ApplicationController
     # places = Place.near([participation.latitude, participation.longitude], 0.2)
 
     # je me suis donc dit qu'il fallait plutot utiliser les valeurs provenant du formulaire, si elles existent
-    current_user_latitude = params.dig(:picture, :latitude) || participation.latitude
-    current_user_longitude = params.dig(:picture, :longitude) || participation.longitude
+    current_user_latitude = params.dig(:picture, :latitude).presence || participation.latitude
+    current_user_longitude = params.dig(:picture, :longitude).presence || participation.longitude
     places = Place.near([current_user_latitude, current_user_longitude], 0.2)
 
     game_place = game.find_game_place(place)
