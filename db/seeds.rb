@@ -16,20 +16,20 @@ puts 'Creating Places'
 
 # create le wagon
 
-Place.create!(address: '16 Rue du Repos, 75020 Paris, France', name: 'Père Lachaise', url_image: 'https://upload.wikimedia.org/wikipedia/commons/b/b0/Main_gate_of_the_P%C3%A8re-Lachaise_Cemetery%2C_Paris_13_June_2014.jpg',
-              points: 20)
+# Place.create!(address: '16 Rue du Repos, 75020 Paris, France', name: 'Père Lachaise', url_image: 'https://upload.wikimedia.org/wikipedia/commons/b/b0/Main_gate_of_the_P%C3%A8re-Lachaise_Cemetery%2C_Paris_13_June_2014.jpg',
+#               points: 20)
 Place.create!(address: 'Place de la République, 75010 Paris, France', name: 'Statue de la République', url_image: 'https://paris1900.lartnouveau.com/paris10/place_de_la_republique/statues/1stat_rep01.jpg',
               points: 10)
 Place.create!(address: '12-16 Villa Gaudelet, 75011 Paris, France', name: 'Le Wagon', url_image: 'https://studysmarter-mediafiles.s3.amazonaws.com/media/uploads/froala_editor/images/fa7583826ca3-Paris_Campus_3__3_.png',
               points: 50)
 Place.create!(address: 'Place Georges Pompidou, 75004 Paris', name: 'Centre Pompidou', url_image: 'https://uploads.lebonbon.fr/source/2017/paris/site/ines/centre-pompidou-.jpg',
               points: 10)
-Place.create!(address: '47 Rue des Couronnes, 75020 Paris, France', name: 'Parc de Belleville', url_image: 'https://i.pinimg.com/originals/52/40/db/5240dbfbaf8efe30a46df6b2c60250df.jpg',
-              points: 20)
-Place.create!(address: 'Square Saint-Ambroise, 75011 Paris', name: 'Eglise Saint-Ambroise', url_image: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/11/5f/55/04/eglise-saint-ambroise.jpg?w=1200&h=-1&s=1',
-              points: 30)
-Place.create!(address: '50 Boulevard Voltaire, 75011 Paris', name: 'Bataclan', url_image: 'https://cdn.sortiraparis.com/images/80/1665/182946-le-bataclan-de-paris-devrait-rouvrir-fin-2016.jpg',
-              points: 20)
+# Place.create!(address: '47 Rue des Couronnes, 75020 Paris, France', name: 'Parc de Belleville', url_image: 'https://i.pinimg.com/originals/52/40/db/5240dbfbaf8efe30a46df6b2c60250df.jpg',
+#               points: 20)
+# Place.create!(address: 'Square Saint-Ambroise, 75011 Paris', name: 'Eglise Saint-Ambroise', url_image: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/11/5f/55/04/eglise-saint-ambroise.jpg?w=1200&h=-1&s=1',
+#               points: 30)
+# Place.create!(address: '50 Boulevard Voltaire, 75011 Paris', name: 'Bataclan', url_image: 'https://cdn.sortiraparis.com/images/80/1665/182946-le-bataclan-de-paris-devrait-rouvrir-fin-2016.jpg',
+#               points: 20)
 Place.create!(address: '4 rue Eugène Spuller, 75003 Paris', name: 'Le Carreau du Temple', url_image: 'https://parisjetaime.com/data/layout_image/fr-FR/Carreau-du-temple-Exterieur-630x405-C-Fernando-Javier-Urquijo.jpg',
               points: 10)
 Place.create!(address: '60 rue Réaumur, 75003 Paris', name: 'Musée des Arts et métiers', url_image: 'https://tzmedia.b-cdn.net/media/images/fr/place/420/42d4850cf4d261562535a764b1c3ba93.jpg?1587732836',
@@ -54,8 +54,15 @@ Place.create!(address: 'Pass. Verdeau, 75009 Paris', name: 'Passage Verdeau', ur
               points: 40)
 Place.create!(address: 'Rue Crémieux, 75012 Paris', name: 'Rue Crémieux', url_image: 'https://www.cherifaistesvalises.com/wp-content/uploads/2022/12/Shutterstock_1622871085-1-scaled.jpg',
               points: 30)
-Place.create!(address: "3 Pass. de l'Ancre", name: "Passage de l'Ancre", url_image: 'https://1.bp.blogspot.com/-4Ep1lJjygSg/WY8ej-1zmNI/AAAAAAAAuo0/zT3xJngiRPc6WNFDy6ZEJ4UfbPrrOufzwCLcBGAs/s1600/passage-de-l-ancre-paris-3-7.JPG',
+Place.create!(address: "3 Pass. de l'Ancre 75003 Paris", name: "Passage de l'Ancre", url_image: 'https://1.bp.blogspot.com/-4Ep1lJjygSg/WY8ej-1zmNI/AAAAAAAAuo0/zT3xJngiRPc6WNFDy6ZEJ4UfbPrrOufzwCLcBGAs/s1600/passage-de-l-ancre-paris-3-7.JPG',
               points: 40)
+poupees = Place.create!(address: '5 Vila Gaudelet 75011 Paris', name: 'Poupées Vaudoux',
+                        points: 40)
+
+poupees.photo.attach(
+  io: File.open(Rails.root.join('app', 'assets', 'images', 'poupeevaudou.png')),
+  filename: 'poupeevaudou.png', content_type: 'image/png'
+)
 
 puts 'Places created'
 

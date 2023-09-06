@@ -19,16 +19,18 @@
       <div data-swiper-target="card" class="swiper-wrapper">
         <% @places.each do |place|%>
           <div class="swiper-slide">
-            <img src=<%= place.url_image %>
+            <% if place.photo.attached? %>
+              <%= cl_image_tag place.photo.key, data: {found: place.found, action: "click->map#select click->validate#select", "map-place-id-param": place.id, "validate-place-id-param": place.id}, class: (place.found ? "found" : "") %>
+            <% else %>
+              <img src=<%= place.url_image %>
                  data-found="<%= place.found %>"
                  data-action="click->map#select click->validate#select"
                  data-map-place-id-param="<%= place.id %>"
                  data-validate-place-id-param="<%= place.id %>" id="picture-<%= place.id %>" class="<%= "found" if place.found %>">
+            <% end %>
+
           </div>
         <% end %>
-
-        <div class="swiper-slide opacity-0"></div>
-        <div class="swiper-slide opacity-0"></div>
       </div>
     </div>
   </div>
