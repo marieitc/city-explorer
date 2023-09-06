@@ -5,7 +5,7 @@ import mapboxgl from 'mapbox-gl'
 
 // Connects to data-controller="map"
 export default class extends Controller {
-  static targets = ["pictures","scores", "validate", "foundPlaces", "score", "ranking", "scorePlayerDiv", "scores"]
+  static targets = ["pictures","scores", "validate", "scores", "summary"]
   static values = {
     apiKey: String,
     targets: Array,
@@ -86,6 +86,8 @@ export default class extends Controller {
 
     if (data.action === 'endgame') {
       window.location.href = data.url
+      this.summaryTarget.innerHTML = data.html_scores
+
       return;
     }
   }
