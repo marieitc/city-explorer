@@ -1,4 +1,4 @@
-<div data-controller="validate" data-validate-game-id-value="<%= game.id %>">
+<div data-controller="validate swiper"  data-validate-game-id-value="<%= game.id %>">
   <div data-validate-target="images" class="main-container bg-image", style="background-image: url(<%= image_path 'gradient-2.png' %>);">
     <p data-action="click->map#hide" class="picture-btn-2"><i class="fa-regular fa-map" style="color: #fffff;"></i></p>
 
@@ -11,15 +11,19 @@
       <%= f.submit %>
     <% end %>
 
-    <p data-action="click->validate#photo" data-map-target="validate" class="btn pink-btn-2 d-none">
+    <p data-action="click->validate#photo" data-swiper-target="validate" data-map-target="validate" class="btn pink-btn-2 d-none">
       Validate the place
     </p>
 
-    <div data-controller="swiper" class="swiper mySwiper">
+    <div data-swiper-target="swiperContainer" class="swiper mySwiper">
       <div data-swiper-target="card" class="swiper-wrapper">
         <% @places.each do |place|%>
           <div class="swiper-slide">
-            <img src=<%= place.url_image %> data-found="<%= place.found %>" data-action="click->map#select click->validate#select" data-map-place-id-param="<%= place.id %>" data-validate-place-id-param="<%= place.id %>" id="picture-<%= place.id %>" class="<%= "found" if place.found %>">
+            <img src=<%= place.url_image %>
+                 data-found="<%= place.found %>"
+                 data-action="click->map#select click->validate#select"
+                 data-map-place-id-param="<%= place.id %>"
+                 data-validate-place-id-param="<%= place.id %>" id="picture-<%= place.id %>" class="<%= "found" if place.found %>">
           </div>
         <% end %>
 

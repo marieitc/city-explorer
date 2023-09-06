@@ -5,7 +5,7 @@ import mapboxgl from 'mapbox-gl'
 
 // Connects to data-controller="map"
 export default class extends Controller {
-  static targets = ["pictures","scores", "validate", "foundPlaces", "score", "ranking"]
+  static targets = ["pictures","scores", "validate", "scores", "summary"]
   static values = {
     apiKey: String,
     targets: Array,
@@ -73,11 +73,9 @@ export default class extends Controller {
         text: data.message,
         duration: 3000
       }).showToast();
-      console.log(data.users_ranking)
-      this.scoreTarget.innerText = data.score;
-      this.foundPlacesTarget.innerText = data.found_places;
-      this.rankingTarget.innerText = data.users_ranking[0];
-      
+
+      this.scoresTarget.innerHTML = data.html_scores
+
       // [93, 92, 95]
       // participation_id = 93 && index = 0
       // j'itère avec index sur les users_rankings,
@@ -88,6 +86,8 @@ export default class extends Controller {
 
     if (data.action === 'endgame') {
       window.location.href = data.url
+      this.summaryTarget.innerHTML = data.html_scores
+
       return;
     }
   }
@@ -167,11 +167,14 @@ export default class extends Controller {
   }
 
   select(evt) {
-    if (evt.currentTarget.dataset.found == "true") { return }
+    const card = evt.currentTarget.closest('.swiper-slide')
+    const condition = evt.currentTarget.dataset.found == "true" || !card.classList.contains('swiper-slide-active')
+    if (condition) return
 
     // this.areas.find(area => area.place_id == evt.params.placeId)
     this.validateTarget.classList.toggle("d-none")
     evt.currentTarget.classList.toggle("selected-img");
+
 
     if (this.map.getPaintProperty(`area-${evt.params.placeId}`, "circle-color", "#393939") === "#393939") {
       this.map.setPaintProperty(`area-${evt.params.placeId}`, "circle-color", "#5cbfcc");

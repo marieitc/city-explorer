@@ -110,36 +110,35 @@ class GamesController < ApplicationController
     game = Game.find(params[:game_id])
     place = Place.find(params.dig(:picture, :place_id))
     participation = game.participations.find_by(user: current_user)
-    
-    latitude = params.dig(:picture, :latitude)
-    longitude = params.dig(:picture, :longitude)
 
-    places = Place.near([latitude, longitude], 0.2)
+    places = Place.near([participation.latitude, participation.longitude], 0.2)
     game_place = game.find_game_place(place)
 
     if places.include?(place)
       participation.score += place.points
       Finding.create(participation: participation, game_place: game_place)
-      found_places = participation.findings.count
       # count = []
       # game.participations.each do |pl|
       #   count << pl.score
       # end
       # ranking = count.rank(participation.score)
       participation.save
-      users_ranking = participation.compare_scores
       if participation.all_places_found?
-        GameChannel.broadcast_to("game-#{game.id}", { url: game_summary_path(game), action: 'endgame' })
+        GameChannel.broadcast_to(
+          "game-#{game.id}",
+          { url: game_summary_path(game),
+            html_scores: render_to_string(partial: 'games/score_card', locals: { game: game }, formats: [:html]),
+            action: 'endgame'
+          }
+        )
       else
         GameChannel.broadcast_to(
           "game-#{game.id}",
-          { action: "found",
+          { action: 'found',
             message: "#{current_user.nickname} has found a place",
             participation_id: participation.id,
             place_id: place.id,
-            score: participation.score,
-            found_places: found_places,
-            users_ranking: users_ranking
+            html_scores: render_to_string(partial: 'games/score_card', locals: { game: game }, formats: [:html])
           }
         )
         render json: { found: true }
