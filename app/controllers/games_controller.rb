@@ -117,7 +117,6 @@ class GamesController < ApplicationController
     if places.include?(place)
       participation.score += place.points
       Finding.create(participation: participation, game_place: game_place)
-      found_places = participation.findings.count
       # count = []
       # game.participations.each do |pl|
       #   count << pl.score
@@ -125,11 +124,17 @@ class GamesController < ApplicationController
       # ranking = count.rank(participation.score)
       participation.save
       if participation.all_places_found?
-        GameChannel.broadcast_to("game-#{game.id}", { url: game_summary_path(game), action: 'endgame' })
+        GameChannel.broadcast_to(
+          "game-#{game.id}",
+          { url: game_summary_path(game),
+            html_scores: render_to_string(partial: 'games/score_card', locals: { game: game }, formats: [:html]),
+            action: 'endgame'
+          }
+        )
       else
         GameChannel.broadcast_to(
           "game-#{game.id}",
-          { action: "found",
+          { action: 'found',
             message: "#{current_user.nickname} has found a place",
             participation_id: participation.id,
             place_id: place.id,
