@@ -1,16 +1,18 @@
-<div id="score-titles">
-  <%# already existing %>
-  <span>Rank</span>
-  <span>Player</span>
-  <span>Places</span>
-  <span>Score</span>
-</div>
 
-<% game.participations.each do |participation| %>
-  <div class="score-players" data-map-target="scorePlayerDiv" data-participation-id="<%= participation.id %>">
-    <p data-map-target="ranking" class='rankingPlayer'>#<%= game.participations.count %></p>
-    <%= participation.user.nickname %>
-    <p data-map-target="foundPlaces">0</p>
-    <p data-map-target="score">0</p>
+  <div class="score-card">
+    <%# already existing %>
+    <span>Rank</span>
+    <span>Player</span>
+    <span>Places</span>
+    <span>Score</span>
   </div>
-<% end %>
+
+  <% game.participations.sort_by { |participation| participation.findings.count }.reverse.each_with_index do |participation, index| %>
+    <div class="score-players">
+      <p data-map-target="ranking" class='rankingPlayer'>#<%= index + 1 %></p>
+      <%= participation.user.nickname %>
+      <p data-map-target="foundPlaces"><%= participation.findings.count %> / <%= game.places_number %></p>
+      <p data-map-target="score"><%= participation.score %></p>
+    </div>
+  <% end %>
+

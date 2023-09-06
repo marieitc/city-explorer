@@ -124,7 +124,6 @@ class GamesController < ApplicationController
       # end
       # ranking = count.rank(participation.score)
       participation.save
-      users_ranking = participation.compare_scores
       if participation.all_places_found?
         GameChannel.broadcast_to("game-#{game.id}", { url: game_summary_path(game), action: 'endgame' })
       else
@@ -134,9 +133,7 @@ class GamesController < ApplicationController
             message: "#{current_user.nickname} has found a place",
             participation_id: participation.id,
             place_id: place.id,
-            score: participation.score,
-            found_places: found_places,
-            users_ranking: users_ranking
+            html_scores: render_to_string(partial: 'games/score_card', locals: { game: game }, formats: [:html])
           }
         )
         render json: { found: true }

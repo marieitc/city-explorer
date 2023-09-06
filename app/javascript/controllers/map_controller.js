@@ -5,7 +5,7 @@ import mapboxgl from 'mapbox-gl'
 
 // Connects to data-controller="map"
 export default class extends Controller {
-  static targets = ["pictures","scores", "validate", "foundPlaces", "score", "ranking", "scorePlayerDiv"]
+  static targets = ["pictures","scores", "validate", "foundPlaces", "score", "ranking", "scorePlayerDiv", "scores"]
   static values = {
     apiKey: String,
     targets: Array,
@@ -73,18 +73,8 @@ export default class extends Controller {
         text: data.message,
         duration: 3000
       }).showToast();
-      console.log(data.users_ranking)
-      this.scoreTarget.innerText = data.score;
-      this.foundPlacesTarget.innerText = data.found_places;
 
-      data.users_ranking.forEach((id, index) => {
-        const divPlayer = this.scorePlayerDivTargets.find((div) => {
-          const dataId = Number.parseInt(div.dataset.participationId, 10)
-          dataId === id
-        })
-        const ranking = divPlayer.querySelector('.rankingPlayer')
-        ranking.innerText = `#${index + 1}`
-      })
+      this.scoresTarget.innerHTML = data.html_scores
 
       // [93, 92, 95]
       // participation_id = 93 && index = 0
