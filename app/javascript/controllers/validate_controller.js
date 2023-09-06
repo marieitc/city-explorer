@@ -39,6 +39,7 @@ export default class extends Controller {
       method: 'POST',
       headers: {
         'X-CSRF-TOKEN': this.token,
+        'Accept': 'application/json'
       },
       body: formData
     }

@@ -5,7 +5,7 @@ import mapboxgl from 'mapbox-gl'
 
 // Connects to data-controller="map"
 export default class extends Controller {
-  static targets = ["pictures","scores", "validate", "scores", "summary"]
+  static targets = ["pictures", "scores", "validate", "summary"]
   static values = {
     apiKey: String,
     targets: Array,
@@ -75,7 +75,9 @@ export default class extends Controller {
         duration: 3000
       }).showToast();
 
-      this.scoresTarget.innerHTML = data.html_scores
+      if (this.hasScoresTarget) {
+        this.scoresTarget.innerHTML = data.html_scores
+      }
 
       // [93, 92, 95]
       // participation_id = 93 && index = 0
@@ -260,6 +262,8 @@ export default class extends Controller {
   }
 
   fire() {
-    this.scoresTarget.classList.toggle("d-none")
+    if (this.hasScoresTarget) {
+      this.scoresTarget.classList.toggle("d-none")
+    }
   }
 }
