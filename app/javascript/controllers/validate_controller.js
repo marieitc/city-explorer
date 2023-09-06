@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 
 // Connects to data-controller="validae"
 export default class extends Controller {
-  static targets =  ["images", "photoInput", "placeInput", "form"]
+  static targets =  ["images", "photoInput", "placeInput", "form", "latitude", "longitude"]
   static values = { gameId: Number }
 
   connect() {
@@ -16,11 +16,11 @@ export default class extends Controller {
   }
 
   select(evt) {
+    this.#setCoords();
     this.placeInputTarget.value = evt.params.placeId;
   }
 
   async validate(evt) {
-    console.log(this.formTarget)
     evt.preventDefault();
     evt.stopPropagation();
 
@@ -31,10 +31,10 @@ export default class extends Controller {
       },
       body: new FormData(this.formTarget)
     }
-
+    
     const response = await fetch(`/games/${this.gameIdValue}/validate`, options)
     const data = await response.json();
-
+    
     if (data.found === true) {
       Toastify({
         text: data.message,
@@ -47,5 +47,12 @@ export default class extends Controller {
         text: 'Keep looking...',
       })
     }
+  }
+  
+  #setCoords() {
+    navigator.geolocation.getCurrentPosition((position) => {
+      this.latitudeTarget.value = position.coords.latitude;
+      this.longitudeTarget.value = position.coords.longitude;
+    });
   }
 }
