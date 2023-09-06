@@ -82,7 +82,7 @@ marie.photo.attach(
   filename: 'marie.png', content_type: 'image/png'
 )
 
-benjamin = User.create!(nickname: 'Benjamin', email: 'benjamin@lol.com', password: 'azerty', places: 0, distance: 0)
+benjamin = User.create!(nickname: 'Ben', email: 'benjamin@lol.com', password: 'azerty', places: 0, distance: 0)
 
 benjamin.photo.attach(
   io: File.open(Rails.root.join('app', 'assets', 'images', 'benjamin.png')),
