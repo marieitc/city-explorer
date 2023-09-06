@@ -110,11 +110,8 @@ class GamesController < ApplicationController
     game = Game.find(params[:game_id])
     place = Place.find(params.dig(:picture, :place_id))
     participation = game.participations.find_by(user: current_user)
-    
-    latitude = params.dig(:picture, :latitude)
-    longitude = params.dig(:picture, :longitude)
 
-    places = Place.near([latitude, longitude], 0.2)
+    places = Place.near([participation.latitude, participation.longitude], 0.2)
     game_place = game.find_game_place(place)
 
     if places.include?(place)
