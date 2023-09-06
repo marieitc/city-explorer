@@ -175,11 +175,14 @@ export default class extends Controller {
   }
 
   select(evt) {
-    if (evt.currentTarget.dataset.found == "true") { return }
+    const card = evt.currentTarget.closest('.swiper-slide')
+    const condition = evt.currentTarget.dataset.found == "true" || !card.classList.contains('swiper-slide-active')
+    if (condition) return
 
     // this.areas.find(area => area.place_id == evt.params.placeId)
     this.validateTarget.classList.toggle("d-none")
     evt.currentTarget.classList.toggle("selected-img");
+
 
     if (this.map.getPaintProperty(`area-${evt.params.placeId}`, "circle-color", "#393939") === "#393939") {
       this.map.setPaintProperty(`area-${evt.params.placeId}`, "circle-color", "#5cbfcc");

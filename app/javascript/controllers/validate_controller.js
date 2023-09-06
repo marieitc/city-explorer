@@ -16,7 +16,9 @@ export default class extends Controller {
   }
 
   select(evt) {
+    const card = evt.currentTarget.closest('.swiper-slide')
     this.#setCoords();
+    if (!card.classList.contains('swiper-slide-active')) return
     this.placeInputTarget.value = evt.params.placeId;
   }
 
@@ -31,10 +33,10 @@ export default class extends Controller {
       },
       body: new FormData(this.formTarget)
     }
-    
+
     const response = await fetch(`/games/${this.gameIdValue}/validate`, options)
     const data = await response.json();
-    
+
     if (data.found === true) {
       Toastify({
         text: data.message,
@@ -48,7 +50,7 @@ export default class extends Controller {
       })
     }
   }
-  
+
   #setCoords() {
     navigator.geolocation.getCurrentPosition((position) => {
       this.latitudeTarget.value = position.coords.latitude;
