@@ -5,7 +5,7 @@ import mapboxgl from 'mapbox-gl'
 
 // Connects to data-controller="map"
 export default class extends Controller {
-  static targets = ["pictures","scores", "validate", "foundPlaces", "score", "ranking"]
+  static targets = ["pictures","scores", "validate", "foundPlaces", "score", "ranking", "scorePlayerDiv"]
   static values = {
     apiKey: String,
     targets: Array,
@@ -76,8 +76,16 @@ export default class extends Controller {
       console.log(data.users_ranking)
       this.scoreTarget.innerText = data.score;
       this.foundPlacesTarget.innerText = data.found_places;
-      this.rankingTarget.innerText = data.users_ranking[0];
-      
+
+      data.users_ranking.forEach((id, index) => {
+        const divPlayer = this.scorePlayerDivTargets.find((div) => {
+          const dataId = Number.parseInt(div.dataset.participationId, 10)
+          dataId === id
+        })
+        const ranking = divPlayer.querySelector('.rankingPlayer')
+        ranking.innerText = `#${index + 1}`
+      })
+
       // [93, 92, 95]
       // participation_id = 93 && index = 0
       // j'itère avec index sur les users_rankings,
