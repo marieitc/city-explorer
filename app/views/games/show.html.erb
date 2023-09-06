@@ -8,25 +8,23 @@
     data-map-players-value="<%= @players.to_json %>"
     data-map-game-id-value="<%= @game.id %>"
     data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
-    data-map-current-participation-id-value="<%= @current_participation.id %>">
+    data-map-current-participation-id-value="<%= @current_participation.id %>"
+  ><div>
+  <p class="mini-btn-parameter-map" data-action="click->map#test"><i class="fa-solid fa-gear"></i></p>
+  <span data-action="click->map#fire" class="mini-btn-score-map">Scores</span>
+  <div id="score-card" class="d-none">
     <div>
-      <p class="mini-btn-parameter-map" data-action="click->map#test"><i class="fa-solid fa-gear"></i></p>
-      <span data-action="click->map#fire" class="mini-btn-score-map">Scores</span>
-      <div data-map-target="scores" id="score-card" class="d-none">
-        <div data-map-target="scores">
-          <%= render 'score_card', game: @game %>
-        </div>
-      </div>
-      <%= link_to profile_path(current_user), class: 'mini-btn-profile-map' do %>
-        <i class="fa-solid fa-user"></i>
-      <% end %>
-    <div>
-      <p data-action="click->map#display" class="picture-btn"><i class="fa-solid fa-image"></i></p>
+      <%= render 'score_card', game: @game %>
     </div>
+  </div>
+  <%= link_to profile_path(current_user), class: 'mini-btn-profile-map' do %>
+    <i class="fa-solid fa-user"></i>
+  <% end %>
+  <div>
+    <p data-action="click->map#display" class="picture-btn"><i class="fa-solid fa-image"></i></p>
+  </div>
 
-
-    <div data-map-target="pictures" class="background map_size hidden-pictures">
-      <%= render "pictures", game: @game %>
-    </div>
+  <div data-map-target="pictures" class="background map_size hidden-pictures">
+    <%= render "pictures", game: @game %>
   </div>
 </div>
