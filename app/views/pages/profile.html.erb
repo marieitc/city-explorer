@@ -8,7 +8,7 @@
     <p class="mini-btn"><i class="fa-solid fa-gamepad" style="color: #ffffff;"></i></p>
     <% end %>
   </div>
-
+<div data-controller="toggle">
   <div class="content-card">
     <div class="profile-card">
       <div class="profile-card-top">
@@ -17,6 +17,7 @@
           <span><%= current_user.nickname %></span>
           <span id="ranking">Explorer</span>
         </div>
+        <p data-action="click->toggle#fire" class="mini-btn-ranking mx-auto placeholder-wave"><i class="fa-solid fa-ranking-star" style="color: #ffffff;"></i></p>
       </div>
 
       <div class="profile-card-bottom">
@@ -30,7 +31,7 @@
         </div>
       </div>
     </div>
-    <div class="main-card mt-3">
+    <div data-toggle-target="togglableElement" class="main-card mt-3">
       <span class="title text-dark">My past games</span>
       <br>
       <span class="h4">Number of games played</span>
@@ -42,5 +43,9 @@
       <span class="h4">Current ranking</span>
       <span class="pink-text h5">Explorer</span>
     </div>
+    <div data-toggle-target="showRanking" class="d-none">
+    <%= render 'top_ranking' %>
+    </div>
     <%= link_to "Logout", destroy_user_session_path, class: "btn logout-pink-btn title w-100 mt-5", data: {turbo_method: :delete } %>
+</div>
 </div>

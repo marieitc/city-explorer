@@ -234,3 +234,18 @@
   top: 2%;
   right: 36%;
 }
+
+.mini-btn-ranking {
+  height: 60px;
+  width: 60px;
+  background-color: $blue;
+  color: white;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 32px;
+  padding: 5px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  border: none;
+  margin: 10px;
+  margin-left: 80px;
+}
