@@ -3,20 +3,26 @@
     <p data-action="click->map#hide" class="picture-btn-2"><i class="fa-regular fa-map" style="color: #fffff;"></i></p>
 
     <%= simple_form_for :picture, method: :post, url: game_validate_path(game), html: { multipart: true, class: 'd-none', data: { action: 'change->validate#validate', validate_target: "form" } } do |f| %>
-      <%= f.input :photo, as: :file, input_html: { data: { validate_target: 'photoInput' } } %>
-      <%= f.input :place_id, input_html: { data: { validate_target: 'placeInput' }, class: 'd-none' } %>
+      <%= f.input :photo, as: :file, input_html: { data: { validate_target: 'photoInput' }, capture: true } %>
+      <%= f.input :place_id, input_html: { data: { validate_target: 'placeInput' }, class: '' } %>
+
+      <%= f.input :latitude, input_html: { data: { validate_target: 'latitude' } } %>
+      <%= f.input :longitude, input_html: { data: { validate_target: 'longitude' } } %>
       <%= f.submit %>
     <% end %>
 
-    <p data-action="click->validate#photo" data-map-target="validate" class="d-none btn pink-btn-2">Validate the place</p>
+    <p data-action="click->validate#photo" data-map-target="validate" class="btn pink-btn-2 d-none">
+      Validate the place
+    </p>
 
     <div data-controller="swiper" class="swiper mySwiper">
       <div data-swiper-target="card" class="swiper-wrapper">
         <% @places.each do |place|%>
           <div class="swiper-slide">
-            <img src=<%= place.url_image %> data-action="click->map#select click->validate#select" data-map-place-id-param="<%= place.id %>" data-validate-place-id-param="<%= place.id %>">
+            <img src=<%= place.url_image %> data-found="<%= place.found %>" data-action="click->map#select click->validate#select" data-map-place-id-param="<%= place.id %>" data-validate-place-id-param="<%= place.id %>" id="picture-<%= place.id %>" class="<%= "found" if place.found %>">
           </div>
         <% end %>
+
         <div class="swiper-slide opacity-0"></div>
         <div class="swiper-slide opacity-0"></div>
       </div>

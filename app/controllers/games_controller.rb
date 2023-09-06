@@ -1,5 +1,3 @@
-require "exifr/jpeg"
-
 class GamesController < ApplicationController
   before_action :authenticate_user!
 
@@ -43,7 +41,23 @@ class GamesController < ApplicationController
       }
     end
 
-    @places = @game.places
+    @places = @game.places.
+      select(
+        <<~SQL
+          places.*,
+          CASE WHEN findings.id IS NOT NULL THEN true ELSE false END AS found
+        SQL
+      ).
+      joins(
+        <<~SQL
+          LEFT OUTER JOIN findings
+          ON findings.game_place_id = game_places.id
+          AND participation_id = #{@current_participation.id}
+        SQL
+      )
+
+    # @places = @game.places
+
     @players = @participations.map do |participation|
       {
         participation_id: participation.id,
@@ -93,14 +107,14 @@ class GamesController < ApplicationController
   end
 
   def validate
-    tempfile = params.require(:picture).dig(:photo)
-    picture_coords = EXIFR::JPEG.new(tempfile.tempfile).gps
-
     game = Game.find(params[:game_id])
-    place = Place.find(params.require(:picture).dig(:place_id))
+    place = Place.find(params.dig(:picture, :place_id))
     participation = game.participations.find_by(user: current_user)
+    
+    latitude = params.dig(:picture, :latitude)
+    longitude = params.dig(:picture, :longitude)
 
-    places = Place.near([picture_coords.latitude, picture_coords.longitude], 0.2)
+    places = Place.near([latitude, longitude], 0.2)
     game_place = game.find_game_place(place)
 
     if places.include?(place)
@@ -130,7 +144,6 @@ class GamesController < ApplicationController
         )
         render json: { found: true }
       end
-
     else
       render json: { found: false }
     end

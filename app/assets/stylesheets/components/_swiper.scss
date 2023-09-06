@@ -24,4 +24,9 @@
     border: 10px solid white;
     border-radius: 18px;
   }
+
+  .found {
+    filter: grayscale(1);
+    -webkit-filter: grayscale(1);
+  }
 }
