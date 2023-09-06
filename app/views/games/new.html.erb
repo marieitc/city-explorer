@@ -45,7 +45,6 @@
       <div class='d-none' data-new-target="create">
         <div class="container px-5 main-card ", style="text-align: center;" >
           <span class="title text-dark">Create a game</span>
-          <br>
           <%= simple_form_for @game do |f| %>
             <%= f.input :location, label: 'Address', placeholder: 'Type your address', input_html: { data: { new_target: 'location' } } %>
             <div class="d-flex justify-content-evenly">
@@ -57,7 +56,7 @@
             <%= f.input :radius, collection: ['Choose a radius in km',0.5,1,2,3,4,5], default: '' %>
             <%= f.input :places_number, label: 'Number of places you want to find', collection: (1..15), default: '' %>
 
-           <div class="d-flex mt-5 justify-content-between">
+           <div class="d-flex mt-3 justify-content-between">
               <p data-action="click->new#return" class="mini-btn"><i class="fa-solid fa-arrow-left"></i></p>
               <%= button_tag( :class => "mini-btn") do %>
               <i class="fa-solid fa-check"></i>
