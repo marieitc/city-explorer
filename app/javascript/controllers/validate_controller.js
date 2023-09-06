@@ -9,6 +9,7 @@ export default class extends Controller {
 
   connect() {
     this.token = document.querySelector('meta[name=csrf-token]').content
+    document.addEventListener("swiper:card:clicked", this.select.bind(this))
   }
 
   photo() {
@@ -16,22 +17,30 @@ export default class extends Controller {
   }
 
   select(evt) {
-    const card = evt.currentTarget.closest('.swiper-slide')
+    const card = document.getElementById(`place-id-${evt.detail.placeId}`)
     this.#setCoords();
-    if (!card.classList.contains('swiper-slide-active')) return
-    this.placeInputTarget.value = evt.params.placeId;
+    if (!card.closest('.swiper-slide').classList.contains('swiper-slide-active')) return
+    this.placeInputTarget.value = evt.detail.placeId;
   }
+
+  // select(evt) {
+  //   const card = evt.currentTarget.closest('.swiper-slide')
+  //   this.#setCoords();
+  //   if (!card.classList.contains('swiper-slide-active')) return
+  //   this.placeInputTarget.value = evt.params.placeId;
+  // }
 
   async validate(evt) {
     evt.preventDefault();
     evt.stopPropagation();
+    const formData = new FormData(this.formTarget)
 
     const options = {
       method: 'POST',
       headers: {
         'X-CSRF-TOKEN': this.token,
       },
-      body: new FormData(this.formTarget)
+      body: formData
     }
 
     const response = await fetch(`/games/${this.gameIdValue}/validate`, options)

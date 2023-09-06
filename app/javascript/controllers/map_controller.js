@@ -47,6 +47,7 @@ export default class extends Controller {
         latitude: coordinates.coords.latitude,
       })
     })
+    document.addEventListener("swiper:card:clicked", this.select.bind(this))
   }
 
   #handleData(data) {
@@ -61,7 +62,7 @@ export default class extends Controller {
     if (data.action === 'found') {
       if (data.participation_id == this.currentParticipationIdValue ) {
         this.map.setPaintProperty(`area-${data.place_id}`, 'circle-opacity', 0);
-        const place_card = document.getElementById(`picture-${data.place_id}`)
+        const place_card = document.getElementById(`place-id-${data.place_id}`)
         console.log(place_card)
         place_card.dataset.found = "true"
         place_card.classList.remove("selected-img")
@@ -167,21 +168,38 @@ export default class extends Controller {
   }
 
   select(evt) {
-    const card = evt.currentTarget.closest('.swiper-slide')
-    const condition = evt.currentTarget.dataset.found == "true" || !card.classList.contains('swiper-slide-active')
+    const card = document.getElementById(`place-id-${evt.detail.placeId}`)
+    const condition = card.dataset.found == "true"
     if (condition) return
 
     // this.areas.find(area => area.place_id == evt.params.placeId)
     this.validateTarget.classList.toggle("d-none")
-    evt.currentTarget.classList.toggle("selected-img");
+    card.classList.toggle("selected-img");
 
 
-    if (this.map.getPaintProperty(`area-${evt.params.placeId}`, "circle-color", "#393939") === "#393939") {
-      this.map.setPaintProperty(`area-${evt.params.placeId}`, "circle-color", "#5cbfcc");
-    } else if (this.map.getPaintProperty(`area-${evt.params.placeId}`, "circle-color", "#5cbfcc") === "#5cbfcc" ) {
-      this.map.setPaintProperty(`area-${evt.params.placeId}`, "circle-color", "#393939");
+    if (this.map.getPaintProperty(`area-${evt.detail.placeId}`, "circle-color", "#393939") === "#393939") {
+      this.map.setPaintProperty(`area-${evt.detail.placeId}`, "circle-color", "#5cbfcc");
+    } else if (this.map.getPaintProperty(`area-${evt.detail.placeId}`, "circle-color", "#5cbfcc") === "#5cbfcc" ) {
+      this.map.setPaintProperty(`area-${evt.detail.placeId}`, "circle-color", "#393939");
     }
   }
+
+  // select(evt) {
+  //   const card = evt.currentTarget.closest('.swiper-slide')
+  //   const condition = evt.currentTarget.dataset.found == "true" || !card.classList.contains('swiper-slide-active')
+  //   if (condition) return
+
+  //   // this.areas.find(area => area.place_id == evt.params.placeId)
+  //   this.validateTarget.classList.toggle("d-none")
+  //   evt.currentTarget.classList.toggle("selected-img");
+
+
+  //   if (this.map.getPaintProperty(`area-${evt.params.placeId}`, "circle-color", "#393939") === "#393939") {
+  //     this.map.setPaintProperty(`area-${evt.params.placeId}`, "circle-color", "#5cbfcc");
+  //   } else if (this.map.getPaintProperty(`area-${evt.params.placeId}`, "circle-color", "#5cbfcc") === "#5cbfcc" ) {
+  //     this.map.setPaintProperty(`area-${evt.params.placeId}`, "circle-color", "#393939");
+  //   }
+  // }
 
   //Players
 

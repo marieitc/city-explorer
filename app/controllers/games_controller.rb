@@ -111,7 +111,15 @@ class GamesController < ApplicationController
     place = Place.find(params.dig(:picture, :place_id))
     participation = game.participations.find_by(user: current_user)
 
-    places = Place.near([participation.latitude, participation.longitude], 0.2)
+    # si je comprends bien ce bout de code, ici on n'autorise le joueur à ne trouver des places uniquement 200m autour de son point de départ?
+    # c'est beaucoup 200m btw 🦆
+    # places = Place.near([participation.latitude, participation.longitude], 0.2)
+
+    # je me suis donc dit qu'il fallait plutot utiliser les valeurs provenant du formulaire, si elles existent
+    current_user_latitude = params.dig(:picture, :latitude) || participation.latitude
+    current_user_longitude = params.dig(:picture, :longitude) || participation.longitude
+    places = Place.near([current_user_latitude, current_user_longitude], 0.2)
+
     game_place = game.find_game_place(place)
 
     if places.include?(place)
