@@ -71,8 +71,8 @@ export default class extends Controller {
       this.scoreTarget.innerText = data.score;
       this.foundPlacesTarget.innerText = data.found_places;
       this.rankingTarget.innerText = data.users_ranking[0];
+      
       // [93, 92, 95]
-      data.users_raking.each_with_index 
       // participation_id = 93 && index = 0
       // j'itère avec index sur les users_rankings,
       // pour chacun d'entre eux, je cherche le score qui a la même participation
