@@ -10,6 +10,7 @@ export default class extends Controller {
     const swiper = new Swiper(this.swiperContainerTarget, {
       effect: "cards",
       grabCursor: true,
+      loop: true
     });
 
     swiper.on('click', (event) => {

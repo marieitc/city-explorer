@@ -1,6 +1,9 @@
 <div data-controller="validate swiper" data-validate-game-id-value="<%= game.id %>">
-  <div data-validate-target="images" class="main-container bg-image", style="background-image: url(<%= image_path 'gradient-2.png' %>);">
-    <p data-action="click->map#hide" class="picture-btn-2"><i class="fa-regular fa-map" style="color: #fffff;"></i></p>
+  <div data-validate-target="images"
+       class="main-container bg-image pt-3" style="background-image: url(<%= image_path 'gradient-2.png' %>);">
+    <p data-action="click->map#hide" class="picture-btn-2 mx-auto">
+      <i class="fa-regular fa-map" style="color: #fffff;"></i>
+    </p>
 
     <%= simple_form_for :picture, method: :post, url: game_validate_path(game), html: { multipart: true, class: 'd-none', data: { action: '', validate_target: "form" } } do |f| %>
       <%= f.input :place_id, input_html: { data: { validate_target: 'placeInput' }, class: '' } %>
@@ -12,27 +15,35 @@
 
     <input class="d-none" data-validate-target="photoInput" capture="true" type="file" data-action="change->validate#validate">
 
-    <p data-action="click->validate#photo" data-swiper-target="validate" data-map-target="validate" class="btn pink-btn-2 d-none">
-      Validate the place
-    </p>
-
     <div data-swiper-target="swiperContainer" class="swiper mySwiper">
       <div data-swiper-target="card" class="swiper-wrapper">
         <% @places.each do |place|%>
           <div class="swiper-slide"
                data-place-id="<%= place.id %>">
             <% if place.photo.attached? %>
-              <%= cl_image_tag place.photo.key, data: {found: place.found, action: "click->map#select click->validate#select", "map-place-id-param": place.id, "validate-place-id-param": place.id}, class: (place.found ? "found" : "") %>
+              <%= cl_image_tag place.photo.key,
+                                id: "place-id-#{place.id}",
+                                data: {
+                                  found: place.found,
+                                  action: "click->map#select click->validate#select",
+                                  map_place_id_param: place.id,
+                                  validate_place_id_param: place.id
+                                },
+                                class: place.found ? "found" : "" %>
             <% else %>
               <img src=<%= place.url_image %>
-                 data-found="<%= place.found %>"
-                 id="place-id-<%= place.id %>"
-                 data-map-place-id-param="<%= place.id %>"
-                 data-validate-place-id-param="<%= place.id %>" id="picture-<%= place.id %>" class="<%= "found" if place.found %>">
-             <% end %>
+                    data-found="<%= place.found %>"
+                    id="place-id-<%= place.id %>"
+                    data-map-place-id-param="<%= place.id %>"
+                    data-validate-place-id-param="<%= place.id %>"
+                    class="<%= "found" if place.found %>">
+            <% end %>
           </div>
         <% end %>
       </div>
     </div>
+    <p data-action="click->validate#photo" data-swiper-target="validate" data-map-target="validate" class="btn pink-btn-2 d-none">
+      Validate the place
+    </p>
   </div>
 </div>
