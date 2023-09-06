@@ -7,8 +7,8 @@
 </div>
 
 <% game.participations.each do |participation| %>
-  <div class="score-players" data-participation-id="<%= participation.id %>">
-    <p data-map-target="ranking">#<%= game.participations.count %></p>
+  <div class="score-players" data-map-target="scorePlayerDiv" data-participation-id="<%= participation.id %>">
+    <p data-map-target="ranking" class='rankingPlayer'>#<%= game.participations.count %></p>
     <%= participation.user.nickname %>
     <p data-map-target="foundPlaces">0</p>
     <p data-map-target="score">0</p>
