@@ -15,18 +15,18 @@
         <%= cl_image_tag current_user.photo.key, alt: "", class: "avatar-profile" %>
         <div class="profile-card-text">
           <span><%= current_user.nickname %></span>
-          <span id="ranking">Explorer</span>
+          <span id="ranking"> Super Explorer</span>
         </div>
         <p data-action="click->toggle#fire" class="mini-btn-ranking mx-auto placeholder-wave"><i class="fa-solid fa-ranking-star" style="color: #ffffff;"></i></p>
       </div>
 
       <div class="profile-card-bottom">
         <div id="left-metric">
-          <span class="pink-text"><%= current_user.places %></span>
+          <span class="pink-text">25</span>
           <span>Places</span>
         </div>
         <div id="right-metric">
-          <span class="pink-text"><%= current_user.distance %> kms</span>
+          <span class="pink-text">32 kms</span>
           <span>Distance</span>
         </div>
       </div>
@@ -35,13 +35,13 @@
       <span class="title text-dark">My past games</span>
       <br>
       <span class="h4">Number of games played</span>
-      <span class="pink-text h5">50</span>
+      <span class="pink-text h5">9</span>
       <br>
       <span class="h4">Number of games won</span>
-      <span class="pink-text h5">35</span>
+      <span class="pink-text h5">7</span>
       <br>
       <span class="h4">Current ranking</span>
-      <span class="pink-text h5">Explorer</span>
+      <span class="pink-text h5">Super Explorer</span>
     </div>
     <div data-toggle-target="showRanking" class="d-none">
     <%= render 'top_ranking' %>
