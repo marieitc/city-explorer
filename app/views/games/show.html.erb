@@ -17,7 +17,9 @@
           <%= render 'score_card', game: @game %>
         </div>
       </div>
-      <p class="mini-btn-profile-map"><i class="fa-solid fa-user"></i></p>
+      <%= link_to profile_path(current_user), class: 'mini-btn-profile-map' do %>
+        <i class="fa-solid fa-user"></i>
+      <% end %>
     <div>
       <p data-action="click->map#display" class="picture-btn"><i class="fa-solid fa-image"></i></p>
     </div>
