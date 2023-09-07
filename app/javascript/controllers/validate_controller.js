@@ -50,7 +50,13 @@ export default class extends Controller {
     if (data.found === true) {
       Toastify({
         text: data.message,
-        duration: 3000
+        className: 'notif',
+        gravity: 'bottom',
+        style: {
+          background: "#ffffff",
+          opacity: 0.5
+        },
+        duration: 4000
       }).showToast();
     } else {
       Swal.fire({
