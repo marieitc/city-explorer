@@ -27,7 +27,7 @@ export default class extends Controller {
 
     this.map = new mapboxgl.Map({
       container: this.element,
-      style: "mapbox://styles/mapbox/streets-v10"
+      style: "mapbox://styles/marieitc/clm8wdfcp013401r47m3214w9"
     })
 
     // this.#addTargetsToMap();
@@ -73,10 +73,14 @@ export default class extends Controller {
       Toastify({
         text: data.message,
         className: 'notif',
-        gravity: 'bottom',
+        gravity: 'top',
+        offset: {
+          x: 90,
+          y: 70
+        },
         style: {
           background: "#ffffff",
-          opacity: 0.5
+          opacity: 0.9
         },
         duration: 4000
       }).showToast();
@@ -186,8 +190,8 @@ export default class extends Controller {
 
 
     if (this.map.getPaintProperty(`area-${evt.detail.placeId}`, "circle-color", "#393939") === "#393939") {
-      this.map.setPaintProperty(`area-${evt.detail.placeId}`, "circle-color", "#5cbfcc");
-    } else if (this.map.getPaintProperty(`area-${evt.detail.placeId}`, "circle-color", "#5cbfcc") === "#5cbfcc" ) {
+      this.map.setPaintProperty(`area-${evt.detail.placeId}`, "circle-color", "#ffffff");
+    } else if (this.map.getPaintProperty(`area-${evt.detail.placeId}`, "circle-color", "#ffffff") === "#ffffff" ) {
       this.map.setPaintProperty(`area-${evt.detail.placeId}`, "circle-color", "#393939");
     }
   }

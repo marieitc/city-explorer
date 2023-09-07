@@ -54,7 +54,7 @@ export default class extends Controller {
         gravity: 'bottom',
         style: {
           background: "#ffffff",
-          opacity: 0.5
+          opacity: 0.9
         },
         duration: 4000
       }).showToast();
