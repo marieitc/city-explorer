@@ -181,6 +181,8 @@ export default class extends Controller {
 
   select(evt) {
     const card = document.getElementById(`place-id-${evt.detail.placeId}`)
+    if (!card) return
+
     const condition = card.dataset.found == "true"
     if (condition) return
 
