@@ -64,12 +64,12 @@ poupees.photo.attach(
   filename: 'poupeevaudou.png', content_type: 'image/png'
 )
 
-Place.create!(address: '12 Rue Lechevin, 75011 Paris', name: 'Ménagerie de Verre', url_image: 'https://paris-promeneurs.com/wp-content/uploads/2018/03/menagerie-verre-500.jpg',
-  points: 40)
-Place.create!(address: '72 Ave Parmentier, 75011 Paris', name: 'Biocoop Parmentier', url_image: 'https://images.happycow.net/venues/1024/17/76/hcmp177601_693082.jpeg',
-  points: 30)
-Place.create!(address: '64 Ave Parmentier, 75011 Paris', name: 'Regus Parmentier', url_image: 'https://groupeterrot.com/wp-content/uploads/2020/01/TERROT_AV-PARMENTIER_1118_JPG-HD20181130_01-1024x683.jpg.webp',
-  points: 20)
+# Place.create!(address: '12 Rue Lechevin, 75011 Paris', name: 'Ménagerie de Verre', url_image: 'https://paris-promeneurs.com/wp-content/uploads/2018/03/menagerie-verre-500.jpg',
+#   points: 40)
+# Place.create!(address: '72 Ave Parmentier, 75011 Paris', name: 'Biocoop Parmentier', url_image: 'https://images.happycow.net/venues/1024/17/76/hcmp177601_693082.jpeg',
+#   points: 30)
+# Place.create!(address: '64 Ave Parmentier, 75011 Paris', name: 'Regus Parmentier', url_image: 'https://groupeterrot.com/wp-content/uploads/2020/01/TERROT_AV-PARMENTIER_1118_JPG-HD20181130_01-1024x683.jpg.webp',
+#   points: 20)
 
 puts 'Places created'
 
