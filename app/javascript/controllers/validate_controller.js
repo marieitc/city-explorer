@@ -56,7 +56,7 @@ export default class extends Controller {
           background: "#ffffff",
           opacity: 0.9
         },
-        duration: 4000
+        duration: 4000000
       }).showToast();
     } else {
       Swal.fire({

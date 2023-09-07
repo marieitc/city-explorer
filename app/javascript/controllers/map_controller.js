@@ -74,15 +74,11 @@ export default class extends Controller {
         text: data.message,
         className: 'notif',
         gravity: 'top',
-        offset: {
-          x: 90,
-          y: 70
-        },
         style: {
           background: "#ffffff",
           opacity: 0.9
         },
-        duration: 4000
+        duration: 4000000
       }).showToast();
 
       if (this.hasScoresTarget) {
