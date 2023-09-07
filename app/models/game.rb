@@ -11,7 +11,7 @@ class Game < ApplicationRecord
   after_create :set_places
 
   def generate_pin
-    self.pin = SecureRandom.hex.first(7)
+    self.pin = SecureRandom.hex.first(5)
   end
 
   def find_game_place(place)
