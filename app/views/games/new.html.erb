@@ -50,7 +50,8 @@
             </div>
             <%= f.hidden_field :latitude, data: { new_target: "latitude" }, class: 'latInput'%>
             <%= f.hidden_field :longitude, data: { new_target: "longitude"}, class: 'lngInput'  %>
-            <%= f.input :radius, collection: ['Choose a radius in km',0.5,1,2,3,4,5], default: '' %>
+            <%= f.input :radius, as: :range, label: 'Choose a radius in km', collection: (1..5), input_html: { type: 'range', min: 1, max: 5, value: 1, data: { action: 'input->new#radius'} } %>
+            <output data-new-target="radius"></output>
             <%= f.input :places_number, as: :range, label: 'Number of places you want to find', collection: (1..15), input_html: { type: 'range', min: 1, max: 10, value: 1 , data: { action: 'input->new#range' } } %>
             <output data-new-target="value"></output>
 

@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static values = { key: String }
-  static targets = ['latitude', 'longitude','choice', 'join', 'create', 'location','loading', 'value']
+  static targets = ['latitude', 'longitude','choice', 'join', 'create', 'location','loading', 'value', 'radius']
 
   connect() {
     console.log("Bonjour")
@@ -27,6 +27,10 @@ export default class extends Controller {
   range(evt) {
     this.valueTarget.innerHTML = evt.target.value
     console.log(evt.target.value)
+  }
+
+  radius(evt) {
+    this.radiusTarget.innerHTML = evt.target.value
   }
 
   locate() {
