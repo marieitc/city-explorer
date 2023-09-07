@@ -30,6 +30,7 @@ export default class extends Controller {
       style: "mapbox://styles/marieitc/clm8wdfcp013401r47m3214w9"
     })
 
+    window.map = this.map
     // this.#addTargetsToMap();
     // this.#fitMapToTargets();
     this.#addPlayersToMap();

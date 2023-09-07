@@ -16,7 +16,8 @@
     <input class="d-none" data-validate-target="photoInput" capture="true" type="file" data-action="change->validate#validate">
 
     <div data-swiper-target="swiperContainer" class="swiper mySwiper">
-      <div data-swiper-target="card" class="swiper-wrapper">
+      <div data-swiper-target="card"
+           class="swiper-wrapper">
         <% @places.each do |place|%>
           <div class="swiper-slide"
                data-place-id="<%= place.id %>">
