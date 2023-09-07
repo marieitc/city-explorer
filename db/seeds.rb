@@ -64,6 +64,10 @@ poupees.photo.attach(
   filename: 'poupeevaudou.png', content_type: 'image/png'
 )
 
+Place.create!(address: '12 Rue Lechevin, 75011 Paris', name: 'Ménagerie de Verre', url_image: 'https://paris-promeneurs.com/wp-content/uploads/2018/03/menagerie-verre-500.jpg', points: 40 )
+Place.create!(address: '', name: '', url_image: '', points: )
+Place.create!(address: '', name: '', url_image: '', points: )
+
 puts 'Places created'
 
 puts 'Creating Users'
