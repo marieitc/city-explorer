@@ -64,6 +64,24 @@
   margin: 20px;
 }
 
+@keyframes glowing {
+  0% {
+    background-color: #8cc6ce;
+    box-shadow: 0 0 5px #8cc6ce;
+  }
+  50% {
+    background-color: #5cbfcc;
+    box-shadow: 0 0 20px #5cbfcc;
+  }
+  100% {
+    background-color: #8cc6ce;
+    box-shadow: 0 0 5px #8cc6ce;
+  }
+}
+.animation {
+  animation: glowing 1300ms infinite;
+}
+
 .loader_vert {
   border: 10px solid #f3f3f3;
   border-top: 10px solid #6e70abbb;
