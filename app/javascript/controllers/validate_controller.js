@@ -19,7 +19,7 @@ export default class extends Controller {
   select(evt) {
     const card = document.getElementById(`place-id-${evt.detail.placeId}`)
     this.#setCoords();
-    if (!card.closest('.swiper-slide').classList.contains('swiper-slide-active')) return
+    if (!card || !card.closest('.swiper-slide').classList.contains('swiper-slide-active')) return
     this.placeInputTarget.value = evt.detail.placeId;
   }
 

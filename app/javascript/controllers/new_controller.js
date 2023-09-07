@@ -30,7 +30,7 @@ export default class extends Controller {
   }
 
   locate() {
-    this.loadingTarget.classList.remove('element.innerHTML +=d-none');
+    this.loadingTarget.classList.remove('d-none');
     navigator.geolocation.getCurrentPosition(this.success.bind(this), this.error)
   }
 
