@@ -8,8 +8,20 @@
       <i class="fa-solid fa-user"></i>
     <% end %>
   </div>
-  <div id="token-card">
-    <span class="title" id="token">PIN: <%= @game.pin %></span>
+  <div class="row"
+       data-controller="pin"
+       data-pin-join-url-value="<%= new_game_path %>"
+       data-pin-game-pin-value="<%= @game.pin %>">
+    <div class="col-12 d-flex">
+      <p data-pin-target="pin" class="title" id="token">PIN: <%= @game.pin %></p>
+    </div>
+    <div class="col-12 d-flex justify-content-center gap-3">
+      <span class="btn btn-primary border border-white text-white" data-action="click->pin#share" ><i class="fa-regular fa-paper-plane"></i></span>
+      <span class="btn btn-primary btn-copy border border-white text-white" data-action="click->pin#copy">
+        <i class="fa-solid fa-clone"></i>
+        <i class="fa-solid fa-check"></i>
+      </span>
+    </div>
   </div>
 
   <div class="content-card">
@@ -20,7 +32,7 @@
           <span class="title">Lobby</span>
             <div data-lobby-target="players" id="players">
               <% @game.participations.each do |participation| %>
-                  <%= render "participation", participation: participation %>
+                <%= render "participation", participation: participation %>
               <% end %>
             </div>
           <br>

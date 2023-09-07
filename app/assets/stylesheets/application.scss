@@ -7,4 +7,19 @@
 
 @import "components/index";
 
-@import "pages/home"
+@import "pages/home";
+
+
+.btn-copy {
+  .fa-check {
+    display: none;
+  }
+  &.copied {
+    .fa-check {
+      display: block;
+    }
+    .fa-clone {
+      display: none;
+    }
+  }
+}
