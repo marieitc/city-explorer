@@ -44,7 +44,7 @@
             <span class="text-decoration-none blue-btn-2" data-action="click->lobby#parameters">
               Parameters
             </span>
-            <%= link_to ready_game_path(@game), class:"text-decoration-none blue-btn-2", data: { action: 'click->lobby#ready'} do %>
+            <%= link_to ready_game_path(@game), class:"text-decoration-none blue-btn-2 animation", data: { action: 'click->lobby#ready', lobby_target: 'readyBtn' } do %>
               <p>Ready ?</p>
             <% end %>
             <div class="z-50 align-items-center bg-black bg-opacity-25 bottom-0 d-flex end-0 flex-column justify-content-center position-absolute start-0 top-0 d-none"

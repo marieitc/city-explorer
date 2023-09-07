@@ -3,7 +3,7 @@ import { createConsumer } from "@rails/actioncable"
 
 // Connects to data-controller="lobby"
 export default class extends Controller {
-  static targets = ["parameters", "content", "players", "participation", "loader", "playBtn"]
+  static targets = ["parameters", "content", "players", "participation", "loader", "playBtn", "readyBtn"]
   static values = { id: Number, userId: Number }
 
   connect() {
@@ -40,6 +40,7 @@ export default class extends Controller {
     if (data.action === 'ready') {
       // this.participationTargets.find(t => t.id == data.participation_id).classList.add('ready')
       this.element.querySelector(`#participation_${data.participation_id}`).classList.add('ready')
+      this.readyBtnTarget.classList.remove('animation')
       return;
     }
 
