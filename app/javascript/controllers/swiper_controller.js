@@ -29,6 +29,7 @@ export default class extends Controller {
       this.validateTarget.classList.add("d-none")
       this.cards.forEach(card => {
         card.querySelector("img").classList.remove("selected-img")
+        window.map.setPaintProperty(`area-${card.dataset.placeId}`, "circle-color", "#393939");
       });
     });
   }
