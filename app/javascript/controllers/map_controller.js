@@ -73,10 +73,14 @@ export default class extends Controller {
       Toastify({
         text: data.message,
         className: 'notif',
-        gravity: 'bottom',
+        gravity: 'top',
+        offset: {
+          x: 90,
+          y: 70
+        },
         style: {
           background: "#ffffff",
-          opacity: 0.7
+          opacity: 0.9
         },
         duration: 4000
       }).showToast();
