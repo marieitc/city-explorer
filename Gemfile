@@ -49,6 +49,7 @@ gem "devise"
 gem "geocoder"
 gem 'acts_as_favoritor', github: 'jonhue/acts_as_favoritor'
 gem "exifr"
+# gem 'simple_form_extension'
 
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
@@ -77,3 +78,4 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+gem "redactor-rails", github: "glyph-fr/redactor-rails"
