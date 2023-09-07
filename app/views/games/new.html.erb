@@ -35,9 +35,12 @@
 
     <div data-controller="new" data-new-key-value="<%= ENV['MAPBOX_API_KEY'] %>" class="mt-3">
       <div class="main-card <%= "d-none" if params[:join_code].present? %>" data-new-target="choice">
+      <span class="title">Start playing</span>
+      <br>
         <span class="main-btn title" data-action="click->new#createGame">Create a game</span>
         <br>
         <span class="main-btn title" data-action="click->new#joinGame">Join a game</span>
+      <br>
       </div>
       <div class='d-none' data-new-target="create">
         <div class="container px-5 main-card ", style="text-align: center;" >
