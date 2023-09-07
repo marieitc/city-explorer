@@ -41,30 +41,39 @@
 
         <div class="btn-container">
           <div class="d-flex">
-          <%= link_to "#" do %>
-            <p class="mini-btn", data-action="click->lobby#parameters"><i class="fa-solid fa-gear"></i></p>
-          <% end %>
-          <%= link_to ready_game_path(@game), class:"mini-btn", data: { action: 'click->lobby#ready'} do %>
-            <p><i class="fa-solid fa-location-dot"></i></p>
-          <% end %>
-            <p class="loader_vert d-none" data-lobby-target="loader"></p>
+            <span class="text-decoration-none blue-btn-2" data-action="click->lobby#parameters">
+              Parameters
+            </span>
+            <%= link_to ready_game_path(@game), class:"text-decoration-none blue-btn-2", data: { action: 'click->lobby#ready'} do %>
+              <p>Ready ?</p>
+            <% end %>
+            <div class="z-50 align-items-center bg-black bg-opacity-25 bottom-0 d-flex end-0 flex-column justify-content-center position-absolute start-0 top-0 d-none"
+                 data-lobby-target="loader">
+              <p class="loader_vert"></p>
+            </div>
           </div>
           <% if current_user == @game.user  %>
-           <%= link_to "Play", game_start_path(@game), class: "main-btn title m-2", data: { action: 'click->lobby#start' } %>
+           <%= link_to "Play",
+                        game_start_path(@game),
+                        class: "main-btn title m-2 opacity-25",
+                        data: {
+                          action: 'click->lobby#start',
+                          lobby_target: "playBtn"
+                        } %>
           <% end %>
         </div>
       </div>
 
       <div data-lobby-target="parameters" class="main-card d-none">
         <br>
-        <span class="title">Number of places</span>
-        <span class="parameters-text"><%= @game.places_number %></span>
-        <br>
         <span class="title">Location</span>
         <span class="parameters-text"><%= @game.location %></span>
         <br>
         <span class="title">Radius</span>
         <span class="parameters-text"><%= @game.radius%></span>
+        <br>
+        <span class="title">Number of places</span>
+        <span class="parameters-text"><%= @game.places_number %></span>
         <br>
         <span data-action="click->lobby#content" class="main-btn title">Lobby</span>
       </div>

@@ -3,7 +3,7 @@ import { createConsumer } from "@rails/actioncable"
 
 // Connects to data-controller="lobby"
 export default class extends Controller {
-  static targets = ["parameters", "content", "players", "participation", "loader"]
+  static targets = ["parameters", "content", "players", "participation", "loader", "playBtn"]
   static values = { id: Number, userId: Number }
 
   connect() {
@@ -52,6 +52,7 @@ export default class extends Controller {
   async start(evt) {
     evt.preventDefault();
     evt.stopPropagation();
+    if (!this.hasGeoloc) return
 
     await fetch(evt.target.href)
   }
@@ -67,6 +68,7 @@ export default class extends Controller {
       const latitude = coordinates.coords.latitude
       const longitude = coordinates.coords.longitude
 
+
       const options = {
         method: 'POST',
         headers: {
@@ -77,6 +79,10 @@ export default class extends Controller {
       }
 
       await fetch(readyUrl, options)
+
+      this.hasGeoloc = true
+      this.playBtnTarget.classList.remove('opacity-25')
+
       this.loaderTarget.classList.add("d-none")
     })
   }
