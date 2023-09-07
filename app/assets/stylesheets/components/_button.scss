@@ -46,17 +46,33 @@
   text-decoration: none;
   width: 80%;
   border: 1px solid white;
+  text-decoration: none;
+}
+
+.blue-btn-2 {
+  background-color: $pink;
+  color: white;
+  border-radius: 20px;
+  padding: 15px;
+  text-decoration: none;
+  font-family: 'Baloo 2', cursive;
+  font-weight: 800;
+  width: 120px;
+  border: 1px solid white;
+  text-align: center;
+  padding-bottom: 0;
+  margin: 20px;
 }
 
 .loader_vert {
-  border: 6px solid #f3f3f3; /* Light grey */
-  border-top: 6px solid $blue;
+  border: 10px solid #f3f3f3;
+  border-top: 10px solid #6e70abbb;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 100px;
+  height: 100px;
   animation: spin 1.5s linear infinite;
-  top: 15px;
-  left: 10px;
+  top: 25px;
+  left: 5px;
   position: relative;
 }
 
