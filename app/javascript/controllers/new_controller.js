@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static values = { key: String }
-  static targets = ['latitude', 'longitude','choice', 'join', 'create', 'location','loading']
+  static targets = ['latitude', 'longitude','choice', 'join', 'create', 'location','loading', 'value']
 
   connect() {
     console.log("Bonjour")
@@ -22,11 +22,15 @@ export default class extends Controller {
     this.choiceTarget.classList.remove('d-none')
     this.createTarget.classList.add('d-none')
     this.joinTarget.classList.add('d-none')
+  }
 
+  range(evt) {
+    this.valueTarget.innerHTML = evt.target.value
+    console.log(evt.target.value)
   }
 
   locate() {
-    this.loadingTarget.classList.remove('d-none');
+    this.loadingTarget.classList.remove('element.innerHTML +=d-none');
     navigator.geolocation.getCurrentPosition(this.success.bind(this), this.error)
   }
 
