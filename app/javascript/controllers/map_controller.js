@@ -78,7 +78,7 @@ export default class extends Controller {
           background: "#ffffff",
           opacity: 0.9
         },
-        duration: 4000000
+        duration: 4000
       }).showToast();
 
       if (this.hasScoresTarget) {
