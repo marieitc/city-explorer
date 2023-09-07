@@ -72,7 +72,13 @@ export default class extends Controller {
 
       Toastify({
         text: data.message,
-        duration: 3000
+        className: 'notif',
+        gravity: 'bottom',
+        style: {
+          background: "#ffffff",
+          opacity: 0.5
+        },
+        duration: 4000
       }).showToast();
 
       if (this.hasScoresTarget) {
