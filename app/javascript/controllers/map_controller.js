@@ -171,7 +171,7 @@ export default class extends Controller {
   // Helper function to convert a radius in kilometers to pixels at a given zoom level.
   #calculatePixelRadius(zoom) {
     const metersPerPx = 156543.03392 * Math.cos((this.map.getCenter().lat * Math.PI) / 180) / Math.pow(2, zoom);
-    const radiusInKm = 1; // Change this to the desired radius in kilometers
+    const radiusInKm = 0.6; // Change this to the desired radius in kilometers
     const radiusInM = radiusInKm * 1000; // Convert km to meters
     return radiusInM / metersPerPx; // Return radius in pixels
   }
@@ -254,7 +254,7 @@ export default class extends Controller {
 
     const bounds = new mapboxgl.LngLatBounds()
     this.playersValue.forEach(player => bounds.extend([ player.lng, player.lat ]))
-    this.map.fitBounds(bounds, { padding: 80, maxZoom: 15, duration: 0 })
+    this.map.fitBounds(bounds, { padding: 80, maxZoom: 14, duration: 0 })
   }
 
 
