@@ -61,7 +61,7 @@ export default class extends Controller {
     } else {
       Swal.fire({
         icon: 'error',
-        title: 'Oops...',
+        title: 'You suck!',
         text: 'Keep looking...',
       })
     }
