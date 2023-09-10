@@ -118,10 +118,10 @@ Place.create!(address: "Pl. Jean-Paul II 75004 Paris", name: "Notre Dame de Pari
 # Le raincy Test
 Place.create!(address: "83 Av. de la Résistance 93340 Le Raincy", name: "Église Notre-Dame de Consolation", url_image: 'https://upload.wikimedia.org/wikipedia/fr/thumb/5/5b/%C3%89glise_Notre-Dame_du_Raincy_-_M%C3%A9rim%C3%A9e_PA00079948_-_1.jpeg/800px-%C3%89glise_Notre-Dame_du_Raincy_-_M%C3%A9rim%C3%A9e_PA00079948_-_1.jpeg',
               points: 20)
-Place.create!(address: "121 Av. de la Résistance 93340 Le Raincy", name: "Mairie du Raincy", url_image: 'https://upload.wikimedia.org/wikipedia/fr/thumb/5/5b/%C3%89glise_Notre-Dame_du_Raincy_-_M%C3%A9rim%C3%A9e_PA00079948_-_1.jpeg/800px-%C3%89glise_Notre-Dame_du_Raincy_-_M%C3%A9rim%C3%A9e_PA00079948_-_1.jpeg',
+Place.create!(address: "121 Av. de la Résistance 93340 Le Raincy", name: "Mairie du Raincy", url_image: 'https://cloudfront-eu-central-1.images.arcpublishing.com/leparisien/N2I3DUNPCXCYP5OYRLQF26AW3M.jpg',
               points: 20)
 Place.create!(address: "26 Chem. des Bourdons 93220 Gagny", name: "Parc Gustave Courbet", url_image: 'https://lh5.googleusercontent.com/p/AF1QipNkkm_PhDfiY9nyB34yf56o5VIG3bIwbrRUkZnd',
-                points: 20)
+              points: 20)
 
 
 
