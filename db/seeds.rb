@@ -46,8 +46,8 @@ Place.create!(address: '29 Rue de Babylone, 75007 Paris', name: 'Jardin Catherin
               points: 30)
 Place.create!(address: '106 Rue Oberkampf, 75011 Paris', name: 'Cité du Figuier', url_image: 'https://arcanum.paris/uploads/insolite/520/cite-du-figuier-paris-insolite-secret-arcanum.jpg',
               points: 50)
-Place.create!(address: '85 Boulevard Vincent-Auriol, 75013 Paris', name: 'Fresque Étreinte et Lutte de Conor Harrington', url_image: 'https://scontent.cdninstagram.com/v/t51.2885-15/245236431_1045824466229964_3723539096763179186_n.jpg?se=7&stp=dst-jpg_e35&_nc_ht=scontent.cdninstagram.com&_nc_cat=100&_nc_ohc=yWu9yB0h3pEAX9-RRDM&edm=APs17CUBAAAA&ccb=7-5&ig_cache_key=MjY4MzgxMTkxMjE3NjAxMzgxMQ%3D%3D.2-ccb7-5&oh=00_AfD8yt6R7VRDwpBt9KYMzaZHd5WNdcIWJPcADx-8V0ebhQ&oe=64FB013A&_nc_sid=10d13b',
-              points: 30)
+# Place.create!(address: '85 Boulevard Vincent-Auriol, 75013 Paris', name: 'Fresque Étreinte et Lutte de Conor Harrington', url_image: 'https://scontent.cdninstagram.com/v/t51.2885-15/245236431_1045824466229964_3723539096763179186_n.jpg?se=7&stp=dst-jpg_e35&_nc_ht=scontent.cdninstagram.com&_nc_cat=100&_nc_ohc=yWu9yB0h3pEAX9-RRDM&edm=APs17CUBAAAA&ccb=7-5&ig_cache_key=MjY4MzgxMTkxMjE3NjAxMzgxMQ%3D%3D.2-ccb7-5&oh=00_AfD8yt6R7VRDwpBt9KYMzaZHd5WNdcIWJPcADx-8V0ebhQ&oe=64FB013A&_nc_sid=10d13b',
+#               points: 30)
 Place.create!(address: '48, rue de Courcelles, 75008 Paris', name: 'Maison Loo', url_image: 'https://fastly.4sqi.net/img/general/600x600/19969634__L-KiEDRn9ArLWTEQfsVErBpITzmn2dU1xDCPxS7X1s.jpg',
               points: 40)
 Place.create!(address: 'Pass. Verdeau, 75009 Paris', name: 'Passage Verdeau', url_image: 'https://tropter.com/uploads/uploads/images/60/22/71b7ba6be4878bf86e3ecfc635a0b56012d2/xxx_h_a_kilichowskii_troptercom_r_-00630_big.JPG?t=20200121174654',
