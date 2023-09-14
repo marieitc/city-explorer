@@ -78,7 +78,7 @@ Place.create!(address: "33 Av. du Maine 75015 Paris", name: "Tour Montparnasse",
               points: 20)
 Place.create!(address: "Place de la concorde 75008 Paris", name: "Fontaine de la concorde", url_image: 'https://media.vanityfair.fr/photos/60d34b7eb8495767dcde92f0/master/w_2580%2Cc_limit/giuseppe_masci_agf_uig_via_getty_images1_jpg_999.jpg',
               points: 50)
-Place.create!(address: "35 Rue du Chevalier de la Barre, 75018 Paris", name: "Basilique du Sacré-Cœur", url_image: 'https://www.transilien.com/sites/transilien/files/styles/manual_crop/public/2020-03/Sacr%C3%A9%20Coeur%20vignette.jpg?itok=pdtBMNQS',
+Place.create!(address: "1 Parv. du Sacré-Coeur 75018 Paris", name: "Basilique du Sacré-Coeur", url_image: 'https://cdn.sortiraparis.com/images/80/62403/370008-la-basilique-du-sacre-coeur-a-paris.jpg',
               points: 20)
 Place.create!(address: "Pl. des Abbesses 75018 Paris", name: "Le Mur des Je t'aime", url_image: 'https://cdn.sortiraparis.com/images/80/94880/869701-paris-decouvrez-la-belle-histoire-du-mur-des-je-t-aime-a-montmartre.jpg',
               points: 30)
@@ -92,7 +92,7 @@ Place.create!(address: "Pl. d'Estienne d'Orves 75009 Paris", name: "Eglise de la
               points: 30)
 Place.create!(address: "25 Rue Chappe 75018 Paris", name: "Arène de Montmartre", url_image: 'https://www.montmartre-addict.com/wp-content/uploads/2022/07/festival-solidaire-arenes-montmartre.jpeg',
               points: 40)
-Place.create!(address: "8bis Rue Choron 75009 Paris", name: "Notre-Dame de Lorette", url_image: 'https://www.liberation.fr/resizer/I8IbFh88ci5gbQw_qX_ZFR7V0bw=/arc-photo-liberation/eu-central-1-prod/public/M4YG5RGXNNGNVKGBZLOLIMROF4.jpg',
+Place.create!(address: "2 Rue Flechier 75009 Paris", name: "Notre-Dame de Lorette", url_image: 'https://www.liberation.fr/resizer/I8IbFh88ci5gbQw_qX_ZFR7V0bw=/arc-photo-liberation/eu-central-1-prod/public/M4YG5RGXNNGNVKGBZLOLIMROF4.jpg',
               points: 30)
 Place.create!(address: "Pl. Vendôme 75001 Paris", name: "Colonne Vendôme", url_image: 'https://upload.wikimedia.org/wikipedia/commons/e/ef/Statue_Napol%C3%A9on_Colonne_Vend%C3%B4me_Paris_2.jpg',
               points: 20)
