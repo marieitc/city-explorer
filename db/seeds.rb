@@ -109,11 +109,21 @@ Place.create!(address: "1 Rue de l'Oratoire 75001 Paris", name: "Arcades rivoli"
 Place.create!(address: "Pl. Jean-Paul II 75004 Paris", name: "Notre Dame de Paris", url_image: 'https://upload.wikimedia.org/wikipedia/commons/4/43/Cath%C3%A9drale_Notre-Dame_de_Paris_-_05.jpg',
               points: 20)
 
+# Test seed Benjamin
+clayes = Place.create!(address: "71 bis avenue du Parc, 78340 les Clayes sous Bois", name: "La famille Vache-Pache", url_image: 'https://upload.wikimedia.org/wikipedia/commons/4/43/Cath%C3%A9drale_Notre-Dame_de_Paris_-_05.jpg',
+                points: 20)
 
+clayes.photo.attach(
+  io: File.open(Rails.root.join('app', 'assets', 'images', 'clayes.png')),
+  filename: 'clayes.png', content_type: 'image/png'
+)
 
-
-
-
+Place.create!(address: "10, rue Henri Prou, 78340 les Clayes sous Bois", name: "La ferme de Diane", url_image: 'https://img-4.linternaute.com/CgzhWiPrNooLxElp1b_oN3t53Zc=/fit-in/550x550/5fc6555dd7e34a8f9d02563b913aca36/restaurant/140134.jpg',
+  points: 20)
+Place.create!(address: "25 Rue Henri Prou, 78340 les Clayes sous Bois", name: "Cimetière Henri-Prou", url_image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Cimeti%C3%A8re_Henri-Prou_des_Clayes-sous-Bois%2C_Yvelines_3.jpg/1200px-Cimeti%C3%A8re_Henri-Prou_des_Clayes-sous-Bois%2C_Yvelines_3.jpg',
+  points: 20)
+Place.create!(address: "7 Rue Henri Prou, 78340 les clayes-sous-bois", name: "Le Parc de Diane", url_image: 'https://www.communes.com/images/orig/ile-de-france/yvelines/les-clayes-sous-bois_78340/les-clayes-sous-bois_279710.jpg',
+  points: 20)
 
 # Le raincy Test
 Place.create!(address: "83 Av. de la Résistance 93340 Le Raincy", name: "Église Notre-Dame de Consolation", url_image: 'https://upload.wikimedia.org/wikipedia/fr/thumb/5/5b/%C3%89glise_Notre-Dame_du_Raincy_-_M%C3%A9rim%C3%A9e_PA00079948_-_1.jpeg/800px-%C3%89glise_Notre-Dame_du_Raincy_-_M%C3%A9rim%C3%A9e_PA00079948_-_1.jpeg',
